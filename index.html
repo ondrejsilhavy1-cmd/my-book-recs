@@ -5,149 +5,234 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ondrej's Book Recommendations</title>
     <style>
+        :root {
+            --bg: #0f0f1a;
+            --card: #1a1a2e;
+            --text: #e0e0ff;
+            --accent: #ff2a6d;
+            --accent2: #05ffa3;
+            --shadow: rgba(255,42,109,0.3);
+        }
         body { 
             font-family: 'Georgia', serif;
-            max-width: 800px; 
+            max-width: 1200px; 
             margin: 0 auto; 
             padding: 20px; 
-            line-height: 1.6; 
-            background: #fdfdfd; 
-            color: #333;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: all 0.4s ease;
+        }
+        body.light {
+            --bg: #fdfdfd;
+            --card: white;
+            --text: #333;
+            --accent: #ff2a6d;
+            --accent2: #05d9a3;
+            --shadow: rgba(255,42,109,0.2);
         }
 
-        /* Header with banner + profile pic */
         header {
             position: relative;
-            padding: 100px 20px 50px;
+            padding: 100px 20px 60px;
             text-align: center;
-            background: url('https://pbs.twimg.com/profile_banners/1454800864506486786/1748967280/1500x500') center/cover no-repeat;
-            background-color: #1a1a1a; /* Fallback if image fails */
-            border-radius: 16px;
+            background: url('https://pbs.twimg.com/profile_banners/1454800864506486784/1748967280/1500x500') center/cover;
+            background-color: #0f0f1a;
+            border-radius: 20px;
             overflow: hidden;
             margin-bottom: 50px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 40px var(--shadow);
         }
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.6); /* Darker overlay for better text pop */
-        }
-        header img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 6px solid white;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-            background-color: #ccc; /* Fallback gray circle if pic fails */
-            object-fit: cover;
-        }
-        header h1 {
-            margin: 18px 0 8px;
-            font-size: 2.8em;
-            color: white;
-            text-shadow: 0 3px 10px rgba(0,0,0,0.7);
-            position: relative;
-            z-index: 2;
-        }
-        header .tagline {
-            margin: 0;
-            font-size: 1.35em;
-            color: #eee;
-            font-style: italic;
-            position: relative;
-            z-index: 2;
-        }
+        header::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.65); }
+        header img { width: 150px; height: 150px; border-radius: 50%; border: 7px solid var(--accent); position: relative; z-index: 2; box-shadow: 0 0 30px var(--shadow); }
+        header h1 { margin: 20px 0 10px; font-size: 3em; color: white; text-shadow: 0 0 20px var(--accent); position: relative; z-index: 2; }
+        header .tagline { font-size: 1.4em; color: #ccc; font-style: italic; position: relative; z-index: 2; }
 
-        /* Follow button */
-        .follow-cta { text-align: center; margin: 40px 0; }
-        .follow-btn {
-            display: inline-block;
-            background: #1da1f2;
-            color: white;
-            padding: 14px 32px;
-            border-radius: 30px;
-            text-decoration: none;
+        .bio {
+            text-align: center;
+            margin: 20px 0 40px;
+            font-size: 1.1em;
+            color: var(--accent2);
             font-weight: bold;
-            font-size: 1.2em;
-            box-shadow: 0 4px 12px rgba(29,161,242,0.3);
-            transition: all 0.3s ease;
         }
-        .follow-btn:hover { background: #0d8bd9; transform: translateY(-3px); }
 
-        /* Book list */
-        ul { list-style: none; padding: 0; }
-        li { 
-            display: flex; 
-            align-items: flex-start; 
-            margin: 35px 0; 
-            padding: 24px; 
-            background: white; 
-            border-radius: 12px; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-            transition: all 0.3s ease;
+        /* Dark mode toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 100;
+            font-weight: bold;
         }
-        li:hover { box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
-        .book-cover { 
-            width: 90px; height: 135px; margin-right: 24px; 
-            object-fit: cover; border-radius: 6px; 
-            transition: transform 0.3s ease; box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-        }
-        .book-cover:hover { transform: scale(1.12); }
-        .book-info strong { font-size: 1.35em; display: block; color: #222; }
-        .book-info em { color: #666; font-size: 1.05em; }
-        .book-info p { margin: 12px 0 0; font-size: 0.98em; }
 
-        @media (max-width: 600px) {
-            li { flex-direction: column; text-align: center; }
-            .book-cover { margin: 0 auto 16px; }
+        /* Buttons */
+        .btn-group { text-align: center; margin: 50px 0; }
+        .btn {
+            display: inline-block;
+            padding: 18px 40px;
+            margin: 0 12px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.3em;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        .btn-x { background: #1da1f2; color: white; }
+        .btn-x:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 35px rgba(29,161,242,0.5); }
+        .btn-li { background: #0077b5; color: white; }
+        .btn-li:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 15px 35px rgba(0,119,181,0.5); }
+
+        /* Section titles */
+        h2 {
+            text-align: center;
+            font-size: 2.2em;
+            margin: 60px 0 40px;
+            color: var(--accent);
+            text-shadow: 0 0 15px var(--accent);
+        }
+
+        /* Grid layouts */
+        .grid-now { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px; 
+            margin-bottom: 70px;
+        }
+        .grid-recs { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+            gap: 28px; 
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            text-align: center;
+            padding: 20px;
+        }
+        .card:hover { transform: translateY(-12px); box-shadow: 0 20px 40px rgba(255,42,109,0.3); }
+        .card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            transition: transform 0.4s ease;
+        }
+        .card img:hover { transform: scale(1.08); }
+        .card strong { font-size: 1.3em; display: block; margin: 10px 0; color: var(--accent2); }
+        .card em { color: #aaa; font-size: 0.95em; }
+
+        footer {
+            text-align: center;
+            margin: 80px 0 40px;
+            color: #666;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
 
+    <div class="theme-toggle" onclick="document.body.classList.toggle('light')">Toggle Light / Dark</div>
+
     <header>
-        <!-- Your X profile picture - replace if needed -->
-        <img src="https://pbs.twimg.com/profile_images/1991579286130581504/hkfg1f4i_400x400.jpg" alt="Ondrej">
+        <img src="https://pbs.twimg.com/profile_images/1787629473434857473/d8gX7b8e7o8_400x400.jpg" alt="Ondrej">
         <h1>Books That Shaped My Thinking</h1>
         <p class="tagline">Curated reads that actually move the needle</p>
     </header>
 
-    <div class="follow-cta">
-        <a href="https://x.com/SynthwaveManaic" class="follow-btn" target="_blank">
-            Follow @SynthwaveManaic on X
-        </a>
+    <div class="bio">Sovereignty ₿ Crypto ₿ Synthwave ₿ iGaming ₿ Esports</div>
+
+    <div class="btn-group">
+        <a href="https://x.com/SynthwaveManaic" class="btn btn-x" target="_blank">Follow @SynthwaveManaic on X</a>
+        <a href="https://www.linkedin.com/in/ondrejsilhavy/" class="btn btn-li" target="_blank">Connect on LinkedIn</a>
     </div>
 
-    <ul>
-        <li>
-            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=800" alt="The Intelligent Investor" class="book-cover">
-            <div class="book-info">
-                <strong>The Intelligent Investor</strong>
-                <em>by Benjamin Graham</em>
-                <p>The bible of value investing—timeless principles for building wealth without the hype.</p>
-            </div>
-        </li>
-        <li>
-            <img src="https://images.unsplash.com/photo-1524654456586-a6fc9a4f0f0b?auto=format&fit=crop&w=800" alt="Thinking, Fast and Slow" class="book-cover">
-            <div class="book-info">
-                <strong>Thinking, Fast and Slow</strong>
-                <em>by Daniel Kahneman</em>
-                <p>Unlock the two systems of thought that drive our choices and expose hidden biases.</p>
-            </div>
-        </li>
-        <li>
-            <img src="https://images.unsplash.com/photo-1678102823298-15f3a7a8c8e9?auto=format&fit=crop&w=800" alt="Poor Charlie’s Almanack" class="book-cover">
-            <div class="book-info">
-                <strong>Poor Charlie’s Almanack</strong>
-                <em>by Charlie Munger</em>
-                <p>Mental models from the legendary investor—multidisciplinary wisdom for life and business.</p>
-            </div>
-        </li>
-        <!-- Add more books here -->
-    </ul>
+    <h2>📖 What I'm Reading Right Now</h2>
+    <div class="grid-now">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800" alt="Win Bigly">
+            <strong>Win Bigly</strong>
+            <em>Scott Adams</em>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&w=800" alt="The Beginning of Infinity">
+            <strong>The Beginning of Infinity</strong>
+            <em>David Deutsch</em>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800" alt="Capitalism and Freedom">
+            <strong>Capitalism and Freedom</strong>
+            <em>Milton Friedman</em>
+        </div>
+    </div>
 
+    <h2>Timeless Recommendations</h2>
+    <div class="grid-recs">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=800" alt="Fooled by Randomness">
+            <strong>Fooled by Randomness</strong>
+            <em>Nassim Taleb</em>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=800" alt="12 Rules for Life">
+            <strong>12 Rules for Life</strong>
+            <em>Jordan Peterson</em>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1507842217343-583bb7278b66?auto=format&fit=crop&w=800" alt="The Sovereign Individual">
+            <strong>The Sovereign Individual</strong>
+            <em>James Dale Davidson & William Rees-Mogg</em>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800" alt="Can't Hurt Me">
+            <strong>Can't Hurt Me</strong>
+            <em>David Goggins</em>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800" alt="The Technological Republic">
+            <strong>The Technological Republic</strong>
+            <em>Alex Karp</em>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1504639725590-34d1c0d3008d?auto=format&fit=crop&w=800" alt="Alchemy">
+            <strong>Alchemy</strong>
+            <em>Rory Sutherland</em>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1524178232363-0ad9bc4b4c08?auto=format&fit=crop&w=800" alt="Principles">
+            <strong>Principles</strong>
+            <em>Ray Dalio</em>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800" alt="Read Write Own">
+            <strong>Read Write Own</strong>
+            <em>Chris Dixon</em>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800" alt="God's Debris">
+            <strong>God's Debris: The Complete Works</strong>
+            <em>Scott Adams</em>
+        </div>
+    </div>
+
+    <footer>Last updated: December 2025</footer>
+
+    <script>
+        // Auto dark mode based on system preference
+        if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            document.body.classList.add('light');
+        }
+    </script>
 </body>
 </html>
