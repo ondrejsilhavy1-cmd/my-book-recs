@@ -20,7 +20,8 @@
             position: relative;
             padding: 100px 20px 50px;
             text-align: center;
-            background: url('https://pbs.twimg.com/profile_banners/1454800864506486786/1748967280/1500x500') center/cover no-repeat;
+            background: url('https://pbs.twimg.com/profile_banners/1454800864506486784/1748967280/1500x500') center/cover no-repeat;
+            background-color: #1a1a1a; /* Fallback if image fails */
             border-radius: 16px;
             overflow: hidden;
             margin-bottom: 50px;
@@ -30,7 +31,7 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.52);
+            background: rgba(0,0,0,0.6); /* Darker overlay for better text pop */
         }
         header img {
             width: 140px;
@@ -40,6 +41,8 @@
             position: relative;
             z-index: 2;
             box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            background-color: #ccc; /* Fallback gray circle if pic fails */
+            object-fit: cover;
         }
         header h1 {
             margin: 18px 0 8px;
@@ -74,7 +77,7 @@
         }
         .follow-btn:hover { background: #0d8bd9; transform: translateY(-3px); }
 
-        /* Book list – unchanged, just cleaned */
+        /* Book list */
         ul { list-style: none; padding: 0; }
         li { 
             display: flex; 
@@ -106,7 +109,7 @@
 <body>
 
     <header>
-        <!-- Your real X profile picture -->
+        <!-- Your X profile picture - replace if needed -->
         <img src="https://pbs.twimg.com/profile_images/1787629473434857473/d8gX7b8e7o8_400x400.jpg" alt="Ondrej">
         <h1>Books That Shaped My Thinking</h1>
         <p class="tagline">Curated reads that actually move the needle</p>
@@ -120,4 +123,31 @@
 
     <ul>
         <li>
-            <img src="https://images.unsplash.com/photo-154494
+            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=800" alt="The Intelligent Investor" class="book-cover">
+            <div class="book-info">
+                <strong>The Intelligent Investor</strong>
+                <em>by Benjamin Graham</em>
+                <p>The bible of value investing—timeless principles for building wealth without the hype.</p>
+            </div>
+        </li>
+        <li>
+            <img src="https://images.unsplash.com/photo-1524654456586-a6fc9a4f0f0b?auto=format&fit=crop&w=800" alt="Thinking, Fast and Slow" class="book-cover">
+            <div class="book-info">
+                <strong>Thinking, Fast and Slow</strong>
+                <em>by Daniel Kahneman</em>
+                <p>Unlock the two systems of thought that drive our choices and expose hidden biases.</p>
+            </div>
+        </li>
+        <li>
+            <img src="https://images.unsplash.com/photo-1678102823298-15f3a7a8c8e9?auto=format&fit=crop&w=800" alt="Poor Charlie’s Almanack" class="book-cover">
+            <div class="book-info">
+                <strong>Poor Charlie’s Almanack</strong>
+                <em>by Charlie Munger</em>
+                <p>Mental models from the legendary investor—multidisciplinary wisdom for life and business.</p>
+            </div>
+        </li>
+        <!-- Add more books here -->
+    </ul>
+
+</body>
+</html>
