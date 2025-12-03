@@ -48,26 +48,6 @@
     <span id="toggleText">Dark Mode</span>
 </div>
 
-<script>
-    const body = document.body;
-    const toggleText = document.getElementById('toggleText');
-
-    function toggleTheme() {
-        body.classList.toggle('dark');
-        if (body.classList.contains('dark')) {
-            toggleText.textContent = 'Light Mode';
-        } else {
-            toggleText.textContent = 'Dark Mode';
-        }
-    }
-
-    // Initial check (also respects system preference)
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        body.classList.add('dark');
-        toggleText.textContent = 'Light Mode';
-    }
-</script>
-
 <header>
     <img src="https://i.imgur.com/7BkpZ17.jpg" alt="Ondrej">
     <h1>Books That Shaped My Thinking</h1>
@@ -113,6 +93,15 @@
 <h2>Timeless Recommendations</h2>
 <div class="grid-recs">
 
+    <!-- TOP 3 -->
+    <a href="https://www.amazon.com/Sovereign-Individual-Mastering-Transition-Information/dp/0684832720" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/811BLWk2tcL._SL1500_.jpg" alt="The Sovereign Individual">
+        <div class="info">
+            <strong>The Sovereign Individual</strong><em>Davidson & Rees-Mogg</em>
+            <div class="desc">1997 prophecy of nation-state decline and the rise of crypto.<br><strong>Why read it:</strong> The most accurate 25-year-old prediction about today.</div>
+        </div>
+    </a>
+
     <a href="https://www.amazon.com/Fooled-Randomness-Hidden-Markets-Incerto/dp/0812975219" target="_blank" class="card">
         <img src="https://m.media-amazon.com/images/I/51k+ZO5K1mL._SL1200_.jpg" alt="Fooled by Randomness">
         <div class="info">
@@ -129,68 +118,99 @@
         </div>
     </a>
 
-    <a href="https://www.amazon.com/Sovereign-Individual-Mastering-Transition-Information/dp/0684832720" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/811BLWk2tcL._SL1500_.jpg" alt="The Sovereign Individual">
+    <!-- LATEST ADDITIONS -->
+    <a href="https://www.amazon.com/Total-Recall-Incredibly-True-Story/dp/1451662440" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/81Sn3g1r8sL._SL1500_.jpg" alt="Total Recall">
         <div class="info">
-            <strong>The Sovereign Individual</strong><em>Davidson & Rees-Mogg</em>
-            <div class="desc">1997 prophecy of nation-state decline and the rise of crypto.<br><strong>Why read it:</strong> The most accurate 25-year-old prediction about today.</div>
+            <strong>Total Recall</strong><em>Arnold Schwarzenegger</em>
+            <div class="desc">From bodybuilding champion to Hollywood to Governor — the ultimate self-made story.<br><strong>Why read it:</strong> Proof that relentless discipline conquers anything.</div>
         </div>
     </a>
 
-    <a href="https://www.amazon.com/Cant-Hurt-Me-Master-Your/dp/1544512287" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/81YJFNc54lL._SL1500_.jpg" alt="Can't Hurt Me">
+    <a href="https://www.amazon.com/Elon-Musk-SpaceX-Fantastic-Future/dp/0062301250" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/81SlrVsShvL._SL1500_.jpg" alt="Elon Musk by Ashlee Vance">
         <div class="info">
-            <strong>Can't Hurt Me</strong><em>David Goggins</em>
-            <div class="desc">From abused child to Navy SEAL — the ultimate mental toughness manual.<br><strong>Why read it:</strong> Proof that your limits are mostly self-imposed.</div>
+            <strong>Elon Musk</strong><em>Ashlee Vance</em>
+            <div class="desc">The definitive biography of the man building rockets, cars, AI, and brain chips.<br><strong>Why read it:</strong> Extreme ambition and first-principles thinking in action.</div>
         </div>
     </a>
 
-    <a href="https://www.amazon.com/Technological-Republic-Power-Belief-Future/dp/0593798694" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/81U7o8Z8ZFL._SL1500_.jpg" alt="The Technological Republic">
+    <!-- REST OF YOUR LIBRARY -->
+    <a href="https://www.amazon.de/-/en/Run-Die-Inspirational-Greatest-Ultra-Runner/dp/0241004853" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/91w98G96oLL._SL1500_.jpg" alt="Born to Run">
         <div class="info">
-            <strong>The Technological Republic</strong><em>Alex Karp</em>
-            <div class="desc">Palantir CEO on AI, national security and the future of power.<br><strong>Why read it:</strong> Rare insider view from the sharpest mind in big data.</div>
+            <strong>Born to Run</strong><em>Christopher McDougall</em>
+            <div class="desc">The story of the Tarahumara tribe and the joy of running.<br><strong>Why read it:</strong> Makes you fall in love with movement again.</div>
         </div>
     </a>
 
-    <a href="https://www.amazon.com/Alchemy-Unexpected-Force-Irrational/dp/006238841X" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/71w0KKnrfXL._SL1500_.jpg" alt="Alchemy">
+    <a href="https://www.amazon.com/New-American-Road-Trip-Mixtape-ebook/dp/B00G2KF9Y4" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/81skOhaS-4L._SL1500_.jpg" alt="The New American Road Trip Mixtape">
         <div class="info">
-            <strong>Alchemy</strong><em>Rory Sutherland</em>
-            <div class="desc">The magic of irrational value and psycho-logic over logic.<br><strong>Why read it:</strong> Turns you into a wizard at creating perceived value.</div>
+            <strong>The New American Road Trip Mixtape</strong><em>Brendan Leonard</em>
+            <div class="desc">A hilarious and heartfelt memoir of van life and adventure.<br><strong>Why read it:</strong> The ultimate “quit your job and hit the road” inspiration.</div>
         </div>
     </a>
 
-    <a href="https://www.amazon.com/Principles-Life-Work-Ray-Dalio/dp/1501124021" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/61LKD6scbfL._SL1500_.jpg" alt="Principles">
+    <a href="https://www.amazon.com/Daily-Stoic-366-Meditations-Wealth/dp/0735211736" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/71T1sL1vatL._SL1500_.jpg" alt="The Daily Stoic">
         <div class="info">
-            <strong>Principles</strong><em>Ray Dalio</em>
-            <div class="desc">Life and work operating system from the world’s top hedge fund manager.<br><strong>Why read it:</strong> Repeatable decision-making framework for everything.</div>
+            <strong>The Daily Stoic</strong><em>Ryan Holiday</em>
+            <div class="desc">366 bite-sized meditations on wisdom and the art of living.<br><strong>Why read it:</strong> One page a day keeps chaos away.</div>
         </div>
     </a>
 
-    <a href="https://www.amazon.com/Read-Write-Own-Building-Internet/dp/0593731395" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/71EooR8LsRL._SL1500_.jpg" alt="Read Write Own">
+    <a href="https://www.amazon.com/Almanack-Naval-Ravikant-Wealth-Happiness/dp/B08V9VKN7T" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/61ptYzpPOsL._SL1500_.jpg" alt="The Almanack of Naval Ravikant">
         <div class="info">
-            <strong>Read Write Own</strong><em>Chris Dixon</em>
-            <div class="desc">Why blockchains are the third era of the internet.<br><strong>Why read it:</strong> The clearest case for why ownership on the internet matters again.</div>
+            <strong>The Almanack of Naval Ravikant</strong><em>Eric Jorgenson</em>
+            <div class="desc">Curated wisdom on wealth, happiness, and leverage.<br><strong>Why read it:</strong> The modern bible for building freedom.</div>
         </div>
     </a>
 
-    <a href="https://www.amazon.com/Gods-Debris-Complete-Scott-Adams/dp/B0D4F6WQPD" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/714gov1g4yL._SL1500_.jpg" alt="God's Debris">
+    <a href="https://www.amazon.com/Network-State-How-Start-Country/dp/1734967750" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/71ZeCLHRzvL._SL1500_.jpg" alt="The Network State">
         <div class="info">
-            <strong>God's Debris</strong><em>Scott Adams</em>
-            <div class="desc">A 90-minute thought experiment that questions reality itself.<br><strong>Why read it:</strong> Will permanently scramble your worldview in the best way.</div>
+            <strong>The Network State</strong><em>Balaji Srinivasan</em>
+            <div class="desc">How to start a new country — digitally first, then physically.<br><strong>Why read it:</strong> The blueprint for the next phase of civilization.</div>
         </div>
     </a>
+
+    <a href="https://www.amazon.com/Network-State-How-Start-Country/dp/1734967750" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/61A6O6tLSmL._SL1500_.jpg" alt="The Anthology by Balaji">
+        <div class="info">
+            <strong>The Anthology by Balaji</strong><em>Balaji Srinivasan</em>
+            <div class="desc">Curated tweets and essays from the mind that predicted crypto and remote work.<br><strong>Why read it:</strong> Dense signal in a world of noise.</div>
+        </div>
+    </a>
+
+    <a href="https://www.amazon.com/Extreme-Ownership-U-S-Navy-SEALs/dp/1250067057" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/71GqMTCFWtL._SL1500_.jpg" alt="Extreme Ownership">
+        <div class="info">
+            <strong>Extreme Ownership</strong><em>Jocko Willink & Leif Babin</em>
+            <div class="desc">Navy SEAL leadership: own everything in your world.<br><strong>Why read it:</strong> No excuses, only ownership — works in war and business.</div>
+        </div>
+    </a>
+
+    <!-- Add more books here anytime -->
 
 </div>
 
 <footer>Last updated: December 2025</footer>
 
 <script>
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.body.classList.add('dark');
+    const body = document.body;
+    const toggleText = document.getElementById('toggleText');
+
+    function toggleTheme() {
+        body.classList.toggle('dark');
+        toggleText.textContent = body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode';
+    }
+
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        body.classList.add('dark');
+        toggleText.textContent = 'Light Mode';
+    }
 </script>
 </body>
 </html>
