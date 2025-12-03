@@ -16,45 +16,43 @@
         }
         /* Proper Header */
         header { 
-           <!-- Updated Header with X banner + profile pic -->
-<header style="
-    position: relative;
-    padding: 80px 20px 40px;
-    text-align: center;
-    background: url('https://pbs.twimg.com/profile_banners/1454800864506486786/1748967280/1500x500') center/cover no-repeat;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 40px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-">
-    <!-- Dark overlay so text stays readable -->
-    <div style="
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(0,0,0,0.45);
-    "></div>
-
-    <!-- Profile picture -->
-    <img src="https://pbs.twimg.com/profile_images/1991579286130581504/hkfg1f4i_400x400.jpg" alt="Your profile picture" style="
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        border: 5px solid white;
-        position: relative;
-        z-index: 2;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    ">
-
-    <!-- Title & tagline -->
-    <div style="position: relative; z-index: 2; margin-top: 15px;">
-        <h1 style="color: white; margin: 0; font-size: 2.6em; text-shadow: 0 2px 8px rgba(0,0,0,0.6);">
-            Ondrej's Book Recommendations
-        </h1>
-        <p class="tagline" style="color: #ddd; font-size: 1.3em; margin: 8px 0 0;">
-            Curated reads that actually move the needle
-        </p>
-    </div>
-</header>
+            position: relative;
+            padding: 80px 20px 40px;
+            text-align: center;
+            background: url('https://pbs.twimg.com/profile_banners/1454800864506486786/1748967280/1500x500') center/cover no-repeat;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.45);
+        }
+        header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid white;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        header h1 {
+            color: white;
+            font-size: 2.6em;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            position: relative;
+            z-index: 2;
+        }
+        header .tagline {
+            color: #ddd;
+            font-size: 1.3em;
+            margin: 8px 0 0;
+            position: relative;
+            z-index: 2;
         }
         h1 { 
             font-size: 2.5em; 
