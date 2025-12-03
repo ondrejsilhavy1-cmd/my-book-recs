@@ -44,7 +44,29 @@
 </head>
 <body>
 
-<div class="theme-toggle" onclick="document.body.classList.toggle('dark')">Dark Mode</div>
+<div class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+    <span id="toggleText">Dark Mode</span>
+</div>
+
+<script>
+    const body = document.body;
+    const toggleText = document.getElementById('toggleText');
+
+    function toggleTheme() {
+        body.classList.toggle('dark');
+        if (body.classList.contains('dark')) {
+            toggleText.textContent = 'Light Mode';
+        } else {
+            toggleText.textContent = 'Dark Mode';
+        }
+    }
+
+    // Initial check (also respects system preference)
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        body.classList.add('dark');
+        toggleText.textContent = 'Light Mode';
+    }
+</script>
 
 <header>
     <img src="https://i.imgur.com/7BkpZ17.jpg" alt="Ondrej">
