@@ -6,138 +6,181 @@
     <title>Ondrej's Book Recommendations</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-            color: #222;
-            line-height: 1.7;
-            transition: all 0.3s;
-        }
-        body.dark {
-            background: #0d1117;
-            color: #c9d1d9;
-        }
-        header {
-            position: relative;
-            padding: 80px 20px 50px;
-            text-align: center;
-            background: url('https://i.imgur.com/u7zAY7d.jpg') center/cover no-repeat;
-            background-color: #111;
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 40px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-        }
-        header::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.6); }
-        header img { width: 120px; height: 120px; border-radius: 50%; border: 5px solid white; position: relative; z-index: 2; }
-        header h1 { margin: 16px 0 8px; font-size: 2.4em; color: white; position: relative; z-index: 2; font-weight: 600; }
-        header .tagline { font-size: 1.2em; color: #eee; position: relative; z-index: 2; font-weight: 400; }
-        .bio { text-align: center; margin: 20px 0 40px; font-weight: 500; color: #555; }
-        body.dark .bio { color: #58a6ff; }
-        .theme-toggle { position: fixed; top: 16px; right: 16px; padding: 8px 14px; background: #000; color: #fff; border-radius: 30px; cursor: pointer; font-size: 0.9em; z-index: 100; font-family: inherit; }
-        body.dark .theme-toggle { background: #fff; color: #000; }
-        .btn-group { text-align: center; margin: 40px 0; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .btn { padding: 14px 36px; border-radius: 50px; font-weight: 600; text-decoration: none; min-width: 220px; transition: all 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.1); font-family: inherit; }
-        .btn-x { background: #000; color: white; }
-        .btn-li { background: #0077b5; color: white; }
-        .btn:hover { transform: translateY(-3px); opacity: 0.95; }
-        h2 { text-align: center; font-size: 1.9em; margin: 50px 0 30px; color: #222; font-weight: 600; }
-        body.dark h2 { color: #58a6ff; }
-        .grid-now { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-bottom: 50px; }
-        .grid-recs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.1); text-align: center; transition: 0.3s; cursor: pointer; display: block; text-decoration: none; color: inherit; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
-        body.dark .card { background: #161b22; }
-        .card img { width: 100%; height: 200px; object-fit: contain; padding: 10px; } /* Rectangular fit for full title visibility */
-        .card div { padding: 16px; }
-        .card strong { font-size: 1.15em; display: block; color: #222; font-weight: 600; }
-        body.dark .card strong { color: #58a6ff; }
-        .card em { font-size: 0.95em; color: #666; font-weight: 400; }
-        body.dark .card em { color: #8b949e; }
-        footer { text-align: center; margin: 80px 0 40px; color: #666; font-size: 0.9em; }
-        body.dark footer { color: #8b949e; }
+        body {font-family:'Inter',sans-serif;max-width:1000px;margin:0 auto;padding:20px;background:#fff;color:#222;line-height:1.7;transition:all .3s}
+        body.dark {background:#0d1117;color:#c9d1d9}
+        header {position:relative;padding:80px 20px 50px;text-align:center;background:url('https://i.imgur.com/u7zAY7d.jpg') center/cover;background-color:#111;border-radius:16px;overflow:hidden;margin-bottom:40px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
+        header::before {content:'';position:absolute;inset:0;background:rgba(0,0,0,.6)}
+        header img {width:120px;height:120px;border-radius:50%;border:5px solid #fff;position:relative;z-index:2}
+        header h1 {margin:16px 0 8px;font-size:2.4em;color:#fff;position:relative;z-index:2;font-weight:600}
+        header .tagline {font-size:1.2em;color:#eee;position:relative;z-index:2}
+        .bio {text-align:center;margin:20px 0 40px;font-weight:500;color:#555}
+        body.dark .bio {color:#58a6ff}
+        .theme-toggle {position:fixed;top:16px;right:16px;padding:8px 14px;background:#000;color:#fff;border-radius:30px;cursor:pointer;font-size:.9em;z-index:100}
+        body.dark .theme-toggle {background:#fff;color:#000}
+        .btn-group {text-align:center;margin:40px 0;display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+        .btn {padding:14px 36px;border-radius:50px;font-weight:600;text-decoration:none;min-width:220px;transition:all .3s;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+        .btn-x {background:#000;color:#fff}
+        .btn-li {background:#0077b5;color:#fff}
+        .btn:hover {transform:translateY(-3px);opacity:.95}
+        h2 {text-align:center;font-size:1.9em;margin:50px 0 30px;color:#222;font-weight:600}
+        body.dark h2 {color:#58a6ff}
+        .grid-now {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-bottom:60px}
+        .grid-recs {display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+        .card {background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.1);transition:.3s;cursor:pointer;display:block;text-decoration:none;color:inherit}
+        .card:hover {transform:translateY(-8px);box-shadow:0 12px 30px rgba(0,0,0,.15)}
+        body.dark .card {background:#161b22}
+        .card img {width:100%;height:200px;object-fit:contain;background:#f8f8f8;padding:10px}
+        body.dark .card img {background:#0d1117}
+        .card .info {padding:16px 20px;text-align:left}
+        .card strong {font-size:1.15em;display:block;margin-bottom:4px;color:#222;font-weight:600}
+        body.dark .card strong {color:#58a6ff}
+        .card em {font-size:.95em;color:#666;display:block;margin-bottom:8px}
+        body.dark .card em {color:#8b949e}
+        .card .desc {font-size:.92em;color:#444;line-height:1.5}
+        body.dark .card .desc {color:#adbac7}
+        footer {text-align:center;margin:80px 0 40px;color:#666;font-size:.9em}
+        body.dark footer {color:#8b949e}
     </style>
 </head>
 <body>
 
-    <div class="theme-toggle" onclick="document.body.classList.toggle('dark')">Dark Mode</div>
+<div class="theme-toggle" onclick="document.body.classList.toggle('dark')">Dark Mode</div>
 
-    <header>
-        <img src="https://i.imgur.com/7BkpZ17.jpg" alt="Ondrej">
-        <h1>Books That Shaped My Thinking</h1>
-        <p class="tagline">Curated reads that actually move the needle</p>
-    </header>
+<header>
+    <img src="https://i.imgur.com/7BkpZ17.jpg" alt="Ondrej">
+    <h1>Books That Shaped My Thinking</h1>
+    <p class="tagline">Curated reads that actually move the needle</p>
+</header>
 
-    <div class="bio">Sovereignty • Crypto • Synthwave • iGaming • Esports</div>
+<div class="bio">Sovereignty • Crypto • Synthwave • iGaming • Esports</div>
 
-    <div class="btn-group">
-        <a href="https://x.com/SynthwaveManaic" class="btn btn-x" target="_blank">Follow @SynthwaveManaic on X</a>
-        <a href="https://www.linkedin.com/in/ondrejsilhavy/" class="btn btn-li" target="_blank">Connect on LinkedIn</a>
-    </div>
+<div class="btn-group">
+    <a href="https://x.com/SynthwaveManaic" class="btn btn-x" target="_blank">Follow @SynthwaveManaic on X</a>
+    <a href="https://www.linkedin.com/in/ondrejsilhavy/" class="btn btn-li" target="_blank">Connect on LinkedIn</a>
+</div>
 
-    <h2>Currently Reading</h2>
-    <div class="grid-now">
-        <a href="https://www.amazon.com/Win-Bigly-Persuasion-World-Makes/dp/0735219710" target="_blank" class="card">
-            <img src="https://m.media-amazon.com/images/I/71FDhvgLyZL._SL1500_.jpg" alt="Win Bigly">
-            <div><strong>Win Bigly</strong><em>Scott Adams</em></div>
-        </a>
-        <a href="https://www.amazon.com/Beginning-Infinity-Explanations-Transform-World/dp/0143121359" target="_blank" class="card">
-            <img src="https://m.media-amazon.com/images/I/71f1r8++XL._SL1500_.jpg" alt="The Beginning of Infinity">
-            <div><strong>The Beginning of Infinity</strong><em>David Deutsch</em></div>
-        </a>
-        <a href="https://www.amazon.com/Capitalism-Freedom-Milton-Friedman/dp/0226264211" target="_blank" class="card">
-            <img src="https://m.media-amazon.com/images/I/71++XL._SL1500_.jpg" alt="Capitalism and Freedom">
-            <div><strong>Capitalism and Freedom</strong><em>Milton Friedman</em></div>
-        </a>
-    </div>
+<h2>Currently Reading</h2>
+<div class="grid-now">
 
-    <h2>Timeless Recommendations</h2>
-    <div class="grid-recs">
-        <a href="https://www.amazon.com/Fooled-Randomness-Hidden-Markets-Incerto/dp/0812975219" target="_blank" class="card">
-            <img src="https://m.media-amazon.com/images/I/71o5+++2L._SL1500_.jpg" alt="Fooled by Randomness">
-            <div><strong>Fooled by Randomness</strong><em>Nassim Taleb</em></div>
-        </a>
-        <a href="https://www.amazon.com/Rules-Life-International-Bestseller/dp/0345816021" target="_blank" class="card">
-            <img src="https://m.media-amazon.com/images/I/71+++XL._SL1500_.jpg" alt="12 Rules for Life">
-            <div><strong>12 Rules for Life</strong><em>Jordan Peterson</em></div>
-        </a>
-        <a href="https://www.amazon.com/Sovereign-Individual-Mastering-Transition-Information/dp/0684832720" target="_blank" class="card">
-            <img src="https://m.media-amazon.com/images/I/71+++XL._SL1500_.jpg" alt="The Sovereign Individual">
-            <div><strong>The Sovereign Individual</strong><em>Davidson & Rees-Mogg</em></div>
-        </a>
-        <a href="https://www.amazon.com/Cant-Hurt-Me-Master-Your/dp/1544512287" target="_blank" class="card">
-            <img src="https://m.media-amazon.com/images/I/71+++XL._SL1500_.jpg" alt="Can't Hurt Me">
-            <div><strong>Can't Hurt Me</strong><em>David Goggins</em></div>
-        </a>
-        <a href="https://www.amazon.com/Technological-Republic-Power-Belief-Future/dp/0593798694" target="_blank" class="card">
-            <img src="https://m.media-amazon.com/images/I/71+++XL._SL1500_.jpg" alt="The Technological Republic">
-            <div><strong>The Technological Republic</strong><em>Alex Karp</em></div>
-        </a>
-        <a href="https://www.amazon.com/Alchemy-Unexpected-Force-Irrational/dp/006238841X" target="_blank" class="card">
-            <img src="https://m.media-amazon.com/images/I/71+++XL._SL1500_.jpg" alt="Alchemy">
-            <div><strong>Alchemy</strong><em>Rory Sutherland</em></div>
-        </a>
-        <a href="https://www.amazon.com/Principles-Life-Work-Ray-Dalio/dp/1501124021" target="_blank" class="card">
-            <img src="https://m.media-amazon.com/images/I/71+++XL._SL1500_.jpg" alt="Principles">
-            <div><strong>Principles</strong><em>Ray Dalio</em></div>
-        </a>
-        <a href="https://www.amazon.com/Read-Write-Own-Building-Internet/dp/0593731409" target="_blank" class="card">
-            <img src="https://m.media-amazon.com/images/I/71+++XL._SL1500_.jpg" alt="Read Write Own">
-            <div><strong>Read Write Own</strong><em>Chris Dixon</em></div>
-        </a>
-        <a href="https://www.amazon.com/Gods-Debris-Complete-Scott-Adams/dp/B0D4F6WQPD" target="_blank" class="card">
-            <img src="https://m.media-amazon.com/images/I/71+++XL._SL1500_.jpg" alt="God's Debris">
-            <div><strong>God's Debris</strong><em>Scott Adams</em></div>
-        </a>
-    </div>
+    <a href="https://www.amazon.com/Win-Bigly-Persuasion-World-Makes/dp/0735219710" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/71FDhvgLyZL._SL1500_.jpg" alt="Win Bigly">
+        <div class="info">
+            <strong>Win Bigly</strong><em>Scott Adams</em>
+            <div class="desc">How persuasion and cognitive biases decided the 2016 election.<br>
+            <strong>Why read it:</strong> Teaches you to spot and use persuasion techniques in real time.</div>
+        </div>
+    </a>
 
-    <footer>Last updated: December 2025</footer>
+    <a href="https://www.amazon.com/Beginning-Infinity-Explanations-Transform-World/dp/0143121359" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/716R8HCtH+L._SL1500_.jpg" alt="The Beginning of Infinity">
+        <div class="info">
+            <strong>The Beginning of Infinity</strong><em>David Deutsch</em>
+            <div class="desc">Why good explanations are the engine of all progress and how knowledge creates reality.<br>
+            <strong>Why read it:</strong> The most optimistic and mind-expanding philosophy of science ever written.</div>
+        </div>
+    </a>
 
-    <script>
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.body.classList.add('dark');
-    </script>
+    <a href="https://www.amazon.com/Capitalism-Freedom-Milton-Friedman/dp/0226264211" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/51TxWIiGgML._SL1000_.jpg" alt="Capitalism and Freedom">
+        <div class="info">
+            <strong>Capitalism and Freedom</strong><em>Milton Friedman</em>
+            <div class="desc">The classic defense of free markets and individual liberty.<br>
+            <strong>Why read it:</strong> Still the clearest explanation why economic freedom and political freedom are inseparable.</div>
+        </div>
+    </a>
+
+</div>
+
+<h2>Timeless Recommendations</h2>
+<div class="grid-recs">
+
+    <a href="https://www.amazon.com/Fooled-Randomness-Hidden-Markets-Incerto/dp/0812975219" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/51k+ZO5K1mL._SL1200_.jpg" alt="Fooled by Randomness">
+        <div class="info">
+            <strong>Fooled by Randomness</strong><em>Nassim Taleb</em>
+            <div class="desc">How luck disguises itself as skill in markets and life.<br>
+            <strong>Why read it:</strong> First book that truly humbled me about risk and success.</div>
+        </div>
+    </a>
+
+    <a href="https://www.amazon.com/Rules-Life-International-Bestseller/dp/0345816021" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/71+++XL._SL1500_.jpg" alt="12 Rules for Life">
+        <div class="info">
+            <strong>12 Rules for Life</strong><em>Jordan Peterson</em>
+            <div class="desc">An antidote to chaos — practical wisdom from psychology, mythology and hard truths.<br>
+            <strong>Why read it:</strong> Forces you to take responsibility and clean your room (literally and metaphorically).</div>
+        </div>
+    </a>
+
+    <a href="https://www.amazon.com/Sovereign-Individual-Mastering-Transition-Information/dp/0684832720" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/71+++XL._SL1500_.jpg" alt="The Sovereign Individual">
+        <div class="info">
+            <strong>The Sovereign Individual</strong><em>Davidson & Rees-Mogg</em>
+            <div class="desc">1997 prophecy of the Information Age, nation-state decline and the rise of crypto-like systems.<br>
+            <strong>Why read it:</strong> The most accurate 25-year-old prediction about the world we live in today.</div>
+        </div>
+    </a>
+
+    <a href="https://www.amazon.com/Cant-Hurt-Me-Master-Your/dp/1544512287" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/81+++XL._SL1500_.jpg" alt="Can't Hurt Me">
+        <div class="info">
+            <strong>Can't Hurt Me</strong><em>David Goggins</em>
+            <div class="desc">From abused child to Navy SEAL — the ultimate mental toughness playbook.<br>
+            <strong>Why read it:</strong> When you think you’re done, you’re only at 40% of your capacity.</div>
+        </div>
+    </a>
+
+    <a href="https://www.amazon.com/Technological-Republic-Power-Belief-Future/dp/0593798694" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/81+++XL._SL1500_.jpg" alt="The Technological Republic">
+        <div class="info">
+            <strong>The Technological Republic</strong><em>Alex Karp</em>
+            <div class="desc">Palantir CEO’s vision of how software eats the world — and why we must control it.<br>
+            <strong>Why read it:</strong> Rare insider view on AI, national security and the future of power.</div>
+        </div>
+    </a>
+
+    <a href="https://www.amazon.com/Alchemy-Unexpected-Force-Irrational/dp/006238841X" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/81+++XL._SL1500_.jpg" alt="Alchemy">
+        <div class="info">
+            <strong>Alchemy</strong><em>Rory Sutherland</em>
+            <div class="desc">The magic of irrational value and why psycho-logic beats logic in marketing and life.<br>
+            <strong>Why read it:</strong> Turns you into a wizard at creating perceived value out of thin air.</div>
+        </div>
+    </a>
+
+    <a href="https://www.amazon.com/Principles-Life-Work-Ray-Dalio/dp/1501124021" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/81+++XL._SL1500_.jpg" alt="Principles">
+        <div class="info">
+            <strong>Principles</strong><em>Ray Dalio</em>
+            <div class="desc">Life and work operating system from the world’s most successful hedge fund manager.<br>
+            <strong>Why read it:</strong> Gives you a repeatable decision-making framework for any situation.</div>
+        </div>
+    </a>
+
+    <a href="https://www.amazon.com/Read-Write-Own-Building-Internet/dp/0593731409" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/81+++XL._SL1500_.jpg" alt="Read Write Own">
+        <div class="info">
+            <strong>Read Write Own</strong><em>Chris Dixon</em>
+            <div class="desc">Why blockchains are the third era of the internet — from a16z’s crypto lead.<br>
+            <strong>Why read it:</strong> The clearest explanation of why ownership on the internet matters again.</div>
+        </div>
+    </a>
+
+    <a href="https://www.amazon.com/Gods-Debris-Complete-Scott-Adams/dp/B0D4F6WQPD" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/81+++XL._SL1500_.jpg" alt="God's Debris">
+        <div class="info">
+            <strong>God's Debris</strong><em>Scott Adams</em>
+            <div class="desc">A thought experiment disguised as a novella that questions reality, probability and God.<br>
+            <strong>Why read it:</strong> 90-minute read that will permanently scramble your worldview (in a good way).</div>
+        </div>
+    </a>
+
+</div>
+
+<footer>Last updated: December 2025</footer>
+
+<script>
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.body.classList.add('dark');
+</script>
 </body>
 </html>
