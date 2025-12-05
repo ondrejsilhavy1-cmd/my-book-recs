@@ -29,7 +29,7 @@
         .pipeline-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px}
         .pipeline h2 {color:#888;font-weight:500;margin-top:80px}
         body.dark .pipeline h2 {color:#666}
-        .pipeline .card {opacity:0.85;border:2px dashed #ddd;background:#fafafa;padding:12px;position:relative}
+        .pipeline .card {opacity:0.85;border:2px dashed #ddd;background:#fafafa;padding:12px}
         body.dark .pipeline .card {border-color:#444;background:#1a1f29}
         .pipeline .card:hover {opacity:1;transform:translateY(-6px)}
         .card {background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.1);transition:.3s;cursor:pointer;display:block;text-decoration:none;color:inherit}
@@ -37,30 +37,17 @@
         body.dark .card {background:#161b22}
         .card img {width:100%;height:200px;object-fit:contain;background:#f8f8f8;padding:10px}
         body.dark .card img {background:#0d1117}
-       .card .info {
-    padding: 16px 20px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;   /* ← pushes everything to top + progress to bottom */
-    min-height: 150px;                 /* ← ensures all cards have same height */
-}
+        .card .info {padding:16px 20px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;min-height:150px}
         .card strong {font-size:1.15em;display:block;margin-bottom:4px;color:#222;font-weight:600}
         body.dark .card strong {color:#58a6ff}
         .card em {font-size:.95em;color:#666;display:block;margin-bottom:8px}
         body.dark .card em {color:#8b949e}
-        .card .desc {font-size:.92em;color:#444;line-height:1.5}
+        .card .desc {font-size:.92em;color:#444;line-height:1.5;margin-bottom:8px}
         body.dark .card .desc {color:#adbac7}
-        .progress-container {
-    margin-top: auto;                  /* ← this is the magic line – forces progress bar to the very bottom */
-    height: 6px;
-    background: #e0e0e0;
-    border-radius: 3px;
-    overflow: hidden;
-}
+        .progress-container {margin-top:auto;height:6px;background:#e0e0e0;border-radius:3px;overflow:hidden}
         body.dark .progress-container {background:#333}
-        .progress {height: 100%; background: #ff2a6d; transition: width .6s ease}
-        .progress-text {font-size: .8em;color: #ff2a6d;margin-top: 4px;text-align: center;font-weight: 600;}
+        .progress {height:100%;background:#ff2a6d;transition:width .6s ease}
+        .progress-text {font-size:.8em;color:#ff2a6d;margin-top:4px;text-align:center;font-weight:600}
         body.dark .progress-text {color:#ff6b9d}
         footer {text-align:center;margin:80px 0 40px;color:#666;font-size:.9em}
         body.dark footer {color:#8b949e}
@@ -85,12 +72,14 @@
     <a href="https://www.linkedin.com/in/ondrejsilhavy/" class="btn btn-li" target="_blank">Connect on LinkedIn</a>
 </div>
 
+
 <h2>Currently Reading</h2>
 <div class="grid-now">
 
     <a href="https://www.amazon.com/Win-Bigly-Persuasion-World-Makes/dp/0735219710" target="_blank" class="card">
         <img src="https://m.media-amazon.com/images/I/71FDhvgLyZL._SL1500_.jpg" alt="Win Bigly">
-        <div class="info"><strong>Win Bigly</strong><em>Scott Adams</em>
+        <div class="info">
+            <strong>Win Bigly</strong><em>Scott Adams</em>
             <div class="desc">How persuasion and cognitive biases decided the 2016 election.<br><strong>Why read it:</strong> Master-class in real-world influence.</div>
             <div class="progress-container"><div class="progress" style="width:30%"></div></div>
             <div class="progress-text">30%</div>
@@ -99,7 +88,8 @@
 
     <a href="https://www.amazon.com/Beginning-Infinity-Explanations-Transform-World/dp/0143121359" target="_blank" class="card">
         <img src="https://m.media-amazon.com/images/I/716R8HCtH+L._SL1500_.jpg" alt="The Beginning of Infinity">
-        <div class="info"><strong>The Beginning of Infinity</strong><em>David Deutsch</em>
+        <div class="info">
+            <strong>The Beginning of Infinity</strong><em>David Deutsch</em>
             <div class="desc">Good explanations are the engine of all progress.<br><strong>Why read it:</strong> The most optimistic philosophy of science ever.</div>
             <div class="progress-container"><div class="progress" style="width:10%"></div></div>
             <div class="progress-text">10%</div>
@@ -108,7 +98,8 @@
 
     <a href="https://www.amazon.com/Capitalism-Freedom-Milton-Friedman/dp/0226264211" target="_blank" class="card">
         <img src="https://m.media-amazon.com/images/I/51TxWIiGgML._SL1000_.jpg" alt="Capitalism and Freedom">
-        <div class="info"><strong>Capitalism and Freedom</strong><em>Milton Friedman</em>
+        <div class="info">
+            <strong>Capitalism and Freedom</strong><em>Milton Friedman</em>
             <div class="desc">The classic case for free markets and individual liberty.<br><strong>Why read it:</strong> Still the clearest link between economic and political freedom.</div>
             <div class="progress-container"><div class="progress" style="width:20%"></div></div>
             <div class="progress-text">20%</div>
