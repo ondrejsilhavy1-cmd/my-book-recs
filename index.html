@@ -6,7 +6,7 @@
     <title>Ondrej's Book Recommendations</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {font-family:'Inter',sans-serif;max-width:1000px;margin:0 auto;padding:20px;background:#fff;color:#222;line-height:1.7;transition:all .3s}
+        body {font-family:'Inter',sans-serif;max-width:1200px;margin:0 auto;padding:20px;background:#fff;color:#222;line-height:1.7;transition:all .3s}
         body.dark {background:#0d1117;color:#c9d1d9}
         header {position:relative;padding:80px 20px 50px;text-align:center;background:url('https://i.imgur.com/u7zAY7d.jpg') center/cover;background-color:#111;border-radius:16px;overflow:hidden;margin-bottom:40px;box-shadow:0 8px 32px rgba(0,0,0,.2)}
         header::before {content:'';position:absolute;inset:0;background:rgba(0,0,0,.6)}
@@ -25,7 +25,13 @@
         h2 {text-align:center;font-size:1.9em;margin:50px 0 30px;color:#222;font-weight:600}
         body.dark h2 {color:#58a6ff}
         .grid-now {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-bottom:60px}
-        .grid-recs {display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+        .grid-recs {display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+        .pipeline-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px} /* 5 per row */
+        .pipeline h2 {color:#888;font-weight:500;margin-top:80px}
+        body.dark .pipeline h2 {color:#666}
+        .pipeline .card {opacity:0.8;border:2px dashed #ddd;background:#fafafa;padding:12px}
+        body.dark .pipeline .card {border-color:#444;background:#1a1f29}
+        .pipeline .card:hover {opacity:1;transform:translateY(-6px)}
         .card {background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.1);transition:.3s;cursor:pointer;display:block;text-decoration:none;color:inherit}
         .card:hover {transform:translateY(-8px);box-shadow:0 12px 30px rgba(0,0,0,.15)}
         body.dark .card {background:#161b22}
@@ -48,126 +54,50 @@
     <span id="toggleText">Dark Mode</span>
 </div>
 
-<header>
-    <img src="https://i.imgur.com/7BkpZ17.jpg" alt="Ondrej">
-    <h1>Books That Shaped My Thinking</h1>
-    <p class="tagline">Curated reads that actually move the needle</p>
-</header>
-
-<div class="bio">Sovereignty • Crypto • Synthwave • iGaming • Esports</div>
-
-<div class="btn-group">
-    <a href="https://x.com/SynthwaveManaic" class="btn btn-x" target="_blank">Follow @SynthwaveManaic on X</a>
-    <a href="https://www.linkedin.com/in/ondrejsilhavy/" class="btn btn-li" target="_blank">Connect on LinkedIn</a>
-</div>
-
-<h2>Currently Reading</h2>
-<div class="grid-now">
-    <a href="https://www.amazon.com/Win-Bigly-Persuasion-World-Makes/dp/0735219710" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/71FDhvgLyZL._SL1500_.jpg" alt="Win Bigly">
-        <div class="info"><strong>Win Bigly</strong><em>Scott Adams</em><div class="desc">How persuasion and cognitive biases decided the 2016 election.<br><strong>Why read it:</strong> Master-class in real-world influence.</div></div>
-    </a>
-    <a href="https://www.amazon.com/Beginning-Infinity-Explanations-Transform-World/dp/0143121359" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/716R8HCtH+L._SL1500_.jpg" alt="The Beginning of Infinity">
-        <div class="info"><strong>The Beginning of Infinity</strong><em>David Deutsch</em><div class="desc">Good explanations are the engine of all progress.<br><strong>Why read it:</strong> The most optimistic philosophy of science ever.</div></div>
-    </a>
-    <a href="https://www.amazon.com/Capitalism-Freedom-Milton-Friedman/dp/0226264211" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/51TxWIiGgML._SL1000_.jpg" alt="Capitalism and Freedom">
-        <div class="info"><strong>Capitalism and Freedom</strong><em>Milton Friedman</em><div class="desc">The classic case for free markets and individual liberty.<br><strong>Why read it:</strong> Still the clearest link between economic and political freedom.</div></div>
-    </a>
-</div>
+<!-- Header, Currently Reading, Timeless Recommendations – unchanged (keep yours) -->
 
 <h2>Timeless Recommendations</h2>
 <div class="grid-recs">
 
-    <!-- YOUR TOP 3 -->
-    <a href="https://www.amazon.com/Sovereign-Individual-Mastering-Transition-Information/dp/0684832720" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/811BLWk2tcL._SL1500_.jpg" alt="The Sovereign Individual">
-        <div class="info"><strong>The Sovereign Individual</strong><em>Davidson & Rees-Mogg</em><div class="desc">1997 prophecy of nation-state decline and the rise of crypto.<br><strong>Why read it:</strong> The most accurate 25-year-old prediction about today.</div></div>
+    <!-- Your existing top books + the 3 new ones at the end -->
+    <!-- ... all your previous books ... -->
+
+    <!-- NEWLY ADDED TO FINISHED -->
+    <a href="https://www.amazon.com/Way-Fight-Georges-St-Pierre/dp/140913242X" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/61FisjZ13HL._SL1500_.jpg" alt="The Way of Fight">
+        <div class="info"><strong>The Way of Fight</strong><em>Georges St-Pierre</em><div class="desc">GSP’s philosophy on martial arts, discipline, and life.<br><strong>Why read it:</strong> Wisdom from one of the greatest fighters ever.</div></div>
     </a>
 
-    <a href="https://www.amazon.com/Fooled-Randomness-Hidden-Markets-Incerto/dp/0812975219" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/51k+ZO5K1mL._SL1200_.jpg" alt="Fooled by Randomness">
-        <div class="info"><strong>Fooled by Randomness</strong><em>Nassim Taleb</em><div class="desc">How luck masquerades as skill in markets and life.<br><strong>Why read it:</strong> The original humility check on success.</div></div>
+    <a href="https://www.amazon.com/Wim-Hof-Method-Activate-Health/dp/1683644093" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/91RtIHfSj6L._SL1500_.jpg" alt="The Wim Hof Method">
+        <div class="info"><strong>The Wim Hof Method</strong><em>Wim Hof</em><div class="desc">Breathing + cold exposure to control your body and mind.<br><strong>Why read it:</strong> Science-backed superhuman protocol.</div></div>
     </a>
 
-    <a href="https://www.amazon.com/Rules-Life-International-Bestseller/dp/0345816021" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/61Dx-r7+GvL._SL1500_.jpg" alt="12 Rules for Life">
-        <div class="info"><strong>12 Rules for Life</strong><em>Jordan Peterson</em><div class="desc">An antidote to chaos through responsibility and meaning.<br><strong>Why read it:</strong> Brutally practical life operating system.</div></div>
+    <a href="https://www.amazon.com/What-Doesnt-Kill-Us-Transformed/dp/1635652418" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/81BoDrqatrL._SL1500_.jpg" alt="What Doesn't Kill Us">
+        <div class="info"><strong>What Doesn't Kill Us</strong><em>Scott Carney</em><div class="desc">How extreme cold and breathwork unlock human potential.<br><strong>Why read it:</strong> The investigative journey that made Wim Hof famous.</div></div>
     </a>
 
-    <!-- RESTORED + NEWEST -->
-    <a href="https://www.amazon.com/Never-Split-Difference-Negotiating-Depended/dp/0062407805" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/81PPq8CP4sL._SL1500_.jpg" alt="Never Split the Difference">
-        <div class="info"><strong>Never Split the Difference</strong><em>Chris Voss</em><div class="desc">FBI hostage negotiator tactics that beat traditional compromise.<br><strong>Why read it:</strong> Turns you into a human lie detector and master deal-maker.</div></div>
+</div>
+
+<h2>Pipeline – Plan to Read</h2>
+<div class="pipeline">
+<div class="pipeline-grid">
+
+    <!-- Your existing pipeline books + 2 new Rickson Gracie books -->
+    <!-- ... all your previous pipeline books ... -->
+
+    <a href="https://www.amazon.com/Breathe-Journey-Toward-Sustained-Health/dp/0063018950" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/71aqdXi32xL._SL1500_.jpg" alt="Breathe">
+        <div class="info"><strong>Breathe</strong><em>Rickson Gracie</em></div>
     </a>
 
-    <a href="https://www.amazon.com/Principles-Life-Work-Ray-Dalio/dp/1501124021" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/61LKD6scbfL._SL1500_.jpg" alt="Principles">
-        <div class="info"><strong>Principles</strong><em>Ray Dalio</em><div class="desc">Life & work operating system from the world’s top hedge fund manager.<br><strong>Why read it:</strong> Repeatable decision-making framework for everything.</div></div>
+    <a href="https://www.amazon.com/Comfort-Darkness-Rickson-Gracie/dp/006304584X" target="_blank" class="card">
+        <img src="https://m.media-amazon.com/images/I/71LZTDObVvL._SL1500_.jpg" alt="Comfort in Darkness">
+        <div class="info"><strong>Comfort in Darkness</strong><em>Rickson Gracie</em></div>
     </a>
 
-    <a href="https://www.amazon.com/Alchemy-Unexpected-Force-Irrational/dp/006238841X" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/71w0KKnrfXL._SL1500_.jpg" alt="Alchemy">
-        <div class="info"><strong>Alchemy</strong><em>Rory Sutherland</em><div class="desc">The magic of irrational value and psycho-logic over logic.<br><strong>Why read it:</strong> Turns you into a wizard at creating perceived value.</div></div>
-    </a>
-
-    <a href="https://www.amazon.com/Gods-Debris-Complete-Scott-Adams/dp/B0D4F6WQPD" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/714gov1g4yL._SL1500_.jpg" alt="God's Debris">
-        <div class="info"><strong>God's Debris</strong><em>Scott Adams</em><div class="desc">90-minute thought experiment that questions reality itself.<br><strong>Why read it:</strong> Will permanently scramble your worldview in the best way.</div></div>
-    </a>
-
-    <!-- ALL THE REST -->
-    <a href="https://www.amazon.com/Total-Recall-Incredibly-True-Story/dp/1451662440" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/81Sn3g1r8sL._SL1500_.jpg" alt="Total Recall">
-        <div class="info"><strong>Total Recall</strong><em>Arnold Schwarzenegger</em><div class="desc">From bodybuilding champion to Hollywood to Governor.<br><strong>Why read it:</strong> Proof that relentless discipline conquers anything.</div></div>
-    </a>
-
-    <a href="https://www.amazon.com/Elon-Musk-SpaceX-Fantastic-Future/dp/0062301250" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/81SlrVsShvL._SL1500_.jpg" alt="Elon Musk">
-        <div class="info"><strong>Elon Musk</strong><em>Ashlee Vance</em><div class="desc">The definitive biography of the man building the future.<br><strong>Why read it:</strong> Extreme ambition in action.</div></div>
-    </a>
-
-    <a href="https://www.amazon.com/Cant-Hurt-Me-Master-Your/dp/1544512287" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/81YJFNc54lL._SL1500_.jpg" alt="Can't Hurt Me">
-        <div class="info"><strong>Can't Hurt Me</strong><em>David Goggins</em><div class="desc">From abused child to Navy SEAL — the ultimate mental toughness manual.<br><strong>Why read it:</strong> Proof that your limits are mostly self-imposed.</div></div>
-    </a>
-
-    <a href="https://www.amazon.de/-/en/Run-Die-Inspirational-Greatest-Ultra-Runner/dp/0241004853" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/91w98G96oLL._SL1500_.jpg" alt="Run or Die">
-        <div class="info"><strong>Run or Die</strong><em>Kilian Jornet</em><div class="desc">The inspirational story of the greatest ultra-runner of all time.<br><strong>Why read it:</strong> Shows what the human body and mind are truly capable of.</div></div>
-    </a>
-
-    <a href="https://www.amazon.com/New-American-Road-Trip-Mixtape-ebook/dp/B00G2KF9Y4" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/81skOhaS-4L._SL1500_.jpg" alt="The New American Road Trip Mixtape">
-        <div class="info"><strong>The New American Road Trip Mixtape</strong><em>Brendan Leonard</em><div class="desc">Hilarious and heartfelt memoir of van life and adventure.<br><strong>Why read it:</strong> The ultimate “quit your job and hit the road” inspiration.</div></div>
-    </a>
-
-    <a href="https://www.amazon.com/Daily-Stoic-366-Meditations-Wealth/dp/0735211736" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/71T1sL1vatL._SL1500_.jpg" alt="The Daily Stoic">
-        <div class="info"><strong>The Daily Stoic</strong><em>Ryan Holiday</em><div class="desc">366 bite-sized meditations on wisdom and the art of living.<br><strong>Why read it:</strong> One page a day keeps chaos away.</div></div>
-    </a>
-
-    <a href="https://www.amazon.com/Almanack-Naval-Ravikant-Wealth-Happiness/dp/B08V9VKN7T" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/61ptYzpPOsL._SL1500_.jpg" alt="The Almanack of Naval Ravikant">
-        <div class="info"><strong>The Almanack of Naval Ravikant</strong><em>Eric Jorgenson</em><div class="desc">Curated wisdom on wealth, happiness, and leverage.<br><strong>Why read it:</strong> The modern bible for building freedom.</div></div>
-    </a>
-
-    <a href="https://www.amazon.com/Network-State-How-Start-Country/dp/1734967750" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/71ZeCLHRzvL._SL1500_.jpg" alt="The Network State">
-        <div class="info"><strong>The Network State</strong><em>Balaji Srinivasan</em><div class="desc">How to start a new country — digitally first, then physically.<br><strong>Why read it:</strong> The blueprint for the next phase of civilization.</div></div>
-    </a>
-
-    <a href="https://www.amazon.com/Network-State-How-Start-Country/dp/1734967750" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/61A6O6tLSmL._SL1500_.jpg" alt="The Anthology by Balaji">
-        <div class="info"><strong>The Anthology by Balaji</strong><em>Balaji Srinivasan</em><div class="desc">Curated tweets and essays from the mind that predicted crypto and remote work.<br><strong>Why read it:</strong> Dense signal in a world of noise.</div></div>
-    </a>
-
-    <a href="https://www.amazon.com/Extreme-Ownership-U-S-Navy-SEALs/dp/1250067057" target="_blank" class="card">
-        <img src="https://m.media-amazon.com/images/I/71GqMTCFWtL._SL1500_.jpg" alt="Extreme Ownership">
-        <div class="info"><strong>Extreme Ownership</strong><em>Jocko Willink & Leif Babin</em><div class="desc">Navy SEAL leadership: own everything in your world.<br><strong>Why read it:</strong> No excuses, only ownership.</div></div>
-    </a>
-
+</div>
 </div>
 
 <footer>Last updated: December 2025</footer>
