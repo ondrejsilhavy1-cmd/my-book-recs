@@ -37,17 +37,23 @@
         body.dark .card {background:#161b22}
         .card img {width:100%;height:200px;object-fit:contain;background:#f8f8f8;padding:10px}
         body.dark .card img {background:#0d1117}
-        .card .info {padding:16px 20px;text-align:left}
+        .card .info {
+    padding: 16px 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;   /* ← this pushes progress to bottom */
+    min-height: 140px;                /* ← fixed height so all cards align */}
         .card strong {font-size:1.15em;display:block;margin-bottom:4px;color:#222;font-weight:600}
         body.dark .card strong {color:#58a6ff}
         .card em {font-size:.95em;color:#666;display:block;margin-bottom:8px}
         body.dark .card em {color:#8b949e}
         .card .desc {font-size:.92em;color:#444;line-height:1.5}
         body.dark .card .desc {color:#adbac7}
-        .progress-container {margin:10px 0 0;height:6px;background:#e0e0e0;border-radius:3px;overflow:hidden}
+        .progress-container { margin-top: auto;height: 6px;background: #e0e0e0;border-radius: 3px;overflow: hidden;}
         body.dark .progress-container {background:#333}
-        .progress {height:100%;background:#ff2a6d;transition:width .6s ease}
-        .progress-text {font-size:.8em;color:#ff2a6d;margin-top:4px;text-align:center;font-weight:600}
+        .progress {height: 100%; background: #ff2a6d; transition: width .6s ease}
+        .progress-text {font-size: .8em;color: #ff2a6d;margin-top: 4px;text-align: center;font-weight: 600;}
         body.dark .progress-text {color:#ff6b9d}
         footer {text-align:center;margin:80px 0 40px;color:#666;font-size:.9em}
         body.dark footer {color:#8b949e}
@@ -300,7 +306,7 @@
     </a>
 
     <a href="https://www.amazon.com/Book-Secret-That-Will...-Alan-Watts/dp/0679723005" target="_blank" class="card">
-        <img src="https://m.media.amazon.com/images/I/71Xc2QdVp7L._SL1500_.jpg" alt="The Book">
+        <img src="https://m.media-amazon.com/images/I/71Xc2QdVp7L._SL1500_.jpg" alt="The Book">
         <div class="info"><strong>The Book</strong><em>Alan Watts</em></div>
     </a>
 
