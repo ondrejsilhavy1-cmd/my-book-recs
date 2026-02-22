@@ -20,10 +20,14 @@
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; transition: background 0.3s, color 0.3s; }
+
+        /* ── THEME TOGGLE ── */
         .theme-toggle { position: fixed; top: 20px; right: 20px; width: 44px; height: 24px; background: var(--text-muted); border-radius: 12px; cursor: pointer; z-index: 100; transition: background 0.3s; border: none; }
         .theme-toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: white; transition: transform 0.3s; }
         body.dark .theme-toggle { background: var(--accent); }
         body.dark .theme-toggle::after { transform: translateX(20px); }
+
+        /* ── HEADER ── */
         header { position: relative; padding: 90px 20px 60px; text-align: center; background: url('https://i.imgur.com/u7zAY7d.jpg') center/cover no-repeat; overflow: hidden; }
         header::before { content: ''; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(15,12,8,0.75) 0%, rgba(40,25,10,0.85) 100%); }
         header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to bottom, transparent, var(--bg)); }
@@ -32,7 +36,11 @@
         header h1 { font-family: 'DM Serif Display', serif; font-size: 2.8em; color: #fff; line-height: 1.15; margin-bottom: 12px; letter-spacing: -0.5px; }
         header h1 em { font-style: italic; color: #f0c897; }
         header .tagline { font-size: 1.05em; color: rgba(255,255,255,0.65); font-weight: 300; }
+
+        /* ── MAIN ── */
         main { max-width: 1200px; margin: 0 auto; padding: 0 24px 80px; }
+
+        /* ── BIO ROW ── */
         .bio-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 32px 0 40px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
         .tags { display: flex; flex-wrap: wrap; gap: 8px; }
         .tag { font-size: 0.78em; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; background: var(--tag-bg); color: var(--accent); }
@@ -42,15 +50,19 @@
         .btn-li { background: #0a66c2; color: #fff; }
         .btn:hover { opacity: 0.85; transform: translateY(-1px); }
         body.dark .btn-x { background: #fff; color: #000; }
+
+        /* ── SECTION HEADERS ── */
         .section-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 28px; }
         .section-header h2 { font-family: 'DM Serif Display', serif; font-size: 1.75em; color: var(--text); letter-spacing: -0.3px; }
-        .section-header .count { font-size: 0.85em; color: var(--text-muted); font-weight: 400; }
+        .section-header .count { font-size: 0.85em; color: var(--text-muted); }
         .section-divider { width: 40px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 32px; }
+
+        /* ── CURRENTLY READING ── */
         .reading-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 64px; }
         .card-featured { display: flex; background: var(--card-bg); border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: var(--shadow); border: 1px solid var(--border); transition: all 0.25s; }
         .card-featured:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-        .card-featured .cover { width: 120px; min-height: 160px; flex-shrink: 0; background: var(--cover-bg); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .card-featured .cover img { width: 100%; height: 100%; object-fit: cover; }
+        .card-featured .cover { width: 120px; min-height: 160px; flex-shrink: 0; background: var(--cover-bg); overflow: hidden; }
+        .card-featured .cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .card-featured .info { padding: 18px 20px; display: flex; flex-direction: column; justify-content: center; }
         .reading-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 0.72em; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent2); margin-bottom: 8px; }
         .reading-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); animation: pulse 2s ease-in-out infinite; }
@@ -58,20 +70,23 @@
         .card-featured strong { font-family: 'DM Serif Display', serif; font-size: 1.15em; display: block; margin-bottom: 3px; line-height: 1.3; }
         .card-featured em { font-size: 0.88em; color: var(--text-muted); font-style: normal; display: block; margin-bottom: 10px; }
         .card-featured .desc { font-size: 0.88em; color: var(--text-muted); line-height: 1.5; }
-        .card-featured .desc .why-label { font-family: 'DM Sans', sans-serif; font-weight: 600; color: var(--accent); }
+        .why-label { font-family: 'DM Sans', sans-serif !important; font-weight: 600; color: var(--accent); font-style: normal; }
+
+        /* ── RECS GRID ── */
         .recs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; margin-bottom: 64px; }
         .card { background: var(--card-bg); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: var(--shadow); border: 1px solid var(--border); transition: all 0.25s; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-        .cover-wrap { background: var(--cover-bg); height: 210px; display: flex; align-items: center; justify-content: center; padding: 8px; overflow: hidden; }
-        .cover-wrap img { width: 100%; height: 100%; object-fit: contain; }
+        .cover-wrap { background: var(--cover-bg); height: 210px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .cover-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
         .card .info { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; }
         .card strong { font-family: 'DM Serif Display', serif; font-size: 1.05em; display: block; margin-bottom: 3px; line-height: 1.3; color: var(--text); }
         .card em { font-size: 0.85em; color: var(--text-muted); font-style: normal; display: block; margin-bottom: 8px; }
         .card .desc { font-size: 0.83em; color: var(--text-muted); line-height: 1.5; flex: 1; }
-        .card .desc .why-label { font-family: 'DM Sans', sans-serif; font-weight: 600; color: var(--accent); }
-        .cover-skeleton { width: 100%; height: 100%; background: linear-gradient(90deg, var(--border) 25%, rgba(128,128,128,0.08) 50%, var(--border) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
-        @keyframes shimmer { 0%{background-position:200% 0}100%{background-position:-200% 0} }
-        .cover-placeholder { width: 70%; aspect-ratio: 2/3; max-height: 88%; background: var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.68em; color: var(--text-muted); text-align: center; padding: 8px; line-height: 1.4; }
+
+        /* ── COVER FALLBACK — shown when img fails ── */
+        .cover-fb { width: 72%; aspect-ratio: 2/3; max-height: 88%; background: rgba(128,128,128,0.12); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.68em; color: var(--text-muted); text-align: center; padding: 8px; line-height: 1.4; }
+
+        /* ── PIPELINE ── */
         .pipeline-section { border-top: 1px solid var(--border); padding-top: 48px; }
         .pipeline-section .section-header h2 { color: var(--text-muted); }
         .pipeline-section .section-divider { background: var(--text-muted); opacity: 0.4; }
@@ -82,6 +97,8 @@
         .card-mini .info { padding: 10px 12px; }
         .card-mini strong { font-size: 0.88em; font-weight: 600; display: block; margin-bottom: 2px; line-height: 1.3; color: var(--text); }
         .card-mini em { font-size: 0.78em; color: var(--text-muted); font-style: normal; }
+
+        /* ── MISC ── */
         footer { text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.85em; border-top: 1px solid var(--border); margin-top: 40px; }
         footer a { color: var(--accent); text-decoration: none; }
         #scrollTop { position: fixed; bottom: 24px; right: 20px; width: 40px; height: 40px; background: var(--accent); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 1.1em; display: none; align-items: center; justify-content: center; z-index: 99; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
@@ -91,7 +108,7 @@
 </head>
 <body>
 
-<button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <header>
@@ -123,27 +140,276 @@
         </div>
     </div>
 
+    <!-- ══ CURRENTLY READING ══ -->
     <div class="section-header">
         <h2>Currently Reading</h2>
-        <span class="count" id="reading-count"></span>
+        <span class="count">2 books</span>
     </div>
     <div class="section-divider"></div>
-    <div class="reading-grid" id="reading-grid"></div>
+    <div class="reading-grid">
 
+        <a href="https://www.amazon.com/Beginning-Infinity-Explanations-Transform-World/dp/0143121359" target="_blank" class="card-featured">
+            <div class="cover"><img src="https://covers.openlibrary.org/b/isbn/0143121359-L.jpg" alt="The Beginning of Infinity" onerror="this.parentNode.innerHTML='<div class=cover-fb>The Beginning of Infinity</div>'"></div>
+            <div class="info">
+                <span class="reading-badge">Reading now</span>
+                <strong>The Beginning of Infinity</strong>
+                <em>David Deutsch</em>
+                <div class="desc">Good explanations are the engine of all progress.<br><span class="why-label">Why read it:</span> The most optimistic philosophy of science ever written.</div>
+            </div>
+        </a>
+
+        <a href="https://www.amazon.com/Capitalism-Freedom-Milton-Friedman/dp/0226264211" target="_blank" class="card-featured">
+            <div class="cover"><img src="https://covers.openlibrary.org/b/isbn/0226264211-L.jpg" alt="Capitalism and Freedom" onerror="this.parentNode.innerHTML='<div class=cover-fb>Capitalism and Freedom</div>'"></div>
+            <div class="info">
+                <span class="reading-badge">Reading now</span>
+                <strong>Capitalism and Freedom</strong>
+                <em>Milton Friedman</em>
+                <div class="desc">The classic case for free markets and individual liberty.<br><span class="why-label">Why read it:</span> Still the clearest link between economic and political freedom.</div>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- ══ TIMELESS RECS ══ -->
     <div class="section-header">
         <h2>Timeless Recommendations</h2>
-        <span class="count" id="recs-count"></span>
+        <span class="count">25 books</span>
     </div>
     <div class="section-divider"></div>
-    <div class="recs-grid" id="recs-grid"></div>
+    <div class="recs-grid">
 
+        <a href="https://www.amazon.com/Sovereign-Individual-Mastering-Transition-Information/dp/0684832720" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0684832720-L.jpg" alt="The Sovereign Individual" onerror="coverFb(this,'The Sovereign Individual')"></div>
+            <div class="info"><strong>The Sovereign Individual</strong><em>Davidson &amp; Rees-Mogg</em><div class="desc">1997 prophecy of nation-state decline and the rise of crypto.<br><span class="why-label">Why read it:</span> The most accurate 25-year-old prediction about today.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Fooled-Randomness-Hidden-Markets-Incerto/dp/0812975219" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0812975219-L.jpg" alt="Fooled by Randomness" onerror="coverFb(this,'Fooled by Randomness')"></div>
+            <div class="info"><strong>Fooled by Randomness</strong><em>Nassim Taleb</em><div class="desc">How luck masquerades as skill in markets and life.<br><span class="why-label">Why read it:</span> The original humility check on success.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Rules-Life-International-Bestseller/dp/0345816021" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0345816021-L.jpg" alt="12 Rules for Life" onerror="coverFb(this,'12 Rules for Life')"></div>
+            <div class="info"><strong>12 Rules for Life</strong><em>Jordan Peterson</em><div class="desc">An antidote to chaos through responsibility and meaning.<br><span class="why-label">Why read it:</span> Brutally practical life operating system.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Win-Bigly-Persuasion-World-Makes/dp/0735219710" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0735219710-L.jpg" alt="Win Bigly" onerror="coverFb(this,'Win Bigly')"></div>
+            <div class="info"><strong>Win Bigly</strong><em>Scott Adams</em><div class="desc">How persuasion and cognitive biases decided the 2016 election.<br><span class="why-label">Why read it:</span> Master-class in real-world influence.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Endure-Work-Hard-Outlast-Hammering/dp/0316593869" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0316593869-L.jpg" alt="Endure" onerror="coverFb(this,'Endure')"></div>
+            <div class="info"><strong>Endure</strong><em>Cameron Hanes</em><div class="desc">From average guy to NYT bestselling athlete — relentless self-improvement.<br><span class="why-label">Why read it:</span> Nobody cares. Work harder.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Unaccountability-Machine-Systems-Terrible-Decisions/dp/0226843084" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0226843084-L.jpg" alt="The Unaccountability Machine" onerror="coverFb(this,'The Unaccountability Machine')"></div>
+            <div class="info"><strong>The Unaccountability Machine</strong><em>Dan Davies</em><div class="desc">Why big systems produce outcomes nobody wants — and the science that could fix it.<br><span class="why-label">Why read it:</span> Makes the world suddenly more comprehensible.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Never-Split-Difference-Negotiating-Depended/dp/0062407805" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0062407805-L.jpg" alt="Never Split the Difference" onerror="coverFb(this,'Never Split the Difference')"></div>
+            <div class="info"><strong>Never Split the Difference</strong><em>Chris Voss</em><div class="desc">FBI hostage negotiator tactics that beat compromise.<br><span class="why-label">Why read it:</span> Turns you into a master deal-maker.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Principles-Life-Work-Ray-Dalio/dp/1501124021" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/1501124021-L.jpg" alt="Principles" onerror="coverFb(this,'Principles')"></div>
+            <div class="info"><strong>Principles</strong><em>Ray Dalio</em><div class="desc">Life &amp; work operating system from the world's top hedge fund manager.<br><span class="why-label">Why read it:</span> Repeatable decision-making framework.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Alchemy-Unexpected-Force-Irrational/dp/006238841X" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/006238841X-L.jpg" alt="Alchemy" onerror="coverFb(this,'Alchemy')"></div>
+            <div class="info"><strong>Alchemy</strong><em>Rory Sutherland</em><div class="desc">The magic of irrational value and psycho-logic.<br><span class="why-label">Why read it:</span> Turns you into a wizard at creating perceived value.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Gods-Debris-Complete-Scott-Adams/dp/B0D4F6WQPD" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9780740718878-L.jpg" alt="God's Debris" onerror="coverFb(this,&quot;God's Debris&quot;)"></div>
+            <div class="info"><strong>God's Debris</strong><em>Scott Adams</em><div class="desc">90-minute thought experiment that questions reality.<br><span class="why-label">Why read it:</span> Will permanently scramble your worldview.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Total-Recall-Incredibly-True-Story/dp/1451662440" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/1451662440-L.jpg" alt="Total Recall" onerror="coverFb(this,'Total Recall')"></div>
+            <div class="info"><strong>Total Recall</strong><em>Arnold Schwarzenegger</em><div class="desc">From bodybuilding champion to Hollywood to Governor.<br><span class="why-label">Why read it:</span> Relentless discipline conquers anything.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Elon-Musk-SpaceX-Fantastic-Future/dp/0062301250" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0062301250-L.jpg" alt="Elon Musk" onerror="coverFb(this,'Elon Musk')"></div>
+            <div class="info"><strong>Elon Musk</strong><em>Ashlee Vance</em><div class="desc">The definitive biography of the man building the future.<br><span class="why-label">Why read it:</span> Extreme ambition in action.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Cant-Hurt-Me-Master-Your/dp/1544512287" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/1544512287-L.jpg" alt="Can't Hurt Me" onerror="coverFb(this,&quot;Can't Hurt Me&quot;)"></div>
+            <div class="info"><strong>Can't Hurt Me</strong><em>David Goggins</em><div class="desc">From abused child to Navy SEAL — ultimate mental toughness.<br><span class="why-label">Why read it:</span> Your limits are mostly self-imposed.</div></div>
+        </a>
+
+        <a href="https://www.amazon.de/-/en/Run-Die-Inspirational-Greatest-Ultra-Runner/dp/0241004853" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0241004853-L.jpg" alt="Run or Die" onerror="coverFb(this,'Run or Die')"></div>
+            <div class="info"><strong>Run or Die</strong><em>Kilian Jornet</em><div class="desc">The story of the greatest ultra-runner of all time.<br><span class="why-label">Why read it:</span> Shows what the human body and mind are capable of.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Way-Fight-Georges-St-Pierre/dp/140913242X" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/140913242X-L.jpg" alt="The Way of the Fight" onerror="coverFb(this,'The Way of the Fight')"></div>
+            <div class="info"><strong>The Way of the Fight</strong><em>Georges St-Pierre</em><div class="desc">GSP's philosophy on martial arts, discipline, and life.<br><span class="why-label">Why read it:</span> Wisdom from one of the greatest fighters ever.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Wim-Hof-Method-Activate-Health/dp/1683644093" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/1683644093-L.jpg" alt="The Wim Hof Method" onerror="coverFb(this,'The Wim Hof Method')"></div>
+            <div class="info"><strong>The Wim Hof Method</strong><em>Wim Hof</em><div class="desc">Breathing + cold exposure to control your body and mind.<br><span class="why-label">Why read it:</span> Science-backed superhuman protocol.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/What-Doesnt-Kill-Us-Transformed/dp/1635652418" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/1635652418-L.jpg" alt="What Doesn't Kill Us" onerror="coverFb(this,&quot;What Doesn't Kill Us&quot;)"></div>
+            <div class="info"><strong>What Doesn't Kill Us</strong><em>Scott Carney</em><div class="desc">How extreme cold and breathwork unlock human potential.<br><span class="why-label">Why read it:</span> The journey that made Wim Hof famous.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Daily-Stoic-366-Meditations-Wealth/dp/0735211736" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0735211736-L.jpg" alt="The Daily Stoic" onerror="coverFb(this,'The Daily Stoic')"></div>
+            <div class="info"><strong>The Daily Stoic</strong><em>Ryan Holiday</em><div class="desc">366 bite-sized meditations on wisdom and living.<br><span class="why-label">Why read it:</span> One page a day keeps chaos away.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Almanack-Naval-Ravikant-Wealth-Happiness/dp/B08V9VKN7T" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9781544514222-L.jpg" alt="The Almanack of Naval Ravikant" onerror="coverFb(this,'The Almanack of Naval Ravikant')"></div>
+            <div class="info"><strong>The Almanack of Naval Ravikant</strong><em>Eric Jorgenson</em><div class="desc">Curated wisdom on wealth, happiness, and leverage.<br><span class="why-label">Why read it:</span> The modern bible for building freedom.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Network-State-How-Start-Country/dp/1734967750" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/1734967750-L.jpg" alt="The Network State" onerror="coverFb(this,'The Network State')"></div>
+            <div class="info"><strong>The Network State</strong><em>Balaji Srinivasan</em><div class="desc">How to start a new country — digitally first.<br><span class="why-label">Why read it:</span> Blueprint for the next phase of civilization.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Extreme-Ownership-U-S-Navy-SEALs/dp/1250067057" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/1250067057-L.jpg" alt="Extreme Ownership" onerror="coverFb(this,'Extreme Ownership')"></div>
+            <div class="info"><strong>Extreme Ownership</strong><em>Jocko Willink &amp; Leif Babin</em><div class="desc">Navy SEAL leadership: own everything.<br><span class="why-label">Why read it:</span> No excuses, only ownership.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Bad-Blood-Secrets-Silicon-Startup/dp/152473165X" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/152473165X-L.jpg" alt="Bad Blood" onerror="coverFb(this,'Bad Blood')"></div>
+            <div class="info"><strong>Bad Blood</strong><em>John Carreyrou</em><div class="desc">The insane story of Theranos and Elizabeth Holmes.<br><span class="why-label">Why read it:</span> Masterclass in fraud, delusion, and corporate governance.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Read-Write-Own-Building-Internet/dp/0593731395" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0593731395-L.jpg" alt="Read Write Own" onerror="coverFb(this,'Read Write Own')"></div>
+            <div class="info"><strong>Read Write Own</strong><em>Chris Dixon</em><div class="desc">Why blockchains are the third era of the internet.<br><span class="why-label">Why read it:</span> The clearest case for why ownership on the internet matters again.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/Technological-Republic-Power-Belief-Future/dp/0593798694" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0593798694-L.jpg" alt="The Technological Republic" onerror="coverFb(this,'The Technological Republic')"></div>
+            <div class="info"><strong>The Technological Republic</strong><em>Alexander Karp</em><div class="desc">Palantir CEO on AI, national security and the future of power.<br><span class="why-label">Why read it:</span> Rare insider view from the sharpest mind in big data.</div></div>
+        </a>
+
+        <a href="https://www.amazon.com/New-American-Road-Trip-Mixtape-ebook/dp/B00G2KF9Y4" target="_blank" class="card">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9781938633072-L.jpg" alt="The New American Road Trip Mixtape" onerror="coverFb(this,'The New American Road Trip Mixtape')"></div>
+            <div class="info"><strong>The New American Road Trip Mixtape</strong><em>Brendan Leonard</em><div class="desc">Hilarious memoir of van life and adventure.<br><span class="why-label">Why read it:</span> Ultimate "quit your job and hit the road" inspiration.</div></div>
+        </a>
+
+    </div>
+
+    <!-- ══ PIPELINE ══ -->
     <div class="pipeline-section">
         <div class="section-header">
             <h2>Pipeline</h2>
             <span class="count">Plan to read</span>
         </div>
         <div class="section-divider"></div>
-        <div class="pipeline-grid" id="pipeline-grid"></div>
+        <div class="pipeline-grid">
+
+            <a href="https://www.amazon.com/Bitcoin-Standard-Decentralized-Alternative-Central/dp/1119473861" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/1119473861-L.jpg" alt="The Bitcoin Standard" onerror="coverFb(this,'The Bitcoin Standard')"></div>
+                <div class="info"><strong>The Bitcoin Standard</strong><em>Saifedean Ammous</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Hillbilly-Elegy-Memoir-Family-Culture/dp/0062300547" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0062300547-L.jpg" alt="Hillbilly Elegy" onerror="coverFb(this,'Hillbilly Elegy')"></div>
+                <div class="info"><strong>Hillbilly Elegy</strong><em>J.D. Vance</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Reframe-Your-Brain-Change-Works/dp/178678872X" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/178678872X-L.jpg" alt="Reframe Your Brain" onerror="coverFb(this,'Reframe Your Brain')"></div>
+                <div class="info"><strong>Reframe Your Brain</strong><em>Scott Adams</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/How-Fail-Almost-Everything-Still/dp/1591847745" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/1591847745-L.jpg" alt="How to Fail at Almost Everything" onerror="coverFb(this,'How to Fail at Almost Everything')"></div>
+                <div class="info"><strong>How to Fail at Almost Everything and Still Win Big</strong><em>Scott Adams</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Loserthink-Untrained-Brains-Destroy-America/dp/0593083520" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0593083520-L.jpg" alt="Loserthink" onerror="coverFb(this,'Loserthink')"></div>
+                <div class="info"><strong>Loserthink</strong><em>Scott Adams</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Antifragile-Things-That-Disorder-Incerto/dp/0812979680" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0812979680-L.jpg" alt="Antifragile" onerror="coverFb(this,'Antifragile')"></div>
+                <div class="info"><strong>Antifragile</strong><em>Nassim Taleb</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Black-Swan-Improbable-Robustness-Fragility/dp/081297381X" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/081297381X-L.jpg" alt="The Black Swan" onerror="coverFb(this,'The Black Swan')"></div>
+                <div class="info"><strong>The Black Swan</strong><em>Nassim Taleb</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Skin-Game-Hidden-Asymmetries-Daily/dp/042528462X" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/042528462X-L.jpg" alt="Skin in the Game" onerror="coverFb(this,'Skin in the Game')"></div>
+                <div class="info"><strong>Skin in the Game</strong><em>Nassim Taleb</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/No-Domain-John-McAfee-Tapes/dp/1642939536" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/1642939536-L.jpg" alt="No Domain" onerror="coverFb(this,'No Domain')"></div>
+                <div class="info"><strong>No Domain: The John McAfee Tapes</strong><em>Mark Eglinton</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Inventing-Freedom-English-Speaking-Peoples-Modern/dp/0062231731" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0062231731-L.jpg" alt="Inventing Freedom" onerror="coverFb(this,'Inventing Freedom')"></div>
+                <div class="info"><strong>Inventing Freedom</strong><em>Daniel Hannan</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Art-Not-Being-Governed-Anarchist/dp/0300169175" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0300169175-L.jpg" alt="The Art of Not Being Governed" onerror="coverFb(this,'The Art of Not Being Governed')"></div>
+                <div class="info"><strong>The Art of Not Being Governed</strong><em>James C. Scott</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Seeing-Like-State-Certain-Condition/dp/0300078153" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0300078153-L.jpg" alt="Seeing Like a State" onerror="coverFb(this,'Seeing Like a State')"></div>
+                <div class="info"><strong>Seeing Like a State</strong><em>James C. Scott</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Walden-Henry-David-Thoreau/dp/0486284956" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0486284956-L.jpg" alt="Walden" onerror="coverFb(this,'Walden')"></div>
+                <div class="info"><strong>Walden</strong><em>Henry David Thoreau</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Infinite-Jest-David-Foster-Wallace/dp/0316066524" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0316066524-L.jpg" alt="Infinite Jest" onerror="coverFb(this,'Infinite Jest')"></div>
+                <div class="info"><strong>Infinite Jest</strong><em>David Foster Wallace</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Book-Taboo-Against-Knowing-Who/dp/0679723005" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0679723005-L.jpg" alt="The Book" onerror="coverFb(this,'The Book')"></div>
+                <div class="info"><strong>The Book</strong><em>Alan Watts</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Breathe-Life-Flow-Rickson-Gracie/dp/0063018950" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0063018950-L.jpg" alt="Breathe" onerror="coverFb(this,'Breathe')"></div>
+                <div class="info"><strong>Breathe</strong><em>Rickson Gracie</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Comfort-Darkness-Invisible-Power-Jitsu/dp/0063264846" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/0063264846-L.jpg" alt="Comfort in Darkness" onerror="coverFb(this,'Comfort in Darkness')"></div>
+                <div class="info"><strong>Comfort in Darkness</strong><em>Rickson Gracie</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Cryptopians-Idealism-Greed-Making-Cryptocurrency/dp/1541763017" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/1541763017-L.jpg" alt="The Cryptopians" onerror="coverFb(this,'The Cryptopians')"></div>
+                <div class="info"><strong>The Cryptopians</strong><em>Laura Shin</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Proof-Stake-Ethereum-Philosophy-Blockchains/dp/164421248X" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/164421248X-L.jpg" alt="Proof of Stake" onerror="coverFb(this,'Proof of Stake')"></div>
+                <div class="info"><strong>Proof of Stake</strong><em>Vitalik Buterin</em></div>
+            </a>
+
+        </div>
     </div>
 </main>
 
@@ -152,171 +418,27 @@
 </footer>
 
 <script>
-// ═══════════════════════════════════════════════════════════════════
-//  YOUR BOOK LIST — only edit this to add/remove/move books.
-//  Fields: title, author, amazon, desc (optional), why (optional)
-// ═══════════════════════════════════════════════════════════════════
-
-const READING = [
-  { title:"The Beginning of Infinity",    author:"David Deutsch",     amazon:"https://www.amazon.com/Beginning-Infinity-Explanations-Transform-World/dp/0143121359", desc:"Good explanations are the engine of all progress.", why:"The most optimistic philosophy of science ever written." },
-  { title:"Capitalism and Freedom",        author:"Milton Friedman",   amazon:"https://www.amazon.com/Capitalism-Freedom-Milton-Friedman/dp/0226264211",              desc:"The classic case for free markets and individual liberty.", why:"Still the clearest link between economic and political freedom." },
-];
-
-const RECS = [
-  { title:"The Sovereign Individual",      author:"James Dale Davidson",   amazon:"https://www.amazon.com/Sovereign-Individual-Mastering-Transition-Information/dp/0684832720", desc:"1997 prophecy of nation-state decline and the rise of crypto.", why:"The most accurate 25-year-old prediction about today." },
-  { title:"Fooled by Randomness",          author:"Nassim Taleb",          amazon:"https://www.amazon.com/Fooled-Randomness-Hidden-Markets-Incerto/dp/0812975219",             desc:"How luck masquerades as skill in markets and life.", why:"The original humility check on success." },
-  { title:"12 Rules for Life",             author:"Jordan Peterson",       amazon:"https://www.amazon.com/Rules-Life-International-Bestseller/dp/0345816021",                 desc:"An antidote to chaos through responsibility and meaning.", why:"Brutally practical life operating system." },
-  { title:"Win Bigly",                     author:"Scott Adams",           amazon:"https://www.amazon.com/Win-Bigly-Persuasion-World-Makes/dp/0735219710",                    desc:"How persuasion and cognitive biases decided the 2016 election.", why:"Master-class in real-world influence." },
-  { title:"Endure",                        author:"Cameron Hanes",         amazon:"https://www.amazon.com/Endure-Work-Hard-Outlast-Hammering/dp/0316593869",                  desc:"From average guy to NYT bestselling athlete — relentless self-improvement.", why:"Nobody cares. Work harder." },
-  { title:"The Unaccountability Machine",  author:"Dan Davies",            amazon:"https://www.amazon.com/Unaccountability-Machine-Systems-Terrible-Decisions/dp/0226843084", desc:"Why big systems produce outcomes nobody wants — and the science that could fix it.", why:"Makes the world suddenly more comprehensible." },
-  { title:"Never Split the Difference",    author:"Chris Voss",            amazon:"https://www.amazon.com/Never-Split-Difference-Negotiating-Depended/dp/0062407805",         desc:"FBI hostage negotiator tactics that beat compromise.", why:"Turns you into a master deal-maker." },
-  { title:"Principles",                    author:"Ray Dalio",             amazon:"https://www.amazon.com/Principles-Life-Work-Ray-Dalio/dp/1501124021",                      desc:"Life & work operating system from the world's top hedge fund manager.", why:"Repeatable decision-making framework." },
-  { title:"Alchemy",                       author:"Rory Sutherland",       amazon:"https://www.amazon.com/Alchemy-Unexpected-Force-Irrational/dp/006238841X",                 desc:"The magic of irrational value and psycho-logic.", why:"Turns you into a wizard at creating perceived value." },
-  { title:"God's Debris",                  author:"Scott Adams",           amazon:"https://www.amazon.com/Gods-Debris-Complete-Scott-Adams/dp/B0D4F6WQPD",                    desc:"90-minute thought experiment that questions reality.", why:"Will permanently scramble your worldview." },
-  { title:"Total Recall",                  author:"Arnold Schwarzenegger", amazon:"https://www.amazon.com/Total-Recall-Incredibly-True-Story/dp/1451662440",                  desc:"From bodybuilding champion to Hollywood to Governor.", why:"Relentless discipline conquers anything." },
-  { title:"Elon Musk",                     author:"Ashlee Vance",          amazon:"https://www.amazon.com/Elon-Musk-SpaceX-Fantastic-Future/dp/0062301250",                   desc:"The definitive biography of the man building the future.", why:"Extreme ambition in action." },
-  { title:"Can't Hurt Me",                 author:"David Goggins",         amazon:"https://www.amazon.com/Cant-Hurt-Me-Master-Your/dp/1544512287",                            desc:"From abused child to Navy SEAL — ultimate mental toughness.", why:"Your limits are mostly self-imposed." },
-  { title:"Run or Die",                    author:"Kilian Jornet",         amazon:"https://www.amazon.de/-/en/Run-Die-Inspirational-Greatest-Ultra-Runner/dp/0241004853",     desc:"The story of the greatest ultra-runner of all time.", why:"Shows what the human body and mind are capable of." },
-  { title:"The Way of the Fight",          author:"Georges St-Pierre",     amazon:"https://www.amazon.com/Way-Fight-Georges-St-Pierre/dp/140913242X",                         desc:"GSP's philosophy on martial arts, discipline, and life.", why:"Wisdom from one of the greatest fighters ever." },
-  { title:"The Wim Hof Method",            author:"Wim Hof",               amazon:"https://www.amazon.com/Wim-Hof-Method-Activate-Health/dp/1683644093",                      desc:"Breathing + cold exposure to control your body and mind.", why:"Science-backed superhuman protocol." },
-  { title:"What Doesn't Kill Us",          author:"Scott Carney",          amazon:"https://www.amazon.com/What-Doesnt-Kill-Us-Transformed/dp/1635652418",                     desc:"How extreme cold and breathwork unlock human potential.", why:"The journey that made Wim Hof famous." },
-  { title:"The Daily Stoic",               author:"Ryan Holiday",          amazon:"https://www.amazon.com/Daily-Stoic-366-Meditations-Wealth/dp/0735211736",                  desc:"366 bite-sized meditations on wisdom and living.", why:"One page a day keeps chaos away." },
-  { title:"The Almanack of Naval Ravikant",author:"Eric Jorgenson",        amazon:"https://www.amazon.com/Almanack-Naval-Ravikant-Wealth-Happiness/dp/B08V9VKN7T",            desc:"Curated wisdom on wealth, happiness, and leverage.", why:"The modern bible for building freedom." },
-  { title:"The Network State",             author:"Balaji Srinivasan",     amazon:"https://www.amazon.com/Network-State-How-Start-Country/dp/1734967750",                     desc:"How to start a new country — digitally first.", why:"Blueprint for the next phase of civilization." },
-  { title:"Extreme Ownership",             author:"Jocko Willink",         amazon:"https://www.amazon.com/Extreme-Ownership-U-S-Navy-SEALs/dp/1250067057",                    desc:"Navy SEAL leadership: own everything.", why:"No excuses, only ownership." },
-  { title:"Bad Blood",                     author:"John Carreyrou",        amazon:"https://www.amazon.com/Bad-Blood-Secrets-Silicon-Startup/dp/152473165X",                   desc:"The insane story of Theranos and Elizabeth Holmes.", why:"Masterclass in fraud, delusion, and corporate governance." },
-  { title:"Read Write Own",                author:"Chris Dixon",           amazon:"https://www.amazon.com/Read-Write-Own-Building-Internet/dp/0593731395",                    desc:"Why blockchains are the third era of the internet.", why:"The clearest case for why ownership on the internet matters again." },
-  { title:"The Technological Republic",    author:"Alexander Karp",        amazon:"https://www.amazon.com/Technological-Republic-Power-Belief-Future/dp/0593798694",          desc:"Palantir CEO on AI, national security and the future of power.", why:"Rare insider view from the sharpest mind in big data." },
-  { title:"The New American Road Trip Mixtape", author:"Brendan Leonard",  amazon:"https://www.amazon.com/New-American-Road-Trip-Mixtape-ebook/dp/B00G2KF9Y4",              desc:"Hilarious memoir of van life and adventure.", why:'Ultimate "quit your job and hit the road" inspiration.' },
-];
-
-const PIPELINE = [
-  { title:"The Bitcoin Standard",                 author:"Saifedean Ammous",      amazon:"https://www.amazon.com/Bitcoin-Standard-Decentralized-Alternative-Central/dp/1119473861" },
-  { title:"Hillbilly Elegy",                      author:"J.D. Vance",            amazon:"https://www.amazon.com/Hillbilly-Elegy-Memoir-Family-Culture/dp/0062300547" },
-  { title:"Reframe Your Brain",                   author:"Scott Adams",           amazon:"https://www.amazon.com/Reframe-Your-Brain-Change-Works/dp/178678872X" },
-  { title:"How to Fail at Almost Everything",     author:"Scott Adams",           amazon:"https://www.amazon.com/How-Fail-Almost-Everything-Still/dp/1591847745" },
-  { title:"Loserthink",                           author:"Scott Adams",           amazon:"https://www.amazon.com/Loserthink-Untrained-Brains-Destroy-America/dp/0593083520" },
-  { title:"Antifragile",                          author:"Nassim Taleb",          amazon:"https://www.amazon.com/Antifragile-Things-That-Disorder-Incerto/dp/0812979680" },
-  { title:"The Black Swan",                       author:"Nassim Taleb",          amazon:"https://www.amazon.com/Black-Swan-Improbable-Robustness-Fragility/dp/081297381X" },
-  { title:"Skin in the Game",                     author:"Nassim Taleb",          amazon:"https://www.amazon.com/Skin-Game-Hidden-Asymmetries-Daily/dp/042528462X" },
-  { title:"No Domain",                            author:"Mark Eglinton",         amazon:"https://www.amazon.com/No-Domain-John-McAfee-Tapes/dp/1642939536" },
-  { title:"Inventing Freedom",                    author:"Daniel Hannan",         amazon:"https://www.amazon.com/Inventing-Freedom-English-Speaking-Peoples-Modern/dp/0062231731" },
-  { title:"The Art of Not Being Governed",        author:"James C. Scott",        amazon:"https://www.amazon.com/Art-Not-Being-Governed-Anarchist/dp/0300169175" },
-  { title:"Seeing Like a State",                  author:"James C. Scott",        amazon:"https://www.amazon.com/Seeing-Like-State-Certain-Condition/dp/0300078153" },
-  { title:"Walden",                               author:"Henry David Thoreau",   amazon:"https://www.amazon.com/Walden-Henry-David-Thoreau/dp/0486284956" },
-  { title:"Infinite Jest",                        author:"David Foster Wallace",  amazon:"https://www.amazon.com/Infinite-Jest-David-Foster-Wallace/dp/0316066524" },
-  { title:"The Book",                             author:"Alan Watts",            amazon:"https://www.amazon.com/Book-Taboo-Against-Knowing-Who/dp/0679723005" },
-  { title:"Breathe",                              author:"Rickson Gracie",        amazon:"https://www.amazon.com/Breathe-Life-Flow-Rickson-Gracie/dp/0063018950" },
-  { title:"Comfort in Darkness",                  author:"Rickson Gracie",        amazon:"https://www.amazon.com/Comfort-Darkness-Invisible-Power-Jitsu/dp/0063264846" },
-  { title:"The Cryptopians",                      author:"Laura Shin",            amazon:"https://www.amazon.com/Cryptopians-Idealism-Greed-Making-Cryptocurrency/dp/1541763017" },
-  { title:"Proof of Stake",                       author:"Vitalik Buterin",       amazon:"https://www.amazon.com/Proof-Stake-Ethereum-Philosophy-Blockchains/dp/164421248X" },
-];
-
-// ═══════════════════════════════════════════════════════════════════
-//  OPEN LIBRARY COVER FETCHER — automatic, no API key needed
-// ═══════════════════════════════════════════════════════════════════
-
-const coverCache = {};
-
-async function fetchCover(title, author) {
-    const key = `${title}||${author}`;
-    if (key in coverCache) return coverCache[key];
-    const q = encodeURIComponent(`${title} ${author}`);
-    try {
-        const res = await fetch(`https://openlibrary.org/search.json?q=${q}&fields=cover_i&limit=5`);
-        const { docs = [] } = await res.json();
-        for (const doc of docs) {
-            if (doc.cover_i) {
-                const url = `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`;
-                coverCache[key] = url; return url;
-            }
-        }
-    } catch(_) {}
-    coverCache[key] = null; return null;
+// Called when a cover image fails to load — swaps in a clean text placeholder
+function coverFb(img, title) {
+    const wrap = img.parentNode;
+    wrap.innerHTML = `<div class="cover-fb">${title}</div>`;
 }
 
-function skeleton() { const d = document.createElement('div'); d.className = 'cover-skeleton'; return d; }
-function placeholder(title) { const d = document.createElement('div'); d.className = 'cover-placeholder'; d.textContent = title; return d; }
-
-async function loadCover(el, title, author) {
-    el.innerHTML = ''; el.appendChild(skeleton());
-    const url = await fetchCover(title, author);
-    el.innerHTML = '';
-    if (url) {
-        const img = new Image();
-        img.alt = title; img.loading = 'lazy';
-        img.onerror = () => { el.innerHTML = ''; el.appendChild(placeholder(title)); };
-        img.onload = () => { el.innerHTML = ''; el.appendChild(img); };
-        img.src = url;
-    } else { el.appendChild(placeholder(title)); }
-}
-
-// ═══════════════════════════════════════════════════════════════════
-//  RENDER
-// ═══════════════════════════════════════════════════════════════════
-
-function renderFeatured(b, container) {
-    const a = document.createElement('a');
-    a.href = b.amazon; a.target = '_blank'; a.className = 'card-featured';
-    const coverEl = document.createElement('div'); coverEl.className = 'cover';
-    const info = document.createElement('div'); info.className = 'info';
-    info.innerHTML = `<span class="reading-badge">Reading now</span><strong>${b.title}</strong><em>${b.author}</em><div class="desc">${b.desc || ''}<br><span class="why-label">Why read it:</span> ${b.why || ''}</div>`;
-    a.append(coverEl, info); container.appendChild(a);
-    loadCover(coverEl, b.title, b.author);
-}
-
-function renderCard(b, container) {
-    const a = document.createElement('a');
-    a.href = b.amazon; a.target = '_blank'; a.className = 'card';
-    const wrap = document.createElement('div'); wrap.className = 'cover-wrap';
-    const info = document.createElement('div'); info.className = 'info';
-    info.innerHTML = `<strong>${b.title}</strong><em>${b.author}</em>${b.desc ? `<div class="desc">${b.desc}${b.why ? `<br><span class="why-label">Why read it:</span> ${b.why}` : ''}</div>` : ''}`;
-    a.append(wrap, info); container.appendChild(a);
-    loadCover(wrap, b.title, b.author);
-}
-
-function renderMini(b, container) {
-    const a = document.createElement('a');
-    a.href = b.amazon; a.target = '_blank'; a.className = 'card-mini';
-    const wrap = document.createElement('div'); wrap.className = 'cover-wrap';
-    const info = document.createElement('div'); info.className = 'info';
-    info.innerHTML = `<strong>${b.title}</strong><em>${b.author}</em>`;
-    a.append(wrap, info); container.appendChild(a);
-    loadCover(wrap, b.title, b.author);
-}
-
-// ═══════════════════════════════════════════════════════════════════
-//  INIT
-// ═══════════════════════════════════════════════════════════════════
-
-(function init() {
-    const rg = document.getElementById('reading-grid');
-    const dg = document.getElementById('recs-grid');
-    const pg = document.getElementById('pipeline-grid');
-    document.getElementById('reading-count').textContent = `${READING.length} book${READING.length!==1?'s':''}`;
-    document.getElementById('recs-count').textContent    = `${RECS.length} books`;
-    READING.forEach(b => renderFeatured(b, rg));
-    RECS.forEach(b => renderCard(b, dg));
-    // deduplicate pipeline
-    const seen = new Set();
-    PIPELINE.filter(b => { const k=b.title.toLowerCase(); if(seen.has(k))return false; seen.add(k); return true; })
-            .forEach(b => renderMini(b, pg));
-})();
-
-// ═══════════════════════════════════════════════════════════════════
-//  THEME
-// ═══════════════════════════════════════════════════════════════════
-
+// Theme
 function toggleTheme() {
     document.body.classList.toggle('dark');
     localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
 }
 const saved = localStorage.getItem('theme');
-if (saved==='dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     document.body.classList.add('dark');
 }
+
+// Scroll to top
 const scrollBtn = document.getElementById('scrollTop');
-window.addEventListener('scroll', () => { scrollBtn.style.display = window.scrollY > 400 ? 'flex' : 'none'; });
+window.addEventListener('scroll', () => {
+    scrollBtn.style.display = window.scrollY > 400 ? 'flex' : 'none';
+});
 </script>
 </body>
 </html>
