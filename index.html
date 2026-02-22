@@ -20,14 +20,10 @@
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.65; transition: background 0.3s, color 0.3s; }
-
-        /* ── THEME TOGGLE ── */
         .theme-toggle { position: fixed; top: 20px; right: 20px; width: 44px; height: 24px; background: var(--text-muted); border-radius: 12px; cursor: pointer; z-index: 100; transition: background 0.3s; border: none; }
         .theme-toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: white; transition: transform 0.3s; }
         body.dark .theme-toggle { background: var(--accent); }
         body.dark .theme-toggle::after { transform: translateX(20px); }
-
-        /* ── HEADER ── */
         header { position: relative; padding: 90px 20px 60px; text-align: center; background: url('https://i.imgur.com/u7zAY7d.jpg') center/cover no-repeat; overflow: hidden; }
         header::before { content: ''; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(15,12,8,0.75) 0%, rgba(40,25,10,0.85) 100%); }
         header::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(to bottom, transparent, var(--bg)); }
@@ -36,11 +32,7 @@
         header h1 { font-family: 'DM Serif Display', serif; font-size: 2.8em; color: #fff; line-height: 1.15; margin-bottom: 12px; letter-spacing: -0.5px; }
         header h1 em { font-style: italic; color: #f0c897; }
         header .tagline { font-size: 1.05em; color: rgba(255,255,255,0.65); font-weight: 300; }
-
-        /* ── MAIN ── */
         main { max-width: 1200px; margin: 0 auto; padding: 0 24px 80px; }
-
-        /* ── BIO ROW ── */
         .bio-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding: 32px 0 40px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
         .tags { display: flex; flex-wrap: wrap; gap: 8px; }
         .tag { font-size: 0.78em; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 12px; border-radius: 20px; background: var(--tag-bg); color: var(--accent); }
@@ -50,14 +42,10 @@
         .btn-li { background: #0a66c2; color: #fff; }
         .btn:hover { opacity: 0.85; transform: translateY(-1px); }
         body.dark .btn-x { background: #fff; color: #000; }
-
-        /* ── SECTION HEADERS ── */
         .section-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 28px; }
         .section-header h2 { font-family: 'DM Serif Display', serif; font-size: 1.75em; color: var(--text); letter-spacing: -0.3px; }
         .section-header .count { font-size: 0.85em; color: var(--text-muted); }
         .section-divider { width: 40px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 32px; }
-
-        /* ── CURRENTLY READING ── */
         .reading-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 64px; }
         .card-featured { display: flex; background: var(--card-bg); border-radius: 14px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: var(--shadow); border: 1px solid var(--border); transition: all 0.25s; }
         .card-featured:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
@@ -70,9 +58,6 @@
         .card-featured strong { font-family: 'DM Serif Display', serif; font-size: 1.15em; display: block; margin-bottom: 3px; line-height: 1.3; }
         .card-featured em { font-size: 0.88em; color: var(--text-muted); font-style: normal; display: block; margin-bottom: 10px; }
         .card-featured .desc { font-size: 0.88em; color: var(--text-muted); line-height: 1.5; }
-        .why-label { font-family: 'DM Sans', sans-serif !important; font-weight: 600; color: var(--accent); font-style: normal; }
-
-        /* ── RECS GRID ── */
         .recs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; margin-bottom: 64px; }
         .card { background: var(--card-bg); border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; box-shadow: var(--shadow); border: 1px solid var(--border); transition: all 0.25s; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
@@ -82,11 +67,9 @@
         .card strong { font-family: 'DM Serif Display', serif; font-size: 1.05em; display: block; margin-bottom: 3px; line-height: 1.3; color: var(--text); }
         .card em { font-size: 0.85em; color: var(--text-muted); font-style: normal; display: block; margin-bottom: 8px; }
         .card .desc { font-size: 0.83em; color: var(--text-muted); line-height: 1.5; flex: 1; }
-
-        /* ── COVER FALLBACK — shown when img fails ── */
+        .rating { margin-top: 10px; }
+        .rating-score { font-size: 0.78em; font-weight: 700; color: var(--accent); background: var(--tag-bg); padding: 2px 9px; border-radius: 20px; }
         .cover-fb { width: 72%; aspect-ratio: 2/3; max-height: 88%; background: rgba(128,128,128,0.12); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.68em; color: var(--text-muted); text-align: center; padding: 8px; line-height: 1.4; }
-
-        /* ── PIPELINE ── */
         .pipeline-section { border-top: 1px solid var(--border); padding-top: 48px; }
         .pipeline-section .section-header h2 { color: var(--text-muted); }
         .pipeline-section .section-divider { background: var(--text-muted); opacity: 0.4; }
@@ -97,10 +80,7 @@
         .card-mini .info { padding: 10px 12px; }
         .card-mini strong { font-size: 0.88em; font-weight: 600; display: block; margin-bottom: 2px; line-height: 1.3; color: var(--text); }
         .card-mini em { font-size: 0.78em; color: var(--text-muted); font-style: normal; }
-
-        /* ── MISC ── */
         footer { text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.85em; border-top: 1px solid var(--border); margin-top: 40px; }
-        footer a { color: var(--accent); text-decoration: none; }
         #scrollTop { position: fixed; bottom: 24px; right: 20px; width: 40px; height: 40px; background: var(--accent); color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 1.1em; display: none; align-items: center; justify-content: center; z-index: 99; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
         #scrollTop:hover { opacity: 0.85; }
         @media(max-width:600px){ header h1{font-size:2em} .reading-grid{grid-template-columns:1fr} .recs-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))} }
@@ -148,13 +128,13 @@
     <div class="section-divider"></div>
     <div class="reading-grid">
 
-        <a href="https://www.amazon.com/Beginning-Infinity-Explanations-Transform-World/dp/0143121359" target="_blank" class="card-featured">
-            <div class="cover"><img src="https://m.media-amazon.com/images/I/716R8HCtH+L._SL1500_.jpg" alt="The Beginning of Infinity" onerror="this.parentNode.innerHTML='<div class=cover-fb>The Beginning of Infinity</div>'"></div>
+        <a href="https://www.amazon.com/Art-Resilience-Strategies-Unbreakable-Mind/dp/0008356939" target="_blank" class="card-featured">
+            <div class="cover"><img src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1601305715i/45444045.jpg" alt="The Art of Resilience" onerror="this.parentNode.innerHTML='<div class=cover-fb>The Art of Resilience</div>'"></div>
             <div class="info">
                 <span class="reading-badge">Reading now</span>
-                <strong>The Beginning of Infinity</strong>
-                <em>David Deutsch</em>
-                <div class="desc">Good explanations are the engine of all progress.<br><span class="why-label">Why read it:</span> The most optimistic philosophy of science ever written.</div>
+                <strong>The Art of Resilience</strong>
+                <em>Ross Edgley</em>
+                <div class="desc">An unbreakable mind is a skill you build, not a trait you're born with. Edgley proves it by becoming the first person to swim around Great Britain — 157 days without setting foot on land. You come away with a stoic sports science blueprint for forging endurance most people don't believe is possible.</div>
             </div>
         </a>
 
@@ -164,7 +144,7 @@
                 <span class="reading-badge">Reading now</span>
                 <strong>Reframe Your Brain</strong>
                 <em>Scott Adams</em>
-                <div class="desc">How to rewire your thinking using the latest persuasion science.<br><span class="why-label">Why read it:</span> A practical toolkit for changing how you see everything.</div>
+                <div class="desc">Every situation has a frame — and you can choose a better one. Adams gives you a toolkit of cognitive reframes drawn from persuasion science and pattern recognition. You gain the ability to flip any obstacle into traction, in real time.</div>
             </div>
         </a>
 
@@ -180,137 +160,137 @@
 
         <a href="https://www.amazon.com/Sovereign-Individual-Mastering-Transition-Information/dp/0684832720" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/811BLWk2tcL._SL1500_.jpg" alt="The Sovereign Individual" onerror="coverFb(this,'The Sovereign Individual')"></div>
-            <div class="info"><strong>The Sovereign Individual</strong><em>Davidson &amp; Rees-Mogg</em><div class="desc">1997 prophecy of nation-state decline and the rise of crypto.<br><span class="why-label">Why read it:</span> The most accurate 25-year-old prediction about today.</div></div>
+            <div class="info"><strong>The Sovereign Individual</strong><em>Davidson &amp; Rees-Mogg</em><div class="desc">This book opens up how information technology dismantles nation-states and redistributes power to individuals. Written in 1997, it maps the exact forces reshaping money, borders, and identity today. You come away seeing the current world through a lens most people won't find for another decade.</div><div class="rating"><span class="rating-score">11/10 — must read</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Fooled-Randomness-Hidden-Markets-Incerto/dp/0812975219" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/51k+ZO5K1mL._SL1200_.jpg" alt="Fooled by Randomness" onerror="coverFb(this,'Fooled by Randomness')"></div>
-            <div class="info"><strong>Fooled by Randomness</strong><em>Nassim Taleb</em><div class="desc">How luck masquerades as skill in markets and life.<br><span class="why-label">Why read it:</span> The original humility check on success.</div></div>
+            <div class="info"><strong>Fooled by Randomness</strong><em>Nassim Taleb</em><div class="desc">This book opens up how much of what we call skill is luck dressed up as competence. Taleb dissects market success stories to expose the role of chance most people refuse to acknowledge. You gain permanent immunity to survivorship bias and a sharper filter for separating signal from noise.</div><div class="rating"><span class="rating-score">10/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Rules-Life-International-Bestseller/dp/0345816021" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/61Dx-r7+GvL._SL1500_.jpg" alt="12 Rules for Life" onerror="coverFb(this,'12 Rules for Life')"></div>
-            <div class="info"><strong>12 Rules for Life</strong><em>Jordan Peterson</em><div class="desc">An antidote to chaos through responsibility and meaning.<br><span class="why-label">Why read it:</span> Brutally practical life operating system.</div></div>
+            <div class="info"><strong>12 Rules for Life</strong><em>Jordan Peterson</em><div class="desc">This book opens up how order and meaning are built from the bottom up — starting with personal responsibility. Peterson builds twelve rules from mythology, psychology, and hard-won experience. You gain a grounded operating system for carrying real weight without collapsing under chaos.</div><div class="rating"><span class="rating-score">10/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Win-Bigly-Persuasion-World-Makes/dp/0735219710" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/71FDhvgLyZL._SL1500_.jpg" alt="Win Bigly" onerror="coverFb(this,'Win Bigly')"></div>
-            <div class="info"><strong>Win Bigly</strong><em>Scott Adams</em><div class="desc">How persuasion and cognitive biases decided the 2016 election.<br><span class="why-label">Why read it:</span> Master-class in real-world influence.</div></div>
+            <div class="info"><strong>Win Bigly</strong><em>Scott Adams</em><div class="desc">This book unlocks why humans decide through emotion and narrative, not logic — and what that means for anyone trying to influence outcomes. Adams uses Trump's 2016 campaign as a live masterclass in applied persuasion. You come away with a model of human behaviour that actually predicts what people will do.</div><div class="rating"><span class="rating-score">10/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/How-Fail-Almost-Everything-Still/dp/1591847745" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/81PUBd4S3vL._SL1500_.jpg" alt="How to Fail at Almost Everything and Still Win Big" onerror="coverFb(this,'How to Fail at Almost Everything')"></div>
-            <div class="info"><strong>How to Fail at Almost Everything and Still Win Big</strong><em>Scott Adams</em><div class="desc">Systems over goals — how Adams built his career through strategic failure.<br><span class="why-label">Why read it:</span> Reframes failure as the actual path to success.</div></div>
+            <div class="info"><strong>How to Fail at Almost Everything and Still Win Big</strong><em>Scott Adams</em><div class="desc">This book opens up why goals keep you stuck and systems are how you actually build a life. Adams walks through every career failure that compounded into success. You gain a practical framework for building momentum without depending on any single outcome.</div><div class="rating"><span class="rating-score">9/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Endure-Work-Hard-Outlast-Hammering/dp/1250279291" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1627326217i/58578769.jpg" alt="Endure" onerror="coverFb(this,'Endure')"></div>
-            <div class="info"><strong>Endure</strong><em>Cameron Hanes</em><div class="desc">From average guy to NYT bestselling athlete — relentless self-improvement.<br><span class="why-label">Why read it:</span> Nobody cares. Work harder.</div></div>
+            <div class="info"><strong>Endure</strong><em>Cameron Hanes</em><div class="desc">This book opens up what daily discipline looks like when it's treated as non-negotiable. Hanes — a self-described average man — built elite athletic capacity through relentless training over three decades. You come away with no excuses and a much clearer picture of what consistency actually costs.</div><div class="rating"><span class="rating-score">5/10 — repetitive, but great motivation porn</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Unaccountability-Machine-Systems-Terrible-Decisions/dp/0226843084" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1716689664i/197716282.jpg" alt="The Unaccountability Machine" onerror="coverFb(this,'The Unaccountability Machine')"></div>
-            <div class="info"><strong>The Unaccountability Machine</strong><em>Dan Davies</em><div class="desc">Why big systems produce outcomes nobody wants — and the science that could fix it.<br><span class="why-label">Why read it:</span> Makes the world suddenly more comprehensible.</div></div>
+            <div class="info"><strong>The Unaccountability Machine</strong><em>Dan Davies</em><div class="desc">This book unlocks why every institution you interact with produces outcomes nobody claims to have wanted. Davies uses management cybernetics to show how complex systems absorb accountability and release chaos. You gain a lens that makes modern dysfunction suddenly comprehensible instead of just infuriating.</div><div class="rating"><span class="rating-score">7/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Never-Split-Difference-Negotiating-Depended/dp/0062407805" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/81PPq8CP4sL._SL1500_.jpg" alt="Never Split the Difference" onerror="coverFb(this,'Never Split the Difference')"></div>
-            <div class="info"><strong>Never Split the Difference</strong><em>Chris Voss</em><div class="desc">FBI hostage negotiator tactics that beat compromise.<br><span class="why-label">Why read it:</span> Turns you into a master deal-maker.</div></div>
+            <div class="info"><strong>Never Split the Difference</strong><em>Chris Voss</em><div class="desc">This book opens up negotiation as an emotional intelligence skill, not a logic exercise. Voss translates FBI hostage tactics into a concrete toolkit for any high-stakes conversation. You gain the ability to move people without pressure — through calibrated questions and tactical empathy.</div><div class="rating"><span class="rating-score">8/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Principles-Life-Work-Ray-Dalio/dp/1501124021" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/61LKD6scbfL._SL1500_.jpg" alt="Principles" onerror="coverFb(this,'Principles')"></div>
-            <div class="info"><strong>Principles</strong><em>Ray Dalio</em><div class="desc">Life &amp; work operating system from the world's top hedge fund manager.<br><span class="why-label">Why read it:</span> Repeatable decision-making framework.</div></div>
+            <div class="info"><strong>Principles</strong><em>Ray Dalio</em><div class="desc">This book opens up how the world's most successful investor systematised every decision in his life and work. Dalio codifies his operating logic for relationships, failure, and building organisations. You gain a repeatable framework for navigating almost any situation without reinventing the wheel each time.</div><div class="rating"><span class="rating-score">9/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Alchemy-Unexpected-Force-Irrational/dp/006238841X" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/71w0KKnrfXL._SL1500_.jpg" alt="Alchemy" onerror="coverFb(this,'Alchemy')"></div>
-            <div class="info"><strong>Alchemy</strong><em>Rory Sutherland</em><div class="desc">The magic of irrational value and psycho-logic.<br><span class="why-label">Why read it:</span> Turns you into a wizard at creating perceived value.</div></div>
+            <div class="info"><strong>Alchemy</strong><em>Rory Sutherland</em><div class="desc">This book opens up why logic is the wrong tool for most human problems. Sutherland raids behavioural economics and advertising history to show that irrational solutions routinely outperform rational ones. You come away able to create disproportionate value by changing perception rather than reality.</div><div class="rating"><span class="rating-score">11/10 — must read</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Gods-Debris-Complete-Scott-Adams/dp/B0D4F6WQPD" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/714gov1g4yL._SL1500_.jpg" alt="God's Debris" onerror="coverFb(this,&quot;God's Debris&quot;)"></div>
-            <div class="info"><strong>God's Debris</strong><em>Scott Adams</em><div class="desc">90-minute thought experiment that questions reality.<br><span class="why-label">Why read it:</span> Will permanently scramble your worldview.</div></div>
+            <div class="info"><strong>God's Debris</strong><em>Scott Adams</em><div class="desc">This book opens up questions about God, free will, and the nature of reality through a single 90-minute conversation. Adams constructs a Socratic dialogue that never lets you settle on comfortable answers. You come away with a permanently more flexible grip on what you think you know.</div><div class="rating"><span class="rating-score">6/10 — only if you love Scott Adams</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Total-Recall-Incredibly-True-Story/dp/1451662440" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/81Sn3g1r8sL._SL1500_.jpg" alt="Total Recall" onerror="coverFb(this,'Total Recall')"></div>
-            <div class="info"><strong>Total Recall</strong><em>Arnold Schwarzenegger</em><div class="desc">From bodybuilding champion to Hollywood to Governor.<br><span class="why-label">Why read it:</span> Relentless discipline conquers anything.</div></div>
+            <div class="info"><strong>Total Recall</strong><em>Arnold Schwarzenegger</em><div class="desc">This book opens up what it looks like when someone refuses every ceiling placed in front of them. Arnold traces the same relentless engine — vision, obsession, discipline — across bodybuilding, Hollywood, and politics. You gain proof that most limits are defaults you simply haven't decided to challenge yet.</div><div class="rating"><span class="rating-score">9/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Elon-Musk-SpaceX-Fantastic-Future/dp/0062301250" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/81SlrVsShvL._SL1500_.jpg" alt="Elon Musk" onerror="coverFb(this,'Elon Musk')"></div>
-            <div class="info"><strong>Elon Musk</strong><em>Ashlee Vance</em><div class="desc">The definitive biography of the man building the future.<br><span class="why-label">Why read it:</span> Extreme ambition in action.</div></div>
+            <div class="info"><strong>Elon Musk</strong><em>Ashlee Vance</em><div class="desc">This book opens up what genuine first-principles thinking looks like at industrial scale. Vance traces how Musk rebuilt rockets and electric cars from scratch rather than iterating on what existed. You come away with a much harder benchmark for what ambition actually means.</div><div class="rating"><span class="rating-score">7/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Cant-Hurt-Me-Master-Your/dp/1544512287" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/81YJFNc54lL._SL1500_.jpg" alt="Can't Hurt Me" onerror="coverFb(this,&quot;Can't Hurt Me&quot;)"></div>
-            <div class="info"><strong>Can't Hurt Me</strong><em>David Goggins</em><div class="desc">From abused child to Navy SEAL — ultimate mental toughness.<br><span class="why-label">Why read it:</span> Your limits are mostly self-imposed.</div></div>
+            <div class="info"><strong>Can't Hurt Me</strong><em>David Goggins</em><div class="desc">This book opens up the gap between your actual limits and the limit you believe you've hit. Goggins built a Navy SEAL body and mind from childhood trauma with no advantages given. You gain the uncomfortable realisation that most of your suffering is optional — and a method for proving it.</div><div class="rating"><span class="rating-score">8/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.de/-/en/Run-Die-Inspirational-Greatest-Ultra-Runner/dp/0241004853" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/91w98G96oLL._SL1500_.jpg" alt="Run or Die" onerror="coverFb(this,'Run or Die')"></div>
-            <div class="info"><strong>Run or Die</strong><em>Kilian Jornet</em><div class="desc">The story of the greatest ultra-runner of all time.<br><span class="why-label">Why read it:</span> Shows what the human body and mind are capable of.</div></div>
+            <div class="info"><strong>Run or Die</strong><em>Kilian Jornet</em><div class="desc">This book opens up what it means to move through mountains as a way of life rather than a sport. Jornet writes with a poet's feel for terrain, suffering, and beauty from the edge of human performance. You gain a visceral sense of what the body can do when passion fully replaces limitation.</div><div class="rating"><span class="rating-score">7/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Way-Fight-Georges-St-Pierre/dp/140913242X" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/61FisjZ13HL._SL1500_.jpg" alt="The Way of the Fight" onerror="coverFb(this,'The Way of the Fight')"></div>
-            <div class="info"><strong>The Way of the Fight</strong><em>Georges St-Pierre</em><div class="desc">GSP's philosophy on martial arts, discipline, and life.<br><span class="why-label">Why read it:</span> Wisdom from one of the greatest fighters ever.</div></div>
+            <div class="info"><strong>The Way of the Fight</strong><em>Georges St-Pierre</em><div class="desc">This book opens up the philosophy behind one of the most complete martial artists ever. GSP builds a worldview from fear, control, and perpetual self-improvement that stretches far beyond fighting. You gain a concrete mental model for excellence in any competitive environment where pressure is constant.</div><div class="rating"><span class="rating-score">7/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Wim-Hof-Method-Activate-Health/dp/1683644093" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/91RtIHfSj6L._SL1500_.jpg" alt="The Wim Hof Method" onerror="coverFb(this,'The Wim Hof Method')"></div>
-            <div class="info"><strong>The Wim Hof Method</strong><em>Wim Hof</em><div class="desc">Breathing + cold exposure to control your body and mind.<br><span class="why-label">Why read it:</span> Science-backed superhuman protocol.</div></div>
+            <div class="info"><strong>The Wim Hof Method</strong><em>Wim Hof</em><div class="desc">This book opens up voluntary control over parts of your physiology you were told were entirely automatic. Hof teaches a combination of breathwork and cold exposure backed by clinical research. You gain a daily protocol that measurably changes your energy, stress response, and immune resilience.</div><div class="rating"><span class="rating-score">8/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/What-Doesnt-Kill-Us-Transformed/dp/1635652418" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/81BoDrqatrL._SL1500_.jpg" alt="What Doesn't Kill Us" onerror="coverFb(this,&quot;What Doesn't Kill Us&quot;)"></div>
-            <div class="info"><strong>What Doesn't Kill Us</strong><em>Scott Carney</em><div class="desc">How extreme cold and breathwork unlock human potential.<br><span class="why-label">Why read it:</span> The journey that made Wim Hof famous.</div></div>
+            <div class="info"><strong>What Doesn't Kill Us</strong><em>Scott Carney</em><div class="desc">This book opens up how comfort has made us softer — and how cold stress reverses the damage. Carney embeds himself in Wim Hof's training as a sceptic and tests whether the science holds up under scrutiny. You gain both the evidence and the origin story behind a method that changed how many people train.</div><div class="rating"><span class="rating-score">7/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Daily-Stoic-366-Meditations-Wealth/dp/0735211736" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/71T1sL1vatL._SL1500_.jpg" alt="The Daily Stoic" onerror="coverFb(this,'The Daily Stoic')"></div>
-            <div class="info"><strong>The Daily Stoic</strong><em>Ryan Holiday</em><div class="desc">366 bite-sized meditations on wisdom and living.<br><span class="why-label">Why read it:</span> One page a day keeps chaos away.</div></div>
+            <div class="info"><strong>The Daily Stoic</strong><em>Ryan Holiday</em><div class="desc">This book opens up 2,000 years of Stoic wisdom in doses small enough to actually absorb. One page, one idea per day — drawn from Marcus Aurelius, Seneca, and Epictetus. You gain a quietly compounding mental discipline that rewires how you respond to everything outside your control.</div><div class="rating"><span class="rating-score">9/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Almanack-Naval-Ravikant-Wealth-Happiness/dp/B08V9VKN7T" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/61ptYzpPOsL._SL1500_.jpg" alt="The Almanack of Naval Ravikant" onerror="coverFb(this,'The Almanack of Naval Ravikant')"></div>
-            <div class="info"><strong>The Almanack of Naval Ravikant</strong><em>Eric Jorgenson</em><div class="desc">Curated wisdom on wealth, happiness, and leverage.<br><span class="why-label">Why read it:</span> The modern bible for building freedom.</div></div>
+            <div class="info"><strong>The Almanack of Naval Ravikant</strong><em>Eric Jorgenson</em><div class="desc">This book opens up how to think about wealth and happiness as skills — not luck or inheritance. Jorgenson distils Naval's most precise ideas on leverage, specific knowledge, and inner freedom. You come away with a completely different relationship between what you do and why you do it.</div><div class="rating"><span class="rating-score">11/10 — must read</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Network-State-How-Start-Country/dp/1734967750" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/71ZeCLHRzvL._SL1500_.jpg" alt="The Network State" onerror="coverFb(this,'The Network State')"></div>
-            <div class="info"><strong>The Network State</strong><em>Balaji Srinivasan</em><div class="desc">How to start a new country — digitally first.<br><span class="why-label">Why read it:</span> Blueprint for the next phase of civilization.</div></div>
+            <div class="info"><strong>The Network State</strong><em>Balaji Srinivasan</em><div class="desc">This book opens up how digital-first communities could replace the geographic nation-state as the primary unit of governance. Balaji builds the argument step by step — from shared values to cloud communities to physical presence. You gain a credible map of how civilisation might reorganise itself in your lifetime.</div><div class="rating"><span class="rating-score">8/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Extreme-Ownership-U-S-Navy-SEALs/dp/1250067057" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/71GqMTCFWtL._SL1500_.jpg" alt="Extreme Ownership" onerror="coverFb(this,'Extreme Ownership')"></div>
-            <div class="info"><strong>Extreme Ownership</strong><em>Jocko Willink &amp; Leif Babin</em><div class="desc">Navy SEAL leadership: own everything.<br><span class="why-label">Why read it:</span> No excuses, only ownership.</div></div>
+            <div class="info"><strong>Extreme Ownership</strong><em>Jocko Willink &amp; Leif Babin</em><div class="desc">This book opens up leadership as a discipline of total personal accountability with no exceptions allowed. Two Navy SEALs translate the lessons of the most violent urban battlefield in Iraq into principles for any team. You gain one clean mental model: if something's wrong, the problem starts with you.</div><div class="rating"><span class="rating-score">8/10</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Bad-Blood-Secrets-Silicon-Startup/dp/152473165X" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/71j5+5Uy2AL._SL1500_.jpg" alt="Bad Blood" onerror="coverFb(this,'Bad Blood')"></div>
-            <div class="info"><strong>Bad Blood</strong><em>John Carreyrou</em><div class="desc">The insane story of Theranos and Elizabeth Holmes.<br><span class="why-label">Why read it:</span> Masterclass in fraud, delusion, and corporate governance.</div></div>
+            <div class="info"><strong>Bad Blood</strong><em>John Carreyrou</em><div class="desc">This book opens up how a billion-dollar fraud stayed hidden inside Silicon Valley's culture of fake-it-till-you-make-it. Carreyrou reconstructs how Theranos deceived investors, doctors, and regulators for over a decade. You come away with a sharper eye for delusion dressed up as vision.</div><div class="rating"><span class="rating-score">9/10 — great story</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Hillbilly-Elegy-Memoir-Family-Culture/dp/0062300547" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/81ytGlIkLoL._SL1500_.jpg" alt="Hillbilly Elegy" onerror="coverFb(this,'Hillbilly Elegy')"></div>
-            <div class="info"><strong>Hillbilly Elegy</strong><em>J.D. Vance</em><div class="desc">A raw memoir of poverty, family dysfunction, and the American working class.<br><span class="why-label">Why read it:</span> Essential context for understanding modern America.</div></div>
+            <div class="info"><strong>Hillbilly Elegy</strong><em>J.D. Vance</em><div class="desc">This book opens up what poverty, family breakdown, and cultural decay look like from the inside rather than a policy paper. Vance traces his own escape from Appalachian dysfunction with brutal self-honesty. You gain the human context that explains half of American politics and almost none of the media gets right.</div><div class="rating"><span class="rating-score">8/10 — can't believe this is non-fiction</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Read-Write-Own-Building-Internet/dp/0593731395" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/71EooR8LsRL._SL1500_.jpg" alt="Read Write Own" onerror="coverFb(this,'Read Write Own')"></div>
-            <div class="info"><strong>Read Write Own</strong><em>Chris Dixon</em><div class="desc">Why blockchains are the third era of the internet.<br><span class="why-label">Why read it:</span> The clearest case for why ownership on the internet matters again.</div></div>
+            <div class="info"><strong>Read Write Own</strong><em>Chris Dixon</em><div class="desc">This book opens up why every platform you build on eventually turns against you — and what blockchains change about that dynamic. Dixon maps three eras of the internet through the lens of who controls the rules. You gain a clear thesis for why network ownership is the defining bet of the next decade.</div><div class="rating"><span class="rating-score">8/10 — great web3 advocacy</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/Technological-Republic-Power-Belief-Future/dp/0593798694" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/81U7o8Z8ZFL._SL1500_.jpg" alt="The Technological Republic" onerror="coverFb(this,'The Technological Republic')"></div>
-            <div class="info"><strong>The Technological Republic</strong><em>Alexander Karp</em><div class="desc">Palantir CEO on AI, national security and the future of power.<br><span class="why-label">Why read it:</span> Rare insider view from the sharpest mind in big data.</div></div>
+            <div class="info"><strong>The Technological Republic</strong><em>Alexander Karp</em><div class="desc">This book opens up why technological power and national power are converging in ways most people aren't tracking. The Palantir CEO argues that democracies must actively build the tools of strength — not outsource them to adversaries. You gain a rare insider view on AI, sovereignty, and what's actually at stake right now.</div><div class="rating"><span class="rating-score">7/10 — inspirational</span></div></div>
         </a>
 
         <a href="https://www.amazon.com/New-American-Road-Trip-Mixtape-ebook/dp/B00G2KF9Y4" target="_blank" class="card">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/81skOhaS-4L._SL1500_.jpg" alt="The New American Road Trip Mixtape" onerror="coverFb(this,'The New American Road Trip Mixtape')"></div>
-            <div class="info"><strong>The New American Road Trip Mixtape</strong><em>Brendan Leonard</em><div class="desc">Hilarious memoir of van life and adventure.<br><span class="why-label">Why read it:</span> Ultimate "quit your job and hit the road" inspiration.</div></div>
+            <div class="info"><strong>The New American Road Trip Mixtape</strong><em>Brendan Leonard</em><div class="desc">This book opens up the idea that adventure doesn't require a plan — just enough recklessness to start. Leonard chronicles a van-life journey across America with zero preparation and relentless comedy. You come away with a serious itch to drop everything and go somewhere that scares you a little.</div><div class="rating"><span class="rating-score">10/10 — if you have a soul that loves nature</span></div></div>
         </a>
 
     </div>
@@ -324,6 +304,11 @@
         <div class="section-divider"></div>
         <div class="pipeline-grid">
 
+            <a href="https://www.amazon.com/Beginning-Infinity-Explanations-Transform-World/dp/0143121359" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/716R8HCtH+L._SL1500_.jpg" alt="The Beginning of Infinity" onerror="coverFb(this,'The Beginning of Infinity')"></div>
+                <div class="info"><strong>The Beginning of Infinity</strong><em>David Deutsch</em></div>
+            </a>
+
             <a href="https://www.amazon.com/Bitcoin-Standard-Decentralized-Alternative-Central/dp/1119473861" target="_blank" class="card-mini">
                 <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/71jDLpPMdFS._SL1500_.jpg" alt="The Bitcoin Standard" onerror="coverFb(this,'The Bitcoin Standard')"></div>
                 <div class="info"><strong>The Bitcoin Standard</strong><em>Saifedean Ammous</em></div>
@@ -332,6 +317,11 @@
             <a href="https://www.amazon.com/Capitalism-Freedom-Milton-Friedman/dp/0226264211" target="_blank" class="card-mini">
                 <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/51TxWIiGgML._SL1000_.jpg" alt="Capitalism and Freedom" onerror="coverFb(this,'Capitalism and Freedom')"></div>
                 <div class="info"><strong>Capitalism and Freedom</strong><em>Milton Friedman</em></div>
+            </a>
+
+            <a href="https://www.amazon.com/Atlas-Shrugged-Ayn-Rand/dp/0451191145" target="_blank" class="card-mini">
+                <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/71jc7dJMsNL._SL1500_.jpg" alt="Atlas Shrugged" onerror="coverFb(this,'Atlas Shrugged')"></div>
+                <div class="info"><strong>Atlas Shrugged</strong><em>Ayn Rand</em></div>
             </a>
 
             <a href="https://www.amazon.com/Loserthink-Untrained-Brains-Destroy-America/dp/0593083520" target="_blank" class="card-mini">
@@ -414,10 +404,14 @@
 </main>
 
 <footer>
-    Last updated: February 2026 &nbsp;·&nbsp; Covers via <a href="https://books.google.com" target="_blank">Google Books</a>
+    Last updated: February 2026
 </footer>
 
 <script>
+function toggleTheme(){document.body.classList.toggle('dark');localStorage.setItem('theme',document.body.classList.contains('dark')?'dark':'light');}
+if(localStorage.getItem('theme')==='dark')document.body.classList.add('dark');
+window.addEventListener('scroll',()=>{document.getElementById('scrollTop').style.display=window.scrollY>400?'flex':'none';});
+function coverFb(img,title){const w=img.closest('.cover-wrap');if(w){w.innerHTML='<div class="cover-fb">'+title+'</div>';}}
 </script>
 </body>
 </html>
