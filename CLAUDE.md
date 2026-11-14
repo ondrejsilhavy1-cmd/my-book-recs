@@ -9,13 +9,14 @@ Personal webpage and book recommendation list ("Books That Shaped My Thinking").
 ## Stack
 - One static HTML file. CSS and vanilla JavaScript are inline. There is no framework, no build step, no package manager, and no dependencies.
 - Fonts load from Google Fonts (Fraunces, Inter, Space Grotesk).
-- Book covers are hotlinked from Goodreads, Open Library, Amazon, and imgur. Card links point to Amazon.
+- Horus Heresy and Siege of Terra covers, plus Ruinstorm and Reframe Your Brain, are local files in `covers/` (JPEG, max 480px tall, under 150KB). Other covers are still hotlinked from Goodreads, Open Library, and Amazon; the avatar is on imgur. Card links point to Amazon.
 - The page reads and writes only one `localStorage` key, `theme` (`light`/`dark`).
 
 ## Structure
 ```
 README.md    # one-line description
 index.html   # the whole site
+covers/      # local cover images (heresy-NN-*.jpg, siege-NN-*.jpg, others by slug)
 ```
 Where things are in `index.html`:
 - `<head><style>`: design tokens in `:root` (dark is the default) and `body.light` overrides, then the component styles (header, cards, tabs, filters, Heresy tracker, responsive breakpoints).
@@ -43,7 +44,7 @@ There are no automated tests, linters, or CI. Check changes by hand in a browser
 
 ## Deployment
 - The default branch is `main`.
-- The repo is a static site containing only `README.md` and `index.html`.
+- The repo is a static site: `README.md`, `index.html`, and the `covers/` folder.
 - There are no GitHub Actions workflows and no `vercel.json`. There is also no wrangler, railway, or Dockerfile config.
 - The GitHub repo homepage is https://my-book-recs.vercel.app
 - GitHub Deployments show `vercel[bot]` creating a Production deployment for every commit on `main`. Deploys happen automatically through the Vercel GitHub integration, and Vercel serves `index.html` as a static file with zero configuration.
@@ -56,8 +57,10 @@ None. There is no `.env.example`, and the code has no `process.env`/`import.meta
 - Section counts are hardcoded (e.g. "2 books", "30 books") and must be updated by hand when books change.
 - The footer "Last updated" date is set by hand.
 - Cover-image fallbacks are inconsistent. Some covers use `coverFb(this, title)`, some use `this.style.display='none'`, and some set `innerHTML` inline. Consider using `coverFb` everywhere.
-- Hotlinked covers from external hosts can break or be rate-limited, so local copies may be better.
+- Hotlinked covers from external hosts can break or be rate-limited. Heresy covers are local now; the rest could be moved into `covers/` too.
+- Bold Conjectures has no cover (no reliable source found), so it shows the text fallback.
+- `coverFb` is defined in a small `<head>` script so it exists before any image `onerror` fires.
 - The saved light theme is applied only after the page renders, because the script is at the end of the body. Light-mode users can see a brief flash of the dark theme.
-- Typo: the Heresy part label says "Imperium Secondus", but the book description says "Secundus" (correct). The README also misspells "reccomendations".
+- Typo: the README misspells "reccomendations". (The Heresy "Imperium Secundus" label is fixed.)
 - Most of the Heresy tracker markup repeats per book (with odd leftover indentation), which suggests it was generated elsewhere. Edit it carefully, or generate it from a JS array.
 - Recent commit messages ("Update index.html", "Hello → Goodbye") don't describe the changes. Use descriptive messages.
