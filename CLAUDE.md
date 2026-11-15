@@ -61,3 +61,6 @@ None. There is no `.env.example`, and the code has no `process.env`/`import.meta
 - Typo: the Heresy part label says "Imperium Secondus", but the book description says "Secundus" (correct). The README also misspells "reccomendations".
 - Most of the Heresy tracker markup repeats per book (with odd leftover indentation), which suggests it was generated elsewhere. Edit it carefully, or generate it from a JS array.
 - Recent commit messages ("Update index.html", "Hello → Goodbye") don't describe the changes. Use descriptive messages.
+
+## Repo hygiene
+- `.gitignore` excludes `.env` files, OS/editor clutter and local tool folders (.vercel, .wrangler, node_modules). Keep secrets out of the repo.

@@ -1,0 +1,14 @@
+# Secrets
+.env
+.env.*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local tooling
+node_modules/
+.vercel/
+.wrangler/
