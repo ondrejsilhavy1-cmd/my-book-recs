@@ -4,218 +4,366 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ondrej's Book Recommendations</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ══ PROPOSAL C — "Modern Bento + Timeline" ══ */
         :root{
-            --bg:#0D1117; --surface:#151B23; --surface-2:#1B232E;
-            --border:#232D3A; --border-soft:#1C2530;
-            --text:#E9E7E2; --muted:#94A0AE; --faint:#5E6B7A;
-            --accent:#E2A65B; --accent-deep:#B97F35; --accent-soft:rgba(226,166,91,.12);
-            --red:#D14334; --red-soft:rgba(209,67,52,.12);
-            --green:#5BBF8A;
-            --disp:'Fraunces',serif; --body:'Inter',sans-serif; --util:'Space Grotesk',sans-serif;
-            --r:14px;
+            --bg:#0A0B10; --surface:#14161E; --surface-2:#1C1F2A; --border:#272B39;
+            --text:#ECEEF4; --muted:#A3ABBD; --faint:#737B8E;
+            --accent:#6F4DFF; --accent-ink:#B3A2FF; --accent-soft:rgba(124,92,255,.16);
+            --green:#3DD68C; --green-soft:rgba(61,214,140,.14);
+            --amber:#F5B544; --amber-soft:rgba(245,181,68,.14);
+            --track:#2B3040;
+            --shadow:0 1px 0 rgba(255,255,255,.03) inset,0 14px 34px -20px rgba(0,0,0,.8);
+            --disp:'Space Grotesk',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+            --r:22px; --r-sm:14px;
+            color-scheme:dark;
         }
         body.light{
-            --bg:#F6F1E8; --surface:#FFFDF9; --surface-2:#F1EADC;
-            --border:#E2D9C8; --border-soft:#EBE3D4;
-            --text:#1E232B; --muted:#5E6B7A; --faint:#9AA5B1;
-            --accent:#B97F35; --accent-deep:#96621F; --accent-soft:rgba(185,127,53,.12);
-            --red:#B83227; --red-soft:rgba(184,50,39,.08);
+            --bg:#F1F2F7; --surface:#FFFFFF; --surface-2:#F0F1F6; --border:#DFE2EB;
+            --text:#12141B; --muted:#535B6D; --faint:#7C8497;
+            --accent:#5B3DF5; --accent-ink:#4A2FD6; --accent-soft:rgba(91,61,245,.1);
+            --green:#0C8050; --green-soft:rgba(12,128,80,.12);
+            --amber:#9A5A00; --amber-soft:rgba(154,90,0,.12);
+            --track:#D9DCE8;
+            --shadow:0 1px 2px rgba(18,20,27,.04),0 14px 32px -22px rgba(18,20,27,.3);
+            color-scheme:light;
         }
         *{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:smooth}
-        body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.6;font-size:16px;transition:background .3s,color .3s}
+        body{font-family:var(--body);background:var(--bg) radial-gradient(900px 480px at 88% -8%,var(--accent-soft),transparent 70%) no-repeat;color:var(--text);line-height:1.55;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        img{max-width:100%;display:block}
+        a{color:inherit;text-decoration:none}
+        button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+        :focus-visible{outline:2px solid var(--accent-ink);outline-offset:3px}
+        main{max-width:1200px;margin:0 auto;padding:28px 24px 0}
+        .tile{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:26px;min-width:0}
 
-        /* lamplight glow — page signature */
-        body::before{content:'';position:fixed;top:-30vh;left:50%;transform:translateX(-50%);width:90vw;height:60vh;background:radial-gradient(ellipse at center,var(--accent-soft) 0%,transparent 65%);pointer-events:none;z-index:0}
-        header,main,footer{position:relative;z-index:1}
+        /* ── BENTO (top of page) ── */
+        .bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px;margin-bottom:32px}
+        .tile-profile{grid-column:1/8;grid-row:1/3;position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:22px;background:radial-gradient(120% 100% at 0 0,var(--accent-soft),transparent 62%),var(--surface)}
+        .tile-quote{grid-column:8/13;grid-row:1}
+        .tile-links{grid-column:8/13;grid-row:2}
+        .tile-reading{grid-column:1/9;grid-row:3}
+        .tile-stat{grid-column:9/13;grid-row:3}
 
-        /* ── HEADER ── */
-        header{padding:72px 24px 0;text-align:center}
-        header .inner{max-width:680px;margin:0 auto}
-        header img{width:84px;height:84px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);box-shadow:0 0 0 5px var(--accent-soft);margin-bottom:24px}
-        h1{font-family:var(--disp);font-weight:600;font-size:clamp(2.1em,5vw,3.1em);line-height:1.08;letter-spacing:-.01em}
-        h1 em{font-style:italic;color:var(--accent);font-weight:400}
-        .tagline{font-family:var(--util);font-size:.82em;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+        .tile-profile .inner{display:flex;flex-direction:column;gap:14px}
+        .tile-profile .inner img{width:76px;height:76px;border-radius:22px;object-fit:cover;border:2px solid var(--accent);box-shadow:0 0 0 5px var(--accent-soft);image-rendering:pixelated}
+        h1{font-family:var(--disp);font-weight:700;font-size:clamp(2em,4.4vw,3.3em);line-height:1.02;letter-spacing:-.035em;margin-top:6px}
+        h1 em{font-style:normal;color:var(--accent-ink)}
+        .tagline{font-family:var(--disp);font-size:.8em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+        .bio-text{font-size:1em;color:var(--muted);line-height:1.7;max-width:62ch}
+        .theme-toggle{position:absolute;top:22px;right:22px;width:42px;height:42px;border-radius:14px;border:1px solid var(--border);background:var(--surface-2);display:grid;place-items:center;transition:border-color .2s,transform .2s}
+        .theme-toggle::after{content:'☀';font-size:1.15em;color:var(--accent-ink)}
+        body.light .theme-toggle::after{content:'☾'}
+        .theme-toggle:hover{border-color:var(--accent);transform:rotate(12deg)}
 
-        /* ── LINKS ROW ── */
-        .bio-row{display:flex;justify-content:center;margin:28px 0 0}
-        .btn-group{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-        .btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--util);font-size:.78em;font-weight:600;letter-spacing:.02em;padding:8px 16px;border-radius:100px;text-decoration:none;border:1px solid var(--border);color:var(--text);background:var(--surface);transition:border-color .2s,transform .2s}
-        .btn:hover{border-color:var(--accent);transform:translateY(-1px)}
-        .btn-x{background:var(--surface)}
-        .btn-fp{background:var(--surface)}
-        .btn-li{background:var(--surface)}
-        .btn-cashout{background:#000;color:#00ff88;border-color:rgba(0,255,136,.4)}
-        .btn-cashout svg{stroke:#00ff88}
-        .btn-cashout:hover{border-color:#00ff88}
+        .tile-quote{background:linear-gradient(140deg,#7453FF,#4A2BD4);border-color:transparent;color:#fff;display:flex;flex-direction:column;justify-content:space-between;gap:16px;position:relative;overflow:hidden}
+        .quote-inner{display:flex;flex-direction:column;min-height:168px}
+        .quote-mark{font-family:var(--disp);font-size:4.6em;font-weight:700;line-height:.8;height:.5em;color:rgba(255,255,255,.4);display:block}
+        .quote-text{font-family:var(--disp);font-weight:500;font-size:clamp(1.15em,1.7vw,1.4em);line-height:1.35;letter-spacing:-.01em;transition:opacity .4s ease;margin-top:10px}
+        .quote-author{font-family:var(--disp);font-size:.76em;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.82);margin-top:auto;padding-top:14px;transition:opacity .4s ease}
+        .quote-dots{display:flex;gap:6px;flex-wrap:wrap}
+        .quote-dot{width:10px;height:10px;border-radius:99px;background:rgba(255,255,255,.35);transition:width .3s,background .3s}
+        .quote-dot:hover{background:rgba(255,255,255,.7)}
+        .quote-dot.active{width:28px;background:#fff}
+        .quote-dot:focus-visible{outline-color:#fff}
 
-        main{max-width:1060px;margin:0 auto;padding:48px 24px 0}
-
-        /* ── BIO ── */
-        .bio-block{max-width:620px;margin:0 auto 56px;text-align:center}
-        .bio-text{font-size:.95em;color:var(--muted);line-height:1.8}
-
-        /* ── EPIGRAPH (quote rotator) — signature element ── */
-        .quote-rotator{max-width:720px;margin:0 auto 64px;text-align:center;padding:0 16px}
-        .quote-inner{min-height:108px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-        .quote-mark{font-family:var(--disp);font-size:3.4em;line-height:.4;color:var(--accent);display:block;margin-bottom:18px;font-style:italic}
-        .quote-text{font-family:var(--disp);font-style:italic;font-weight:400;font-size:clamp(1.15em,2.4vw,1.45em);line-height:1.5;color:var(--text);transition:opacity .5s ease;max-width:640px}
-        .quote-author{font-family:var(--util);font-size:.72em;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-top:16px;transition:opacity .5s ease}
-        .quote-dots{display:flex;gap:8px;justify-content:center;margin-top:22px}
-        .quote-dot{width:5px;height:5px;border-radius:50%;background:var(--border);cursor:pointer;border:none;padding:0;transition:background .3s,transform .3s}
-        .quote-dot.active{background:var(--accent);transform:scale(1.4)}
+        .tile-links{display:flex;align-items:center}
+        .btn-group{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;width:100%}
+        .btn{display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;font-family:var(--disp);font-size:.9em;font-weight:600;padding:13px 12px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surface-2);transition:border-color .2s,transform .2s,color .2s}
+        .btn svg{flex:none;color:var(--accent-ink)}
+        .btn:hover{border-color:var(--accent);color:var(--accent-ink);transform:translateY(-2px)}
 
         /* ── SECTION HEADERS ── */
-        .section-header{display:flex;align-items:baseline;gap:14px;margin-bottom:24px}
-        .section-header h2{font-family:var(--disp);font-weight:600;font-size:1.55em;letter-spacing:-.01em}
-        .count{font-family:var(--util);font-size:.72em;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+        .section-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
+        .section-header h2{font-family:var(--disp);font-weight:700;font-size:1.45em;letter-spacing:-.02em}
+        .count{font-family:var(--disp);font-size:.7em;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--surface-2);border:1px solid var(--border);padding:4px 11px;border-radius:99px;white-space:nowrap}
         .section-divider{display:none}
 
         /* ── CURRENTLY READING ── */
-        .reading-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;margin-bottom:8px}
-        .card-featured{display:flex;gap:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;text-decoration:none;color:var(--text);transition:border-color .2s,transform .2s}
+        .reading-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+        .card-featured{display:flex;gap:16px;background:var(--surface-2);border:1px solid var(--border);border-radius:18px;padding:16px;transition:border-color .2s,transform .2s}
         .card-featured:hover{border-color:var(--accent);transform:translateY(-2px)}
-        .card-featured .cover{flex-shrink:0;width:96px}
-        .card-featured .cover img{width:96px;height:144px;object-fit:cover;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.35)}
-        .card-featured .info{display:flex;flex-direction:column;gap:5px}
-        .reading-badge{font-family:var(--util);font-size:.64em;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);background:rgba(91,191,138,.12);padding:3px 10px;border-radius:100px;width:fit-content}
-        .card-featured strong{font-family:var(--disp);font-weight:600;font-size:1.15em;margin-top:2px}
-        .card-featured em{font-style:normal;font-family:var(--util);font-size:.74em;font-weight:500;color:var(--muted);letter-spacing:.04em}
-        .card-featured .desc{font-size:.84em;color:var(--muted);line-height:1.65;margin-top:4px}
+        .card-featured .cover{flex:none}
+        .card-featured .cover img,.card-featured .cover-fb{width:88px;height:132px;object-fit:cover;border-radius:10px;box-shadow:0 10px 22px -10px rgba(0,0,0,.6)}
+        .card-featured .info{display:flex;flex-direction:column;gap:4px;min-width:0}
+        .reading-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--disp);font-size:.66em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);padding:3px 10px;border-radius:99px;width:fit-content}
+        .reading-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 1.8s ease-in-out infinite}
+        .reading-badge.up-next{color:var(--muted);background:var(--surface);border:1px solid var(--border)}
+        .reading-badge.up-next::before{animation:none;background:var(--faint)}
+        .card-featured strong{font-family:var(--disp);font-weight:700;font-size:1.12em;line-height:1.2;letter-spacing:-.01em;margin-top:3px}
+        .card-featured em{font-style:normal;font-size:.8em;font-weight:500;color:var(--muted)}
+        .card-featured .desc{font-size:.84em;color:var(--muted);line-height:1.55;margin-top:4px}
+
+        /* ── HERESY STAT TILE ── */
+        .tile-stat{display:flex;flex-direction:column;align-items:stretch;gap:6px;text-align:left;font-family:var(--body);transition:border-color .2s,transform .2s;background:radial-gradient(130% 90% at 100% 100%,var(--accent-soft),transparent 60%),var(--surface)}
+        .tile-stat:hover{border-color:var(--accent);transform:translateY(-2px)}
+        .stat-eyebrow{font-family:var(--disp);font-size:.72em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink)}
+        .stat-num{font-family:var(--disp);font-weight:700;font-size:4.2em;line-height:1;letter-spacing:-.04em;margin-top:8px}
+        .stat-num i{font-style:normal;font-size:.45em;color:var(--faint);letter-spacing:-.01em}
+        .stat-label{font-size:.86em;color:var(--muted)}
+        .stat-sub{font-size:.84em;color:var(--muted)}
+        .stat-sub b{color:var(--text);font-weight:600}
+        .stat-go{margin-top:auto;padding-top:12px;font-family:var(--disp);font-weight:600;font-size:.9em;color:var(--accent-ink)}
+        .stat-bar{display:block;height:10px;border-radius:99px;background:var(--track);overflow:hidden;margin:10px 0}
+        .stat-bar span{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent-ink));transition:width .7s ease}
+        /* Heresy progress bar: split from .stat-bar, gold treatment (see HERESY GOTHIC block) */
+        .heresy-progress-bar{display:block;height:9px;border-radius:2px;border:1px solid var(--heresy-gold-dim);background:var(--heresy-track);overflow:hidden;margin:10px 0}
+        .heresy-progress-fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--heresy-gold-dim),var(--heresy-gold),var(--heresy-gold-bright));transition:width .7s ease}
 
         /* ── TABS ── */
-        .tab-nav{display:flex;justify-content:center;gap:6px;margin:56px 0 44px;position:sticky;top:12px;z-index:50}
-        .tab-btn{font-family:var(--util);font-size:.76em;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:10px 22px;border-radius:100px;border:1px solid var(--border);background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(12px);color:var(--muted);cursor:pointer;transition:all .2s}
-        .tab-btn:hover{color:var(--text);border-color:var(--accent)}
-        .tab-btn.active{background:var(--accent);border-color:var(--accent);color:#14110B}
-        .tab-btn.heresy-tab.active{background:var(--red);border-color:var(--red);color:#fff}
+        .tab-nav{display:flex;gap:6px;width:fit-content;max-width:100%;padding:6px;background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:16px}
+        .tab-btn{font-family:var(--disp);font-size:.76em;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:11px 20px;border-radius:12px;color:var(--muted);transition:background .2s,color .2s}
+        .tab-btn:hover{color:var(--text);background:var(--surface-2)}
+        .tab-btn.active{background:var(--accent);color:#fff}
         .tab-panel{display:none}
-        .tab-panel.active{display:block;animation:panelIn .35s ease}
+        .tab-panel.active{display:block;animation:panelIn .3s ease}
         @keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-        @media (prefers-reduced-motion:reduce){.tab-panel.active{animation:none}}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
-        /* ── FILTER ── */
-        .filter-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;margin-bottom:40px}
+        /* ── FILTER CHIPS ── */
+        .filter-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:26px}
         .filter-label{display:none}
-        .filter-btn{font-family:var(--util);font-size:.7em;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:6px 14px;border-radius:100px;border:1px solid var(--border-soft);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
-        .filter-btn:hover{border-color:var(--accent);color:var(--accent)}
-        .filter-btn.active{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+        .filter-btn{font-family:var(--disp);font-size:.72em;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:8px 15px;border-radius:99px;border:1px solid var(--border);background:var(--surface);color:var(--muted);transition:all .2s}
+        .filter-btn:hover{border-color:var(--accent);color:var(--text)}
+        .filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
         .card-featured.hidden,.card.hidden{display:none}
 
-        /* ── BOOK GRID ── */
-        .recs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
-        .card{display:flex;gap:18px;background:var(--surface);border:1px solid var(--border-soft);border-radius:var(--r);padding:20px;text-decoration:none;color:var(--text);transition:border-color .2s,transform .2s}
+        /* ── BOOK GRID (Timeless) ── */
+        .recs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+        .card{display:flex;gap:18px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:18px;transition:border-color .2s,transform .2s}
         .card:hover{border-color:var(--accent);transform:translateY(-2px)}
-        .cover-wrap{flex-shrink:0;width:84px}
-        .cover-wrap img{width:84px;height:126px;object-fit:cover;border-radius:7px;box-shadow:0 6px 18px rgba(0,0,0,.3)}
-        .cover-fb{width:84px;height:126px;display:flex;align-items:center;justify-content:center;font-family:var(--util);font-size:.62em;font-weight:600;text-align:center;color:var(--accent);background:var(--accent-soft);border-radius:7px;padding:8px;line-height:1.3}
-        .card .info{display:flex;flex-direction:column;gap:4px;min-width:0}
-        .card strong{font-family:var(--disp);font-weight:600;font-size:1.05em;line-height:1.25}
-        .card em{font-style:normal;font-family:var(--util);font-size:.72em;font-weight:500;color:var(--muted)}
-        .card .desc{font-size:.8em;color:var(--muted);line-height:1.6;margin-top:3px}
-        .rating{margin-top:auto;padding-top:8px}
-        .rating-score{font-family:var(--util);font-size:.7em;font-weight:700;letter-spacing:.04em;color:var(--accent);background:var(--accent-soft);padding:4px 10px;border-radius:100px}
+        .card .cover-wrap{flex:none;width:96px;height:144px;border-radius:10px;overflow:hidden;background:var(--surface-2);box-shadow:0 10px 22px -12px rgba(0,0,0,.6)}
+        .cover-wrap img{width:100%;height:100%;object-fit:cover}
+        .cover-fb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;font-family:var(--disp);font-size:.72em;font-weight:600;line-height:1.3;color:var(--accent-ink);background:linear-gradient(160deg,var(--surface-2),var(--accent-soft));border-radius:inherit;overflow-wrap:anywhere}
+        .card .info{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
+        .card strong{font-family:var(--disp);font-weight:700;font-size:1.12em;line-height:1.22;letter-spacing:-.01em}
+        .card em{font-style:normal;font-size:.82em;font-weight:500;color:var(--muted)}
+        .card .desc{font-size:.87em;color:var(--muted);line-height:1.6;margin-top:4px}
+        .rating{margin-top:auto;padding-top:10px}
+        .rating-score{display:inline-block;font-family:var(--disp);font-size:.76em;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);padding:4px 11px;border-radius:99px}
+        .card-top{border-color:color-mix(in srgb,var(--accent) 55%,var(--border))}
+        .card-top .rating-score{background:var(--accent);color:#fff}
 
         /* ── PIPELINE ── */
-        .pipeline-section{margin-top:0}
-        .pipeline-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
-        .card-mini{background:var(--surface);border:1px solid var(--border-soft);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--text);transition:border-color .2s,transform .2s;display:flex;flex-direction:column}
+        .pipeline-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+        .card-mini{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:10px 10px 14px;transition:border-color .2s,transform .2s}
         .card-mini:hover{border-color:var(--accent);transform:translateY(-2px)}
-        .card-mini .cover-wrap{width:100%;aspect-ratio:2/3;background:var(--surface-2)}
-        .card-mini .cover-wrap img{width:100%;height:100%;object-fit:cover;border-radius:0;box-shadow:none}
-        .card-mini .cover-wrap .cover-fb{width:100%;height:100%;border-radius:0}
-        .card-mini .info{padding:12px 14px}
-        .card-mini strong{display:block;font-family:var(--disp);font-weight:600;font-size:.9em;line-height:1.3}
-        .card-mini em{font-style:normal;font-family:var(--util);font-size:.68em;color:var(--muted)}
+        .card-mini .cover-wrap{width:100%;aspect-ratio:2/3;border-radius:10px;overflow:hidden;background:linear-gradient(160deg,var(--surface-2),var(--accent-soft))}
+        .card-mini .info{display:flex;flex-direction:column;gap:2px;padding:0 4px}
+        .card-mini strong{font-family:var(--disp);font-weight:600;font-size:.92em;line-height:1.25}
+        .card-mini em{font-style:normal;font-size:.78em;color:var(--muted)}
 
-        /* ── HORUS HERESY ── */
-        .heresy-section{padding-top:8px}
-        .heresy-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:48px}
-        .heresy-eyebrow{font-family:var(--util);font-size:.68em;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
-        .heresy-title{font-family:var(--disp);font-weight:600;font-size:2em;line-height:1.05}
-        .heresy-subtitle{font-size:.85em;color:var(--muted);margin-top:8px}
-        .heresy-progress-block{text-align:right}
-        .heresy-progress-label{font-family:var(--util);font-size:.76em;font-weight:600;color:var(--muted);margin-bottom:8px;letter-spacing:.04em}
-        .heresy-progress-num{color:var(--red);font-weight:700}
-        .heresy-progress-bar{width:240px;height:5px;background:var(--surface-2);border-radius:3px;overflow:hidden}
-        .heresy-progress-fill{height:100%;background:linear-gradient(90deg,#7A1D12,var(--red));border-radius:3px}
-        .heresy-progress-sub{font-size:.74em;color:var(--muted);margin-top:8px}
-        .heresy-progress-sub em{color:var(--green);font-style:normal;font-weight:600}
-        .heresy-part{margin-bottom:8px}
-        .heresy-part-label{font-family:var(--util);font-size:.68em;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);opacity:.85;margin-bottom:18px}
-        .heresy-books-row{display:flex;align-items:flex-start;flex-wrap:wrap;gap:10px;justify-content:center}
-        .heresy-books-col{display:flex;flex-direction:column;align-items:center;gap:8px}
-        .heresy-parallel{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:8px}
-        .heresy-branch{padding:22px 12px;border:1px solid var(--border-soft);border-radius:var(--r);background:var(--surface)}
-        .heresy-branch-down{text-align:center;color:var(--faint);font-size:1.1em;margin:14px 0}
-        .heresy-connector{color:var(--faint);font-size:.85em;flex-shrink:0;padding:0 3px;align-self:center}
-        .heresy-connector-v{color:var(--faint);font-size:.85em;text-align:center}
-        .optional-connector{color:var(--red);opacity:.6}
-        .heresy-book{position:relative;display:flex;flex-direction:column;align-items:center;width:100px;transition:transform .2s}
-        .heresy-book:hover{transform:translateY(-3px)}
-        .heresy-cover{width:72px;height:108px;border-radius:6px;overflow:hidden;background:var(--surface-2);box-shadow:0 4px 14px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center}
-        .heresy-cover img{width:100%;height:100%;object-fit:cover;display:block}
-        .heresy-info{margin-top:9px;text-align:center;width:100%}
-        .heresy-book-title{display:block;font-family:var(--util);font-size:.66em;font-weight:600;line-height:1.3;margin-bottom:2px}
-        .heresy-book-author{display:block;font-size:.6em;color:var(--muted)}
-        .heresy-book-rating{display:block;font-family:var(--util);font-size:.64em;font-weight:700;color:var(--red);margin-top:4px}
-        .heresy-book.read .heresy-cover{box-shadow:0 0 0 2px var(--red),0 4px 16px rgba(209,67,52,.3)}
-        .heresy-book.unread .heresy-cover{filter:grayscale(100%) brightness(.55);opacity:.5}
-        .heresy-book.unread .heresy-book-title,.heresy-book.unread .heresy-book-author{opacity:.5}
-        .heresy-book.reading .heresy-cover{box-shadow:0 0 0 2px var(--green),0 4px 16px rgba(91,191,138,.35)}
-        .heresy-reading-badge{display:inline-block;font-family:var(--util);font-size:.58em;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);background:rgba(91,191,138,.12);padding:2px 8px;border-radius:100px;margin-top:4px}
-        .heresy-optional-badge{position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-family:var(--util);font-size:.52em;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--red-soft);color:var(--red);padding:2px 8px;border-radius:100px;white-space:nowrap;z-index:2}
-        .optional-book{margin-top:8px}
-        .heresy-siege{background:linear-gradient(150deg,var(--red-soft) 0%,transparent 55%);border:1px solid rgba(209,67,52,.2);border-radius:var(--r);padding:26px}
-        .heresy-siege-label{color:var(--red)}
-        .heresy-siege-row{overflow-x:auto;padding-bottom:8px;flex-wrap:wrap;justify-content:center}
-        .siege-book{width:88px;flex-shrink:0}
-        .siege-book .heresy-cover{width:64px;height:96px}
-        .siege-conn{flex-shrink:0}
-        .siege-plaque{display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#190A08,#2B100C);border:1px solid rgba(209,67,52,.35)}
-        .siege-numeral{font-family:var(--disp);font-size:1.6em;color:var(--red);opacity:.9}
-        .heresy-book.unread .siege-plaque{filter:none;opacity:.75}
-        body.light .siege-plaque{background:linear-gradient(160deg,#2B100C,#451A12)}
+        /* ── HORUS HERESY: header + legend ── */
+        .heresy-section{padding:30px}
+        .heresy-header{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:28px;align-items:end;margin-bottom:8px}
+        .heresy-eyebrow{font-family:var(--disp);font-size:.72em;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-ink)}
+        .heresy-title{font-family:var(--disp);font-weight:700;font-size:clamp(1.7em,3.2vw,2.4em);line-height:1.08;letter-spacing:-.03em;margin:6px 0 8px}
+        .heresy-subtitle{font-size:.92em;color:var(--muted);max-width:60ch}
+        .heresy-progress-block{background:var(--surface-2);border:1px solid var(--border);border-radius:18px;padding:16px 18px;min-width:0}
+        .heresy-progress-label{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;font-family:var(--disp);font-size:.84em;font-weight:600;color:var(--muted)}
+        .heresy-progress-num{font-size:1.3em;font-weight:700;color:var(--text)}
+        .heresy-progress-sub{font-size:.84em;color:var(--muted)}
+        .heresy-progress-sub em{font-style:normal;font-weight:600;color:var(--accent-ink)}
+        .tl-legend{display:flex;flex-wrap:wrap;gap:8px 20px;list-style:none;padding:16px 0 26px;font-size:.84em;color:var(--muted)}
+        .tl-legend li{display:flex;align-items:center;gap:8px}
+        .lg{width:16px;height:16px;border-radius:50%;flex:none;border:2px solid var(--faint)}
+        .lg-read{background:var(--green);border-color:var(--green)}
+        .lg-reading{border:4px solid var(--accent);background:#fff;box-shadow:0 0 0 3px var(--accent-soft)}
+        .lg-optional{border:2px dashed var(--amber);border-radius:5px}
+        .lg-track{width:30px;height:4px;border:0;border-radius:99px;background:linear-gradient(90deg,var(--accent) 60%,var(--track) 60%)}
+
+        /* ── HORUS HERESY: timeline (horizontal on desktop) ── */
+        .tl{display:flex;flex-wrap:wrap;row-gap:34px}
+        .tl-seg{flex:var(--n,3) 1 calc(var(--n,3)*96px);max-width:calc(var(--n,3)*150px);min-width:0}
+        .tl-seg-siege{flex:1 1 100%;max-width:none}
+        .heresy-part-label{display:flex;align-items:baseline;gap:8px;white-space:nowrap;font-family:var(--disp);font-size:.7em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text);border-left:2px solid var(--faint);padding:3px 8px;margin-bottom:10px}
+        .tl-seg-siege .heresy-part-label{color:var(--accent-ink);border-left-color:var(--accent);font-size:.8em}
+        .tl-seg-count{font-weight:600;letter-spacing:.02em;color:var(--faint)}
+        .tl-row{display:flex;list-style:none}
+        .tl-node{flex:1 1 96px;min-width:0;position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+        .tl-rail{position:relative;width:100%;height:20px;flex:none}
+        .tl-rail::before,.tl-rail::after{content:'';position:absolute;left:0;top:8px;height:4px}
+        .tl-rail::before{right:0;background:var(--track)}
+        .tl-rail::after{width:0;background:var(--accent)}
+        .tl-node[data-fill=full] .tl-rail::after{width:100%}
+        .tl-node[data-fill=half] .tl-rail::after{width:50%}
+        .tl-dot{position:absolute;z-index:1;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border-radius:50%;background:var(--surface);border:2px solid var(--faint);display:grid;place-items:center}
+        .is-read .tl-dot{background:var(--green);border-color:var(--green)}
+        .is-read .tl-dot::after{content:'✓';font-size:10px;font-weight:800;line-height:1;color:var(--surface)}
+        .is-reading .tl-dot{background:#fff;border:5px solid var(--accent);box-shadow:0 0 0 5px var(--accent-soft);animation:pulse 1.8s ease-in-out infinite}
+        .tl-stem{flex:none;width:2px;height:10px;background:var(--track)}
+        .is-read .tl-stem{background:var(--green)}
+        .is-reading .tl-stem{background:var(--accent)}
+        .tl-cover{flex:none;width:64px;height:96px;border-radius:9px;overflow:hidden;background:var(--surface-2);border:2px solid var(--border);box-shadow:0 10px 18px -12px rgba(0,0,0,.7)}
+        .is-read .tl-cover{border-color:var(--green)}
+        .is-reading .tl-cover{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft),0 12px 24px -10px var(--accent)}
+        .is-unread .tl-cover img{filter:grayscale(1);opacity:.4}
+        .tl-meta{display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 5px 0;min-width:0;max-width:100%}
+        .heresy-book-title{font-family:var(--disp);font-size:.8em;font-weight:600;line-height:1.25;overflow-wrap:anywhere}
+        .heresy-book-author{font-size:.72em;line-height:1.3;color:var(--muted)}
+        .is-unread .heresy-book-title{color:var(--muted)}
+        .heresy-book-rating,.heresy-reading-badge,.heresy-optional-badge{font-family:var(--disp);font-size:.7em;font-weight:700;padding:2px 9px;border-radius:99px;white-space:nowrap}
+        .heresy-book-rating{margin-top:4px;color:var(--green);background:var(--green-soft)}
+        .heresy-reading-badge{margin-top:4px;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--accent)}
+        /* optional books hang off the main track on a dashed branch */
+        .is-optional .tl-dot{width:10px;height:10px;margin:-5px 0 0 -5px;background:var(--surface);border:2px solid var(--amber);box-shadow:none;animation:none}
+        .is-optional .tl-dot::after{content:none}
+        .is-optional .tl-stem{width:0;height:44px;background:none;border-left:2px dashed var(--amber)}
+        .is-optional .tl-cover{border:2px dashed var(--amber)}
+        .heresy-optional-badge{position:absolute;z-index:1;top:32px;left:50%;transform:translateX(-50%);font-size:.62em;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);background:var(--surface);border:1px solid var(--amber)}
+
+        /* ── HERESY GOTHIC (scoped to #panel-heresy; inspired by design B) ──
+           Local variables re-point the tokens the Heresy rules above already use
+           (--accent, --surface, --border, --track …) to gold / dark parchment, so
+           nothing outside this panel changes. */
+        #panel-heresy{
+            --heresy-disp:'Cinzel','Trajan Pro',Georgia,serif;
+            --heresy-gold:#c9a24b; --heresy-gold-bright:#ecd08a; --heresy-gold-dim:#7d6332;
+            --heresy-parch:#1A1610; --heresy-parch-2:#241D14; --heresy-track:#372E20;
+            --heresy-red:#8E2A2A; --heresy-red-bright:#C0453F;
+            --surface:var(--heresy-parch); --surface-2:var(--heresy-parch-2); --border:#4A3C22;
+            --text:#F0E7D2; --muted:#BDB094; --faint:#8F8368;
+            --accent:var(--heresy-gold); --accent-ink:var(--heresy-gold-bright); --accent-soft:rgba(201,162,75,.18);
+            --track:var(--heresy-track); --amber:#D98A5B;
+        }
+        body.light #panel-heresy{
+            --heresy-gold:#74520f; --heresy-gold-bright:#8a6010; --heresy-gold-dim:#a88a4c;
+            --heresy-parch:#F6EEDA; --heresy-parch-2:#EDE2C8; --heresy-track:#D8CBA8;
+            --heresy-red:#8E1F1F; --heresy-red-bright:#A32B2B;
+            --border:#D3C298; --text:#2A2217; --muted:#5C5036; --faint:#7A6E50;
+            --accent-soft:rgba(154,112,32,.16); --amber:#9A4A22;
+        }
+        #panel-heresy .heresy-section{
+            border-color:var(--heresy-gold-dim);
+            background:radial-gradient(120% 70% at 50% 0,var(--accent-soft),transparent 65%),var(--heresy-parch);
+            box-shadow:inset 0 0 0 4px var(--heresy-parch),inset 0 0 0 5px var(--accent-soft),var(--shadow);
+        }
+        #panel-heresy .heresy-eyebrow{font-family:var(--heresy-disp);font-weight:600;letter-spacing:.3em;color:var(--heresy-gold-bright)}
+        #panel-heresy .heresy-title{font-family:var(--heresy-disp);font-weight:700;font-size:clamp(1.5em,2.8vw,2.1em);letter-spacing:.03em;text-transform:uppercase;color:var(--text)}
+        #panel-heresy .heresy-progress-block{border-radius:6px;border-color:var(--heresy-gold-dim);background:var(--heresy-parch-2)}
+        #panel-heresy .heresy-progress-label{font-family:var(--heresy-disp);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.76em}
+        #panel-heresy .heresy-progress-num{font-weight:700;color:var(--heresy-gold-bright)}
+        /* ornamental divider: gold gradient line with a rotated-square (lozenge) at the centre and at both ends */
+        .heresy-divider{display:flex;align-items:center;gap:10px;margin:14px 0 4px;color:var(--heresy-gold)}
+        .heresy-divider::before,.heresy-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--heresy-gold-dim) 18%,var(--heresy-gold))}
+        .heresy-divider::after{background:linear-gradient(270deg,transparent,var(--heresy-gold-dim) 18%,var(--heresy-gold))}
+        .heresy-divider i{flex:none;width:9px;height:9px;background:var(--heresy-gold);transform:rotate(45deg);box-shadow:0 0 0 3px var(--heresy-parch),0 0 0 4px var(--heresy-gold-dim)}
+        .heresy-divider b{flex:none;width:5px;height:5px;background:var(--heresy-gold-dim);transform:rotate(45deg)}
+        .heresy-divider-end{margin:26px 0 24px}
+        #panel-heresy .tl-legend{padding-top:14px;padding-bottom:6px}
+        #panel-heresy .lg-read,#panel-heresy .lg-optional{border-radius:2px}
+        #panel-heresy .lg-reading{background:var(--heresy-parch)}
+        #panel-heresy .heresy-part-label{font-family:var(--heresy-disp);font-weight:700;letter-spacing:.08em;font-size:.68em;white-space:normal;flex-wrap:wrap;border-left-color:var(--heresy-gold-dim)}
+        #panel-heresy .tl-seg-count{font-family:var(--heresy-disp);color:var(--heresy-gold)}
+        #panel-heresy .tl-cover{border-radius:3px;background:var(--heresy-parch-2);box-shadow:0 10px 18px -12px rgba(0,0,0,.8)}
+        #panel-heresy .is-reading .tl-dot{background:var(--heresy-gold-bright)}
+        #panel-heresy .lg-reading{border-color:var(--heresy-gold)}
+        #panel-heresy .heresy-book-title{font-family:var(--body)}
+        #panel-heresy .heresy-book-rating,#panel-heresy .heresy-reading-badge,#panel-heresy .heresy-optional-badge{font-family:var(--heresy-disp);font-weight:700;letter-spacing:.06em;border-radius:3px}
+        #panel-heresy .heresy-reading-badge{color:#1A1610;background:var(--heresy-gold-bright);text-transform:uppercase}
+        body.light #panel-heresy .heresy-reading-badge{color:#fff;background:var(--heresy-gold)}
+        #panel-heresy .heresy-optional-badge{background:var(--heresy-parch);border-radius:3px}
+        /* Siege of Terra: red-and-gold framed block */
+        #panel-heresy .tl-seg-siege{position:relative;padding:14px 18px 20px;border:1px solid var(--heresy-red);border-radius:6px;background:linear-gradient(180deg,rgba(142,42,42,.2),transparent 70%);box-shadow:inset 0 0 0 3px var(--heresy-parch),inset 0 0 0 4px var(--heresy-gold-dim)}
+        #panel-heresy .tl-seg-siege .heresy-part-label{color:var(--heresy-gold-bright);border-left-color:var(--heresy-red-bright);font-size:.8em;letter-spacing:.14em}
+        body.light #panel-heresy .tl-seg-siege .heresy-part-label{color:var(--heresy-red)}
 
         /* ── CHROME ── */
-        .theme-toggle{position:fixed;top:18px;right:18px;z-index:100;width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:border-color .2s}
-        .theme-toggle::after{content:'◐';color:var(--accent);font-size:1.05em}
-        .theme-toggle:hover{border-color:var(--accent)}
-        #scrollTop{position:fixed;bottom:22px;right:22px;z-index:100;width:42px;height:42px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--accent);font-size:1.1em;cursor:pointer;display:none;align-items:center;justify-content:center;transition:border-color .2s}
-        #scrollTop:hover{border-color:var(--accent)}
-        footer{text-align:center;font-family:var(--util);font-size:.72em;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-top:88px;padding:36px 0 44px}
-        :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+        #scrollTop{position:fixed;bottom:20px;right:20px;z-index:100;width:46px;height:46px;border-radius:16px;background:var(--accent);color:#fff;font-size:1.15em;font-weight:700;display:none;align-items:center;justify-content:center;box-shadow:0 12px 24px -10px var(--accent);transition:transform .2s}
+        #scrollTop:hover{transform:translateY(-3px)}
+        footer{text-align:center;font-family:var(--disp);font-size:.72em;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);padding:56px 24px 44px}
+        @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
-        @media(max-width:900px){.heresy-parallel{grid-template-columns:1fr 1fr}}
+        /* ── ≤900px: bento reflows, timeline turns vertical ── */
+        @media(max-width:900px){
+            .tile-profile{grid-column:1/-1;grid-row:1}
+            .tile-quote{grid-column:1/8;grid-row:2}
+            .tile-links{grid-column:8/-1;grid-row:2}
+            .tile-reading{grid-column:1/-1;grid-row:3}
+            .tile-stat{grid-column:1/-1;grid-row:4}
+            .stat-go{padding-top:6px}
+            .recs-grid{grid-template-columns:1fr}
+            .heresy-header{grid-template-columns:1fr;gap:18px}
+
+            .tl{display:block}
+            .tl-seg,.tl-seg-siege{max-width:none}
+            .heresy-part-label{position:relative;white-space:normal;flex-wrap:wrap;border-left:0;margin:0;padding:18px 0 12px 42px}
+            .heresy-part-label::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:4px;background:var(--track)}
+            .tl-seg[data-fill=full] .heresy-part-label::before{background:var(--accent)}
+            .tl-seg:first-child .heresy-part-label{padding-top:0}
+            .tl-row{display:block}
+            .tl-node{display:grid;grid-template-columns:28px auto 60px minmax(0,1fr);align-items:center;text-align:left}
+            .tl-rail{width:28px;height:auto;align-self:stretch}
+            .tl-rail::before{left:12px;right:auto;top:0;bottom:0;width:4px;height:auto}
+            .tl-rail::after{left:12px;top:0;width:4px!important;height:0}
+            .tl-node[data-fill=full] .tl-rail::after{height:100%}
+            .tl-node[data-fill=half] .tl-rail::after{height:50%}
+            .tl-stem{width:14px;height:2px}
+            .is-optional .tl-stem{width:52px;height:0;border-left:0;border-top:2px dashed var(--amber)}
+            .tl-cover{width:60px;height:90px;margin:8px 0}
+            .tl-meta{align-items:flex-start;padding:0 0 0 14px}
+            .heresy-book-title{font-size:.95em}
+            .heresy-book-author{font-size:.82em}
+            .heresy-optional-badge{top:2px;left:auto;right:0;transform:none}
+            #panel-heresy .heresy-title{text-transform:none}
+            #panel-heresy .heresy-part-label{border-left:0;padding:18px 0 12px 42px}
+            #panel-heresy .tl-seg:first-child .heresy-part-label{padding-top:0}
+            #panel-heresy .tl-seg-siege{padding:6px 14px 12px;margin-top:10px}
+            #panel-heresy .tl-seg-siege .heresy-part-label{padding-top:12px}
+            #panel-heresy .tl-cover{width:60px;height:90px}
+            #panel-heresy .is-optional .tl-stem{border-top-color:var(--amber)}
+        }
+
+        /* ── ≤600px: single column ── */
         @media(max-width:600px){
-            .heresy-parallel{grid-template-columns:1fr}
-            .heresy-progress-bar{width:100%}
-            .heresy-header{flex-direction:column;align-items:flex-start}
-            .heresy-progress-block{text-align:left}
-            header{padding-top:56px}
-            .tab-nav{position:static}
-            .card,.card-featured{flex-direction:row}
+            main{padding:16px 16px 0}
+            .tile{padding:20px;border-radius:20px}
+            .bento{grid-template-columns:minmax(0,1fr);gap:12px;margin-bottom:24px}
+            .bento>.tile{grid-column:1;grid-row:auto}
+            .theme-toggle{top:18px;right:18px}
+            .quote-inner{min-height:150px}
+            .reading-grid{grid-template-columns:minmax(0,1fr)}
+            .card-featured{padding:14px;gap:14px}
+            .card-featured .cover img,.card-featured .cover-fb{width:72px!important;height:108px!important}
+            .tab-nav{width:100%;flex-wrap:wrap}
+            .tab-btn{flex:1 1 auto;padding:11px 12px}
+            .tab-btn:first-child{flex-basis:100%}
+            .filter-btn{padding:7px 12px}
+            .card{padding:14px;gap:14px;border-radius:18px}
+            .card .cover-wrap{width:76px;height:114px}
+            .pipeline-grid{grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:12px}
+            .heresy-section{padding:20px 16px}
+            #panel-heresy .tl-seg-siege{padding:4px 8px 10px}
+            #panel-heresy .heresy-eyebrow{letter-spacing:.2em}
+            #panel-heresy .heresy-title{font-size:1.5em}
+            .heresy-divider-end{margin:18px 0 16px}
+            .stat-num{font-size:3.4em}
         }
     </style>
+<script>function coverFb(img, title) { const w = img.closest('.cover-wrap'); if (w) { w.innerHTML = '<div class="cover-fb">' + title + '</div>'; } }</script>
 </head>
 <body>
+<script>try { if (localStorage.getItem('theme') === 'light') document.body.classList.add('light'); } catch (e) {}</script>
 
-<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
-<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button id="scrollTop" type="button" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<header>
+<main>
+<!-- ══ BENTO: profile · links · quote · currently reading · heresy stat ══ -->
+<section class="bento">
+    <header class="tile tile-profile">
+    <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
     <div class="inner">
-        <img src="https://i.imgur.com/7BkpZ17.jpg" alt="Ondrej">
+        <img src="images/avatar.jpg" alt="Ondrej" width="76" height="76">
         <h1>Books That <em>Shaped</em><br>My Thinking</h1>
         <p class="tagline">Curated reads that actually move the needle</p>
     </div>
-</header>
+        <p class="bio-text">Berlin-based operator in iGaming and esports technology. I read across sovereignty, economics, crypto, philosophy, and human performance — trying to build a cleaner map of how the world actually works. Outside of non-fiction I'm a lifelong fantasy and sci-fi reader, currently working through the Horus Heresy. This list is what genuinely moved the needle.</p>
+    </header>
 
-<main>
-    <div class="bio-row">
-        <div class="btn-group" style="justify-content:center">
+    <div class="tile tile-links bio-row">
+        <div class="btn-group">
             <a href="https://x.com/ondrej0x" class="btn btn-x" target="_blank">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.261 5.635 5.902-5.635Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 @ondrej0x
@@ -235,47 +383,46 @@
         </div>
     </div>
 
-    <div class="bio-block">
-        <p class="bio-text">Berlin-based operator in iGaming and esports technology. I read across sovereignty, economics, crypto, philosophy, and human performance — trying to build a cleaner map of how the world actually works. Outside of non-fiction I'm a lifelong fantasy and sci-fi reader, currently working through the Horus Heresy. This list is what genuinely moved the needle.</p>
-    </div>
-
-    <div class="quote-rotator" id="quoteRotator">
-        <div class="quote-inner">
-            <span class="quote-mark">"</span>
+    <div class="tile tile-quote quote-rotator" id="quoteRotator">
+        <div class="quote-inner" aria-live="off">
+            <span class="quote-mark" aria-hidden="true">"</span>
             <p class="quote-text" id="quoteText"></p>
             <p class="quote-author" id="quoteAuthor"></p>
         </div>
         <div class="quote-dots" id="quoteDots"></div>
     </div>
 
-    <!-- ══ CURRENTLY READING ══ -->
+    <!-- ══ UP NEXT ══ -->
+    <div class="tile tile-reading">
     <div class="section-header">
-        <h2>Currently Reading</h2>
-        <span class="count">2 books</span>
+        <h2>Up Next</h2>
+        <span class="count" data-count=".reading-grid .card-featured">1 book</span>
     </div>
-    <div class="section-divider"></div>
     <div class="reading-grid">
-        <a href="https://www.amazon.com/Ruinstorm-Horus-Heresy-David-Annandale/dp/1784966630" target="_blank" class="card-featured">
-            <div class="cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1496609844i/35297653.jpg" alt="Ruinstorm" onerror="this.parentNode.innerHTML='<div class=cover-fb>Ruinstorm</div>'"></div>
+        <a href="https://www.amazon.com/Thousand-Sons-Horus-Heresy/dp/1844168093" target="_blank" class="card-featured">
+            <div class="cover"><img src="covers/heresy-12-a-thousand-sons.jpg" alt="A Thousand Sons" onerror="this.parentNode.innerHTML='<div class=cover-fb>A Thousand Sons</div>'"></div>
             <div class="info">
-                <span class="reading-badge">Reading now</span>
-                <strong>Ruinstorm</strong>
-                <em>David Annandale — The Horus Heresy #46</em>
-                <div class="desc">Imperium Secundus has failed. Sanguinius, Guilliman and the Lion take their fleets into the Ruinstorm itself — a daemonic warpstorm that has cut the galaxy in half — to find their way back to Terra. Book 11 of 18 on my minimalist Heresy path.</div>
-            </div>
-        </a>
-        <a href="https://www.amazon.com/American-Kingpin-Criminal-Mastermind-Behind/dp/1591848148" target="_blank" class="card-featured">
-            <div class="cover"><img src="https://covers.openlibrary.org/b/isbn/9781591848141-L.jpg" alt="American Kingpin" onerror="this.parentNode.innerHTML='<div class=cover-fb style=width:96px;height:144px>American Kingpin</div>'"></div>
-            <div class="info">
-                <span class="reading-badge">Reading now</span>
-                <strong>American Kingpin</strong>
-                <em>Nick Bilton</em>
-                <div class="desc">The hunt for Ross Ulbricht and the rise and fall of Silk Road — the dark-web marketplace that ran on Bitcoin before most people knew what Bitcoin was. Reads like a thriller, doubles as early crypto history.</div>
+                <span class="reading-badge up-next">Up next</span>
+                <strong>A Thousand Sons</strong>
+                <em>Graham McNeill — The Horus Heresy #12</em>
+                <div class="desc">Book 12 of 18 on my minimalist Heresy path, next after Ruinstorm.</div>
             </div>
         </a>
     </div>
+    </div><!-- /tile-reading -->
 
-    <div class="tab-nav">
+    <!-- Heresy progress stat: filled in by renderHeresy() from the HERESY array -->
+    <button type="button" class="tile tile-stat" id="heresyStat" onclick="openHeresy()">
+        <span class="stat-eyebrow">Heresy progress</span>
+        <span class="stat-num"><span id="statRead">–</span><i id="statTotal"></i></span>
+        <span class="stat-label">main-arc books read</span>
+        <span class="stat-bar" aria-hidden="true"><span id="statFill"></span></span>
+        <span class="stat-sub" id="statSub"></span>
+        <span class="stat-go">Open the tracker →</span>
+    </button>
+</section>
+
+    <div class="tab-nav" id="tabNav">
         <button class="tab-btn active" data-tab="panel-timeless" onclick="switchTab(this)">Timeless Recommendations</button>
         <button class="tab-btn" data-tab="panel-pipeline" onclick="switchTab(this)">Pipeline</button>
         <button class="tab-btn heresy-tab" data-tab="panel-heresy" onclick="switchTab(this)">Horus Heresy</button>
@@ -300,7 +447,7 @@
     <!-- ══ TIMELESS RECS ══ -->
     <div class="section-header">
         <h2>Timeless Recommendations</h2>
-        <span class="count">30 books</span>
+        <span class="count" data-count=".recs-grid .card">30 books</span>
     </div>
     <div class="section-divider"></div>
     <div class="recs-grid">
@@ -309,7 +456,7 @@
             <div class="info"><strong>The Art of Resilience</strong><em>Ross Edgley</em><div class="desc">Edgley swam around Great Britain — 157 days at sea, tongue disintegrating from salt — and somehow that's only a third of what this book is. It's an adventure story, a sports science textbook and a motivational manifesto rolled into one, going far beyond the usual hustle porn. The rare book that educates your body and hardens your mind at the same time.</div><div class="rating"><span class="rating-score">11/10 — must read</span></div></div>
         </a>
         <a href="https://www.amazon.com/Reframe-Your-Brain-Change-Works/dp/178678872X" target="_blank" class="card" data-tags="Mindset Persuasion">
-            <div class="cover-wrap"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1691182733i/61092170.jpg" alt="Reframe Your Brain" onerror="coverFb(this,'Reframe Your Brain')"></div>
+            <div class="cover-wrap"><img src="covers/reframe-your-brain.jpg" alt="Reframe Your Brain" onerror="coverFb(this,'Reframe Your Brain')"></div>
             <div class="info"><strong>Reframe Your Brain</strong><em>Scott Adams</em><div class="desc">An all-time classic from Scott. Hundreds of reframes — small swaps of perspective that change how a situation feels and what you do about it. It's a user manual for your own head, written by the guy who treats the brain as programmable hardware. One of those books you keep within arm's reach forever.</div><div class="rating"><span class="rating-score">10/10</span></div></div>
         </a>
         <a href="https://www.amazon.com/Book-Elon-Guide-Purpose-Success/dp/154455074X" target="_blank" class="card" data-tags="Biography Business Mindset">
@@ -417,6 +564,10 @@
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/71EooR8LsRL._SL1500_.jpg" alt="Read Write Own" onerror="this.style.display='none'"></div>
             <div class="info"><strong>Read Write Own</strong><em>Chris Dixon</em><div class="desc">Dixon maps the internet's history through who controls the protocols — and the pattern is always the same: openness to attract users, then extraction once they're locked in. Blockchains change the ownership structure at the protocol level. Best articulation I've read for why web3 matters beyond the speculation.</div><div class="rating"><span class="rating-score">8/10 — great web3 advocacy</span></div></div>
         </a>
+        <a href="https://www.amazon.com/American-Kingpin-Criminal-Mastermind-Behind/dp/1591848148" target="_blank" class="card" data-tags="Crypto Biography Sovereignty">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9781591848141-L.jpg" alt="American Kingpin" onerror="coverFb(this,'American Kingpin')"></div>
+            <div class="info"><strong>American Kingpin</strong><em>Nick Bilton</em><div class="desc">An amazing true-crime story and a must-read for fans of freedom and crypto. The hunt for Ross Ulbricht and the rise and fall of Silk Road — the dark-web marketplace that ran on Bitcoin before most people knew what Bitcoin was.</div><div class="rating"><span class="rating-score">8/10</span></div></div>
+        </a>
         <a href="https://www.amazon.com/Technological-Republic-Power-Belief-Future/dp/0593798694" target="_blank" class="card" data-tags="Business Sovereignty">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/81U7o8Z8ZFL._SL1500_.jpg" alt="The Technological Republic" onerror="this.style.display='none'"></div>
             <div class="info"><strong>The Technological Republic</strong><em>Alexander Karp</em><div class="desc">Karp makes an uncomfortable argument: liberal democracies that refuse to build weapons and surveillance infrastructure are choosing decline. Coming from the Palantir CEO it's not abstract — he's built it. Provocative, intentionally so, and more honest about the tradeoffs of power than most books in this space.</div><div class="rating"><span class="rating-score">7/10 — inspirational</span></div></div>
@@ -520,7 +671,7 @@
                 <div class="info"><strong>Proof of Stake</strong><em>Vitalik Buterin</em></div>
             </a>
             <a href="https://www.amazon.com/Bold-Conjectures-Select-Interviews-Deutsch/dp/B0GB89VVP4" target="_blank" class="card-mini">
-                <div class="cover-wrap"><img src="https://books.google.com/books/content?vid=ISBN9798218785673&printsec=frontcover&img=1&zoom=1" alt="Bold Conjectures" onerror="this.style.display='none'"></div>
+                <div class="cover-wrap"><div class="cover-fb">Bold Conjectures</div></div>
                 <div class="info"><strong>Bold Conjectures, Vol. I</strong><em>Logan Chipkin</em></div>
             </a>
         
@@ -529,7 +680,8 @@
     </div><!-- /panel-pipeline -->
 
     <div class="tab-panel" id="panel-heresy">
-    <div class="heresy-section">
+    <!-- Everything inside #heresyTimeline and the progress numbers are generated by renderHeresy() from the HERESY array in the script below -->
+    <div class="heresy-section tile">
         <div class="heresy-header">
             <div class="heresy-title-block">
                 <div class="heresy-eyebrow">The Horus Heresy</div>
@@ -537,318 +689,76 @@
                 <p class="heresy-subtitle">cd8d's minimalist order — 18 main-arc books (incl. optional Fulgrim), then the 8-book Siege of Terra</p>
             </div>
             <div class="heresy-progress-block">
-                <div class="heresy-progress-label">Main arc <span class="heresy-progress-num">10 of 18 read</span></div>
-                <div class="heresy-progress-bar"><div class="heresy-progress-fill" style="width:56%"></div></div>
-                <div class="heresy-progress-sub">Reading now: <em>Ruinstorm</em> (#11 of 18) · Siege of Terra: 0 of 8</div>
+                <div class="heresy-progress-label">Main arc <span class="heresy-progress-num" id="hpNum"></span></div>
+                <div class="heresy-progress-bar" id="hpBar" role="progressbar" aria-label="Main arc progress" aria-valuemin="0"><div class="heresy-progress-fill" id="hpFill"></div></div>
+                <div class="heresy-progress-sub" id="hpSub"></div>
             </div>
         </div>
-
-        <div class="heresy-tree">
-
-            <div class="heresy-part">
-                <div class="heresy-part-label">Part I — The Fall of Horus</div>
-                <div class="heresy-books-row">
-                                        <div class="heresy-book read">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1414166935i/625603.jpg" alt="Horus Rising" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Horus Rising</span>
-                            <span class="heresy-book-author">Dan Abnett</span>
-                            <span class="heresy-book-rating">9/10</span>
-                        </div>
-                    </div>
-                    <div class="heresy-connector">→</div>
-                                        <div class="heresy-book read">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1529706882i/381817.jpg" alt="False Gods" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">False Gods</span>
-                            <span class="heresy-book-author">Graham McNeill</span>
-                            <span class="heresy-book-rating">7/10</span>
-                        </div>
-                    </div>
-                    <div class="heresy-connector">→</div>
-                                        <div class="heresy-book read">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1529706821i/815091.jpg" alt="Galaxy in Flames" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Galaxy in Flames</span>
-                            <span class="heresy-book-author">Ben Counter</span>
-                            <span class="heresy-book-rating">10/10</span>
-                        </div>
-                    </div>
-                    <div class="heresy-connector">→</div>
-                                        <div class="heresy-book read">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1387725809i/80155.jpg" alt="Flight of the Eisenstein" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Flight of the Eisenstein</span>
-                            <span class="heresy-book-author">James Swallow</span>
-                            <span class="heresy-book-rating">8/10</span>
-                        </div>
-                    </div>
-                    <div class="heresy-connector optional-connector">→</div>
-                                        <div class="heresy-book read optional-book">
-                        <div class="heresy-optional-badge">Optional</div>
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1403985069i/957931.jpg" alt="Fulgrim" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Fulgrim</span>
-                            <span class="heresy-book-author">Graham McNeill</span>
-                            <span class="heresy-book-rating">10/10</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="heresy-branch-down">▼</div>
-
-            <div class="heresy-parallel">
-                <div class="heresy-branch">
-                    <div class="heresy-part-label">Part II — Lorgar &amp; Angron</div>
-                    <div class="heresy-books-col">
-                                            <div class="heresy-book read">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1280760489i/7922982.jpg" alt="The First Heretic" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">The First Heretic</span>
-                            <span class="heresy-book-author">Aaron Dembski-Bowden</span>
-                            <span class="heresy-book-rating">7/10</span>
-                        </div>
-                    </div>
-                        <div class="heresy-connector-v">↓</div>
-                                            <div class="heresy-book read">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1316352870i/11797636.jpg" alt="Know No Fear" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Know No Fear</span>
-                            <span class="heresy-book-author">Dan Abnett</span>
-                            <span class="heresy-book-rating">7/10</span>
-                        </div>
-                    </div>
-                        <div class="heresy-connector-v">↓</div>
-                                            <div class="heresy-book read">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1354885258i/13632835.jpg" alt="Betrayer" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Betrayer</span>
-                            <span class="heresy-book-author">Aaron Dembski-Bowden</span>
-                            <span class="heresy-book-rating">8/10</span>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div class="heresy-branch">
-                    <div class="heresy-part-label">Part III — Imperium Secondus</div>
-                    <div class="heresy-books-col">
-                                            <div class="heresy-book read">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1376783938i/18143885.jpg" alt="The Unremembered Empire" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">The Unremembered Empire</span>
-                            <span class="heresy-book-author">Dan Abnett</span>
-                            <span class="heresy-book-rating">8/10</span>
-                        </div>
-                    </div>
-                        <div class="heresy-connector-v">↓</div>
-                                            <div class="heresy-book read">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1457297478i/28956059.jpg" alt="Angels of Caliban" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Angels of Caliban</span>
-                            <span class="heresy-book-author">Gav Thorpe</span>
-                            <span class="heresy-book-rating">Read</span>
-                        </div>
-                    </div>
-                        <div class="heresy-connector-v">↓</div>
-                                            <div class="heresy-book reading">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1496609844i/35297653.jpg" alt="Ruinstorm" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Ruinstorm</span>
-                            <span class="heresy-book-author">David Annandale</span>
-                            <span class="heresy-reading-badge">Reading</span>
-                            
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div class="heresy-branch">
-                    <div class="heresy-part-label">Part IV — Magnus, Russ &amp; Khan</div>
-                    <div class="heresy-books-col">
-                                            <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1280757140i/6465063.jpg" alt="A Thousand Sons" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">A Thousand Sons</span>
-                            <span class="heresy-book-author">Graham McNeill</span>
-                            
-                        </div>
-                    </div>
-                        <div class="heresy-connector-v">↓</div>
-                                            <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1376783944i/18143803.jpg" alt="Scars" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Scars</span>
-                            <span class="heresy-book-author">Chris Wraight</span>
-                            
-                        </div>
-                    </div>
-                        <div class="heresy-connector-v">↓</div>
-                                            <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1461425859i/28956049.jpg" alt="Path of Heaven" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Path of Heaven</span>
-                            <span class="heresy-book-author">Chris Wraight</span>
-                            
-                        </div>
-                    </div>
-                    </div>
-                </div>
-                <div class="heresy-branch">
-                    <div class="heresy-part-label">Part V — The Emperor &amp; Horus</div>
-                    <div class="heresy-books-col">
-                                            <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1529220113i/33303512.jpg" alt="The Master of Mankind" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">The Master of Mankind</span>
-                            <span class="heresy-book-author">Aaron Dembski-Bowden</span>
-                            
-                        </div>
-                    </div>
-                        <div class="heresy-connector-v">↓</div>
-                                            <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1345678557i/15803022.jpg" alt="Angel Exterminatus" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Angel Exterminatus</span>
-                            <span class="heresy-book-author">Graham McNeill</span>
-                            
-                        </div>
-                    </div>
-                        <div class="heresy-connector-v">↓</div>
-                                            <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1529178113i/40542346.jpg" alt="Slaves to Darkness" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Slaves to Darkness</span>
-                            <span class="heresy-book-author">John French</span>
-                            
-                        </div>
-                    </div>
-                        <div class="heresy-connector-v">↓</div>
-                                            <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover"><img src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1471661721i/29430395.jpg" alt="Praetorian of Dorn" onerror="this.style.display='none'"></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Praetorian of Dorn</span>
-                            <span class="heresy-book-author">John French</span>
-                            
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="heresy-branch-down">▼</div>
-
-            <div class="heresy-part heresy-siege">
-                <div class="heresy-part-label heresy-siege-label">⚔ The Siege of Terra</div>
-                <div class="heresy-books-row heresy-siege-row">
-                                        <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover siege-plaque"><span class="siege-numeral">I</span></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">The Solar War</span>
-                            <span class="heresy-book-author">John French</span>
-                            
-                        </div>
-                    </div>
-                    <div class="heresy-connector siege-conn">→</div>
-                                        <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover siege-plaque"><span class="siege-numeral">II</span></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">The Lost and the Damned</span>
-                            <span class="heresy-book-author">Guy Haley</span>
-                            
-                        </div>
-                    </div>
-                    <div class="heresy-connector siege-conn">→</div>
-                                        <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover siege-plaque"><span class="siege-numeral">III</span></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">The First Wall</span>
-                            <span class="heresy-book-author">Gav Thorpe</span>
-                            
-                        </div>
-                    </div>
-                    <div class="heresy-connector siege-conn">→</div>
-                                        <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover siege-plaque"><span class="siege-numeral">IV</span></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Saturnine</span>
-                            <span class="heresy-book-author">Dan Abnett</span>
-                            
-                        </div>
-                    </div>
-                    <div class="heresy-connector siege-conn">→</div>
-                                        <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover siege-plaque"><span class="siege-numeral">V</span></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Mortis</span>
-                            <span class="heresy-book-author">John French</span>
-                            
-                        </div>
-                    </div>
-                    <div class="heresy-connector siege-conn">→</div>
-                                        <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover siege-plaque"><span class="siege-numeral">VI</span></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Warhawk</span>
-                            <span class="heresy-book-author">Chris Wraight</span>
-                            
-                        </div>
-                    </div>
-                    <div class="heresy-connector siege-conn">→</div>
-                                        <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover siege-plaque"><span class="siege-numeral">VII</span></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">Echoes of Eternity</span>
-                            <span class="heresy-book-author">Aaron Dembski-Bowden</span>
-                            
-                        </div>
-                    </div>
-                    <div class="heresy-connector siege-conn">→</div>
-                                        <div class="heresy-book unread">
-                        
-                        <div class="heresy-cover siege-plaque"><span class="siege-numeral">VIII</span></div>
-                        <div class="heresy-info">
-                            <span class="heresy-book-title">The End and the Death</span>
-                            <span class="heresy-book-author">Dan Abnett (Vol. I–III)</span>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        <div class="heresy-divider" aria-hidden="true"><b></b><i></i><b></b></div>
+        <ul class="tl-legend" aria-label="Legend">
+            <li><span class="lg lg-read"></span>Read (with my rating)</li>
+            <li><span class="lg lg-reading"></span>Reading now</li>
+            <li><span class="lg lg-unread"></span>Not read yet</li>
+            <li><span class="lg lg-optional"></span>Optional side branch</li>
+            <li><span class="lg lg-track"></span>Progress along the path</li>
+        </ul>
+        <div class="heresy-divider heresy-divider-end" aria-hidden="true"><b></b><i></i><b></b></div>
+        <div class="tl" id="heresyTimeline"></div>
     </div>
     </div><!-- /panel-heresy -->
 </main>
 
 <footer>
-    Last updated: February 2026
+    Last updated: November 2026
 </footer>
 
 <script>
+// ══ HORUS HERESY DATA ══════════════════════════════════════════════════════
+// The whole Heresy tab (timeline, progress bar, counters) and the "Heresy
+// progress" tile at the top of the page are generated from this one array.
+// Books appear in array order; consecutive books with the same `part` form one
+// labelled segment of the timeline.
+//   arc:      'main' (the 18-book main arc) | 'siege' (Siege of Terra)
+//   status:   'read' | 'reading' | 'unread'
+//   optional: true draws the book as a dashed branch off the main track
+//   rating:   shown for read books, e.g. '9/10' or 'Read'; null otherwise
+// To mark a book finished: set status:'read' + a rating. Set the next book
+// to 'reading' only once it has been started; otherwise leave it 'unread'
+// and the UI will show it as "Up next". Nothing else needs updating.
+const HERESY = [
+  { arc: 'main', part: 'Part I — The Fall of Horus', title: 'Horus Rising', author: 'Dan Abnett', cover: 'covers/heresy-01-horus-rising.jpg', status: 'read', optional: false, rating: '9/10' },
+  { arc: 'main', part: 'Part I — The Fall of Horus', title: 'False Gods', author: 'Graham McNeill', cover: 'covers/heresy-02-false-gods.jpg', status: 'read', optional: false, rating: '7/10' },
+  { arc: 'main', part: 'Part I — The Fall of Horus', title: 'Galaxy in Flames', author: 'Ben Counter', cover: 'covers/heresy-03-galaxy-in-flames.jpg', status: 'read', optional: false, rating: '10/10' },
+  { arc: 'main', part: 'Part I — The Fall of Horus', title: 'Flight of the Eisenstein', author: 'James Swallow', cover: 'covers/heresy-04-flight-of-the-eisenstein.jpg', status: 'read', optional: false, rating: '8/10' },
+  { arc: 'main', part: 'Part I — The Fall of Horus', title: 'Fulgrim', author: 'Graham McNeill', cover: 'covers/heresy-05-fulgrim.jpg', status: 'read', optional: true, rating: '10/10' },
+
+  { arc: 'main', part: 'Part II — Lorgar & Angron', title: 'The First Heretic', author: 'Aaron Dembski-Bowden', cover: 'covers/heresy-06-the-first-heretic.jpg', status: 'read', optional: false, rating: '7/10' },
+  { arc: 'main', part: 'Part II — Lorgar & Angron', title: 'Know No Fear', author: 'Dan Abnett', cover: 'covers/heresy-07-know-no-fear.jpg', status: 'read', optional: false, rating: '7/10' },
+  { arc: 'main', part: 'Part II — Lorgar & Angron', title: 'Betrayer', author: 'Aaron Dembski-Bowden', cover: 'covers/heresy-08-betrayer.jpg', status: 'read', optional: false, rating: '8/10' },
+
+  { arc: 'main', part: 'Part III — Imperium Secundus', title: 'The Unremembered Empire', author: 'Dan Abnett', cover: 'covers/heresy-09-the-unremembered-empire.jpg', status: 'read', optional: false, rating: '8/10' },
+  { arc: 'main', part: 'Part III — Imperium Secundus', title: 'Angels of Caliban', author: 'Gav Thorpe', cover: 'covers/heresy-10-angels-of-caliban.jpg', status: 'read', optional: false, rating: 'Read' },
+  { arc: 'main', part: 'Part III — Imperium Secundus', title: 'Ruinstorm', author: 'David Annandale', cover: 'covers/heresy-11-ruinstorm.jpg', status: 'read', optional: false, rating: '7/10' },
+
+  { arc: 'main', part: 'Part IV — Magnus, Russ & Khan', title: 'A Thousand Sons', author: 'Graham McNeill', cover: 'covers/heresy-12-a-thousand-sons.jpg', status: 'unread', optional: false, rating: null },
+  { arc: 'main', part: 'Part IV — Magnus, Russ & Khan', title: 'Scars', author: 'Chris Wraight', cover: 'covers/heresy-13-scars.jpg', status: 'unread', optional: false, rating: null },
+  { arc: 'main', part: 'Part IV — Magnus, Russ & Khan', title: 'Path of Heaven', author: 'Chris Wraight', cover: 'covers/heresy-14-path-of-heaven.jpg', status: 'unread', optional: false, rating: null },
+
+  { arc: 'main', part: 'Part V — The Emperor & Horus', title: 'The Master of Mankind', author: 'Aaron Dembski-Bowden', cover: 'covers/heresy-15-the-master-of-mankind.jpg', status: 'unread', optional: false, rating: null },
+  { arc: 'main', part: 'Part V — The Emperor & Horus', title: 'Angel Exterminatus', author: 'Graham McNeill', cover: 'covers/heresy-16-angel-exterminatus.jpg', status: 'unread', optional: false, rating: null },
+  { arc: 'main', part: 'Part V — The Emperor & Horus', title: 'Slaves to Darkness', author: 'John French', cover: 'covers/heresy-17-slaves-to-darkness.jpg', status: 'unread', optional: false, rating: null },
+  { arc: 'main', part: 'Part V — The Emperor & Horus', title: 'Praetorian of Dorn', author: 'John French', cover: 'covers/heresy-18-praetorian-of-dorn.jpg', status: 'unread', optional: false, rating: null },
+
+  { arc: 'siege', part: '⚔ The Siege of Terra', title: 'The Solar War', author: 'John French', cover: 'covers/siege-01-the-solar-war.jpg', status: 'unread', optional: false, rating: null },
+  { arc: 'siege', part: '⚔ The Siege of Terra', title: 'The Lost and the Damned', author: 'Guy Haley', cover: 'covers/siege-02-the-lost-and-the-damned.jpg', status: 'unread', optional: false, rating: null },
+  { arc: 'siege', part: '⚔ The Siege of Terra', title: 'The First Wall', author: 'Gav Thorpe', cover: 'covers/siege-03-the-first-wall.jpg', status: 'unread', optional: false, rating: null },
+  { arc: 'siege', part: '⚔ The Siege of Terra', title: 'Saturnine', author: 'Dan Abnett', cover: 'covers/siege-04-saturnine.jpg', status: 'unread', optional: false, rating: null },
+  { arc: 'siege', part: '⚔ The Siege of Terra', title: 'Mortis', author: 'John French', cover: 'covers/siege-05-mortis.jpg', status: 'unread', optional: false, rating: null },
+  { arc: 'siege', part: '⚔ The Siege of Terra', title: 'Warhawk', author: 'Chris Wraight', cover: 'covers/siege-06-warhawk.jpg', status: 'unread', optional: false, rating: null },
+  { arc: 'siege', part: '⚔ The Siege of Terra', title: 'Echoes of Eternity', author: 'Aaron Dembski-Bowden', cover: 'covers/siege-07-echoes-of-eternity.jpg', status: 'unread', optional: false, rating: null },
+  { arc: 'siege', part: '⚔ The Siege of Terra', title: 'The End and the Death', author: 'Dan Abnett (Vol. I–III)', cover: 'covers/siege-08-the-end-and-the-death.jpg', status: 'unread', optional: false, rating: null }
+];
+
 // TABS
 function switchTab(btn) {
   const target = btn.dataset.tab;
@@ -905,6 +815,8 @@ function buildDots() {
   quotes.forEach((_, i) => {
     const d = document.createElement('button');
     d.className = 'quote-dot' + (i === 0 ? ' active' : '');
+    d.type = 'button';
+    d.setAttribute('aria-label', 'Show quote ' + (i + 1) + ' of ' + quotes.length);
     d.onclick = () => { clearInterval(qTimer); qIdx = i; showQuote(i, true); startTimer(); };
     c.appendChild(d);
   });
@@ -914,13 +826,125 @@ buildDots(); showQuote(0, false); startTimer();
 
 // THEME
 function toggleTheme() { document.body.classList.toggle('light'); localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark'); }
-if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+// (the saved theme is applied by the tiny inline script at the top of <body>, before first paint)
 
 // SCROLL TOP
 window.addEventListener('scroll', () => { document.getElementById('scrollTop').style.display = window.scrollY > 400 ? 'flex' : 'none'; });
 
-// COVER FALLBACK
-function coverFb(img, title) { const w = img.closest('.cover-wrap'); if (w) { w.innerHTML = '<div class="cover-fb">' + title + '</div>'; } }
+// COMPUTED COUNTS — any .count with data-count="<selector>" shows how many elements match
+document.querySelectorAll('[data-count]').forEach(c => {
+  const n = document.querySelectorAll(c.dataset.count).length;
+  c.textContent = n + (n === 1 ? ' book' : ' books');
+});
+
+// Highlight the 11/10 cards (presentation only)
+document.querySelectorAll('.recs-grid .card').forEach(card => {
+  const r = card.querySelector('.rating-score');
+  if (r && r.textContent.trim().startsWith('11/10')) card.classList.add('card-top');
+});
+
+// HORUS HERESY — timeline + progress, all computed from the HERESY array
+function renderHeresy() {
+  const el = (tag, cls, text) => {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  };
+  const byId = id => document.getElementById(id);
+  const main = HERESY.filter(b => b.arc === 'main');
+  const siege = HERESY.filter(b => b.arc === 'siege');
+  const readIn = list => list.filter(b => b.status === 'read').length;
+  const mainRead = readIn(main), siegeRead = readIn(siege);
+  const cur = HERESY.find(b => b.status === 'reading');
+  const curIdx = HERESY.indexOf(cur);
+  const lastRead = HERESY.reduce((m, b, i) => (b.status === 'read' ? i : m), -1);
+  // how much of the track is filled at book i: up to (and half-way into) the current book
+  const fillOf = i => curIdx >= 0
+    ? (i < curIdx ? 'full' : i === curIdx ? 'half' : 'none')
+    : (i <= lastRead ? 'full' : 'none');
+  let curPos = '';
+  if (cur) {
+    const list = cur.arc === 'siege' ? siege : main;
+    curPos = (cur.arc === 'siege' ? 'Siege ' : '') + '#' + (list.indexOf(cur) + 1) + ' of ' + list.length;
+  }
+
+  // timeline
+  const tl = byId('heresyTimeline');
+  tl.textContent = '';
+  let row = null;
+  HERESY.forEach((b, i) => {
+    if (i === 0 || b.part !== HERESY[i - 1].part) {
+      const books = HERESY.filter(x => x.part === b.part);
+      const seg = el('section', 'tl-seg' + (b.arc === 'siege' ? ' tl-seg-siege' : ''));
+      seg.style.setProperty('--n', books.length);
+      seg.dataset.fill = fillOf(i) === 'none' ? 'none' : 'full';
+      const label = el('h3', 'heresy-part-label');
+      label.append(el('span', '', b.part), el('span', 'tl-seg-count', readIn(books) + '/' + books.length));
+      row = el('ol', 'tl-row');
+      seg.append(label, row);
+      tl.append(seg);
+    }
+    const node = el('li', 'tl-node is-' + b.status + (b.optional ? ' is-optional' : ''));
+    node.dataset.fill = fillOf(i);
+    if (b.optional) node.append(el('span', 'heresy-optional-badge', 'Optional'));
+    const rail = el('span', 'tl-rail');
+    rail.setAttribute('aria-hidden', 'true');
+    rail.append(el('span', 'tl-dot'));
+    const stem = el('span', 'tl-stem');
+    stem.setAttribute('aria-hidden', 'true');
+    const cover = el('div', 'tl-cover cover-wrap');
+    const img = el('img');
+    img.loading = 'lazy';
+    img.alt = b.title;
+    img.onerror = () => coverFb(img, b.title);
+    img.src = b.cover;
+    cover.append(img);
+    const meta = el('div', 'tl-meta');
+    meta.append(el('span', 'heresy-book-title', b.title), el('span', 'heresy-book-author', b.author));
+    if (b.status === 'reading') meta.append(el('span', 'heresy-reading-badge', 'Reading'));
+    else if (b.status === 'read' && b.rating) meta.append(el('span', 'heresy-book-rating', b.rating));
+    node.append(rail, stem, cover, meta);
+    row.append(node);
+  });
+
+  // progress block in the Heresy tab
+  const pct = main.length ? Math.round(mainRead / main.length * 100) : 0;
+  byId('hpNum').textContent = mainRead + ' of ' + main.length + ' read';
+  byId('hpFill').style.width = pct + '%';
+  byId('hpBar').setAttribute('aria-valuemax', main.length);
+  byId('hpBar').setAttribute('aria-valuenow', mainRead);
+  const next = !cur ? HERESY.find(b => b.status === 'unread') : null;
+  let nextPos = '';
+  if (next) {
+    const list = next.arc === 'siege' ? siege : main;
+    nextPos = (next.arc === 'siege' ? 'Siege ' : '') + '#' + (list.indexOf(next) + 1) + ' of ' + list.length;
+  }
+
+  const sub = byId('hpSub');
+  sub.textContent = '';
+  if (cur) sub.append('Reading now: ', el('em', '', cur.title), ' (' + curPos + ') · ');
+  else if (next) sub.append('Up next: ', el('em', '', next.title), ' (' + nextPos + ') · ');
+  sub.append('Siege of Terra: ' + siegeRead + ' of ' + siege.length);
+
+  // "Heresy progress" tile in the bento
+  byId('statRead').textContent = mainRead;
+  byId('statTotal').textContent = '/' + main.length;
+  byId('statFill').style.width = pct + '%';
+  const ss = byId('statSub');
+  ss.textContent = '';
+  if (cur) ss.append('Reading now: ', el('b', '', cur.title), ' (' + curPos + ')');
+  else if (next) ss.append('Up next: ', el('b', '', next.title), ' (' + nextPos + ')');
+  else ss.append('Siege of Terra: ' + siegeRead + ' of ' + siege.length);
+}
+renderHeresy();
+
+// Bento stat tile → jump to the Heresy tab
+function openHeresy() {
+  switchTab(document.querySelector('[data-tab="panel-heresy"]'));
+  document.getElementById('tabNav').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 </script>
 </body>
 </html>
