@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ondrej's Book Recommendations</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ══ PROPOSAL C — "Modern Bento + Timeline" ══ */
         :root{
@@ -104,8 +104,11 @@
         .stat-sub{font-size:.84em;color:var(--muted)}
         .stat-sub b{color:var(--text);font-weight:600}
         .stat-go{margin-top:auto;padding-top:12px;font-family:var(--disp);font-weight:600;font-size:.9em;color:var(--accent-ink)}
-        .stat-bar,.heresy-progress-bar{display:block;height:10px;border-radius:99px;background:var(--track);overflow:hidden;margin:10px 0}
-        .stat-bar span,.heresy-progress-fill{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent-ink));transition:width .7s ease}
+        .stat-bar{display:block;height:10px;border-radius:99px;background:var(--track);overflow:hidden;margin:10px 0}
+        .stat-bar span{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent-ink));transition:width .7s ease}
+        /* Heresy progress bar: split from .stat-bar, gold treatment (see HERESY GOTHIC block) */
+        .heresy-progress-bar{display:block;height:9px;border-radius:2px;border:1px solid var(--heresy-gold-dim);background:var(--heresy-track);overflow:hidden;margin:10px 0}
+        .heresy-progress-fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--heresy-gold-dim),var(--heresy-gold),var(--heresy-gold-bright));transition:width .7s ease}
 
         /* ── TABS ── */
         .tab-nav{display:flex;gap:6px;width:fit-content;max-width:100%;padding:6px;background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);margin-bottom:22px;scroll-margin-top:16px}
@@ -209,6 +212,62 @@
         .is-optional .tl-cover{border:2px dashed var(--amber)}
         .heresy-optional-badge{position:absolute;z-index:1;top:32px;left:50%;transform:translateX(-50%);font-size:.62em;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);background:var(--surface);border:1px solid var(--amber)}
 
+        /* ── HERESY GOTHIC (scoped to #panel-heresy; inspired by design B) ──
+           Local variables re-point the tokens the Heresy rules above already use
+           (--accent, --surface, --border, --track …) to gold / dark parchment, so
+           nothing outside this panel changes. */
+        #panel-heresy{
+            --heresy-disp:'Cinzel','Trajan Pro',Georgia,serif;
+            --heresy-gold:#c9a24b; --heresy-gold-bright:#ecd08a; --heresy-gold-dim:#7d6332;
+            --heresy-parch:#1A1610; --heresy-parch-2:#241D14; --heresy-track:#372E20;
+            --heresy-red:#8E2A2A; --heresy-red-bright:#C0453F;
+            --surface:var(--heresy-parch); --surface-2:var(--heresy-parch-2); --border:#4A3C22;
+            --text:#F0E7D2; --muted:#BDB094; --faint:#8F8368;
+            --accent:var(--heresy-gold); --accent-ink:var(--heresy-gold-bright); --accent-soft:rgba(201,162,75,.18);
+            --track:var(--heresy-track); --amber:#D98A5B;
+        }
+        body.light #panel-heresy{
+            --heresy-gold:#74520f; --heresy-gold-bright:#8a6010; --heresy-gold-dim:#a88a4c;
+            --heresy-parch:#F6EEDA; --heresy-parch-2:#EDE2C8; --heresy-track:#D8CBA8;
+            --heresy-red:#8E1F1F; --heresy-red-bright:#A32B2B;
+            --border:#D3C298; --text:#2A2217; --muted:#5C5036; --faint:#7A6E50;
+            --accent-soft:rgba(154,112,32,.16); --amber:#9A4A22;
+        }
+        #panel-heresy .heresy-section{
+            border-color:var(--heresy-gold-dim);
+            background:radial-gradient(120% 70% at 50% 0,var(--accent-soft),transparent 65%),var(--heresy-parch);
+            box-shadow:inset 0 0 0 4px var(--heresy-parch),inset 0 0 0 5px var(--accent-soft),var(--shadow);
+        }
+        #panel-heresy .heresy-eyebrow{font-family:var(--heresy-disp);font-weight:600;letter-spacing:.3em;color:var(--heresy-gold-bright)}
+        #panel-heresy .heresy-title{font-family:var(--heresy-disp);font-weight:700;font-size:clamp(1.5em,2.8vw,2.1em);letter-spacing:.03em;text-transform:uppercase;color:var(--text)}
+        #panel-heresy .heresy-progress-block{border-radius:6px;border-color:var(--heresy-gold-dim);background:var(--heresy-parch-2)}
+        #panel-heresy .heresy-progress-label{font-family:var(--heresy-disp);font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:.76em}
+        #panel-heresy .heresy-progress-num{font-weight:700;color:var(--heresy-gold-bright)}
+        /* ornamental divider: gold gradient line with a rotated-square (lozenge) at the centre and at both ends */
+        .heresy-divider{display:flex;align-items:center;gap:10px;margin:14px 0 4px;color:var(--heresy-gold)}
+        .heresy-divider::before,.heresy-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--heresy-gold-dim) 18%,var(--heresy-gold))}
+        .heresy-divider::after{background:linear-gradient(270deg,transparent,var(--heresy-gold-dim) 18%,var(--heresy-gold))}
+        .heresy-divider i{flex:none;width:9px;height:9px;background:var(--heresy-gold);transform:rotate(45deg);box-shadow:0 0 0 3px var(--heresy-parch),0 0 0 4px var(--heresy-gold-dim)}
+        .heresy-divider b{flex:none;width:5px;height:5px;background:var(--heresy-gold-dim);transform:rotate(45deg)}
+        .heresy-divider-end{margin:26px 0 24px}
+        #panel-heresy .tl-legend{padding-top:14px;padding-bottom:6px}
+        #panel-heresy .lg-read,#panel-heresy .lg-optional{border-radius:2px}
+        #panel-heresy .lg-reading{background:var(--heresy-parch)}
+        #panel-heresy .heresy-part-label{font-family:var(--heresy-disp);font-weight:700;letter-spacing:.08em;font-size:.68em;white-space:normal;flex-wrap:wrap;border-left-color:var(--heresy-gold-dim)}
+        #panel-heresy .tl-seg-count{font-family:var(--heresy-disp);color:var(--heresy-gold)}
+        #panel-heresy .tl-cover{border-radius:3px;background:var(--heresy-parch-2);box-shadow:0 10px 18px -12px rgba(0,0,0,.8)}
+        #panel-heresy .is-reading .tl-dot{background:var(--heresy-gold-bright)}
+        #panel-heresy .lg-reading{border-color:var(--heresy-gold)}
+        #panel-heresy .heresy-book-title{font-family:var(--body)}
+        #panel-heresy .heresy-book-rating,#panel-heresy .heresy-reading-badge,#panel-heresy .heresy-optional-badge{font-family:var(--heresy-disp);font-weight:700;letter-spacing:.06em;border-radius:3px}
+        #panel-heresy .heresy-reading-badge{color:#1A1610;background:var(--heresy-gold-bright);text-transform:uppercase}
+        body.light #panel-heresy .heresy-reading-badge{color:#fff;background:var(--heresy-gold)}
+        #panel-heresy .heresy-optional-badge{background:var(--heresy-parch);border-radius:3px}
+        /* Siege of Terra: red-and-gold framed block */
+        #panel-heresy .tl-seg-siege{position:relative;padding:14px 18px 20px;border:1px solid var(--heresy-red);border-radius:6px;background:linear-gradient(180deg,rgba(142,42,42,.2),transparent 70%);box-shadow:inset 0 0 0 3px var(--heresy-parch),inset 0 0 0 4px var(--heresy-gold-dim)}
+        #panel-heresy .tl-seg-siege .heresy-part-label{color:var(--heresy-gold-bright);border-left-color:var(--heresy-red-bright);font-size:.8em;letter-spacing:.14em}
+        body.light #panel-heresy .tl-seg-siege .heresy-part-label{color:var(--heresy-red)}
+
         /* ── CHROME ── */
         #scrollTop{position:fixed;bottom:20px;right:20px;z-index:100;width:46px;height:46px;border-radius:16px;background:var(--accent);color:#fff;font-size:1.15em;font-weight:700;display:none;align-items:center;justify-content:center;box-shadow:0 12px 24px -10px var(--accent);transition:transform .2s}
         #scrollTop:hover{transform:translateY(-3px)}
@@ -246,6 +305,13 @@
             .heresy-book-title{font-size:.95em}
             .heresy-book-author{font-size:.82em}
             .heresy-optional-badge{top:2px;left:auto;right:0;transform:none}
+            #panel-heresy .heresy-title{text-transform:none}
+            #panel-heresy .heresy-part-label{border-left:0;padding:18px 0 12px 42px}
+            #panel-heresy .tl-seg:first-child .heresy-part-label{padding-top:0}
+            #panel-heresy .tl-seg-siege{padding:6px 14px 12px;margin-top:10px}
+            #panel-heresy .tl-seg-siege .heresy-part-label{padding-top:12px}
+            #panel-heresy .tl-cover{width:60px;height:90px}
+            #panel-heresy .is-optional .tl-stem{border-top-color:var(--amber)}
         }
 
         /* ── ≤600px: single column ── */
@@ -267,6 +333,10 @@
             .card .cover-wrap{width:76px;height:114px}
             .pipeline-grid{grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:12px}
             .heresy-section{padding:20px 16px}
+            #panel-heresy .tl-seg-siege{padding:4px 8px 10px}
+            #panel-heresy .heresy-eyebrow{letter-spacing:.2em}
+            #panel-heresy .heresy-title{font-size:1.5em}
+            .heresy-divider-end{margin:18px 0 16px}
             .stat-num{font-size:3.4em}
         }
     </style>
@@ -627,6 +697,7 @@
                 <div class="heresy-progress-sub" id="hpSub"></div>
             </div>
         </div>
+        <div class="heresy-divider" aria-hidden="true"><b></b><i></i><b></b></div>
         <ul class="tl-legend" aria-label="Legend">
             <li><span class="lg lg-read"></span>Read (with my rating)</li>
             <li><span class="lg lg-reading"></span>Reading now</li>
@@ -634,6 +705,7 @@
             <li><span class="lg lg-optional"></span>Optional side branch</li>
             <li><span class="lg lg-track"></span>Progress along the path</li>
         </ul>
+        <div class="heresy-divider heresy-divider-end" aria-hidden="true"><b></b><i></i><b></b></div>
         <div class="tl" id="heresyTimeline"></div>
     </div>
     </div><!-- /panel-heresy -->

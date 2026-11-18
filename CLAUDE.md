@@ -9,9 +9,11 @@ Personal webpage and book recommendation list ("Books That Shaped My Thinking").
 ## Design direction
 "Modern Bento + Timeline" (Proposal C). A product-style dashboard look: rounded tiles (`.tile`) with soft borders and shadows, Space Grotesk for display text, Inter for body text, and one vivid violet accent (`--accent`). Green means "read" and amber means "optional"; both are used only in the Heresy timeline. Dark is the default theme; `body.light` overrides the tokens.
 
+The Horus Heresy tab is the one exception: it uses a scoped grimdark treatment inspired by design B (Cinzel headings, gold on dark parchment, lozenge-ended `.heresy-divider` lines, a red-and-gold framed Siege of Terra segment). It lives in the "HERESY GOTHIC" CSS block, where `#panel-heresy` re-points `--accent`, `--surface`, `--border` and friends to `--heresy-*` values, with light-theme overrides under `body.light #panel-heresy`. Nothing outside `#panel-heresy` changes; the Heresy progress bar (`.heresy-progress-bar`) is split from the bento `.stat-bar` so each styles separately.
+
 ## Stack
 - One static HTML file. CSS and vanilla JavaScript are inline. There is no framework, no build step, no package manager, and no dependencies.
-- Fonts load from Google Fonts (Inter, Space Grotesk).
+- Fonts load from Google Fonts (Inter, Space Grotesk, plus Cinzel for the Heresy tab).
 - Horus Heresy and Siege of Terra covers, plus Ruinstorm and Reframe Your Brain, are local files in `covers/` (JPEG, max 480px tall, under 150KB). Other covers are still hotlinked from Goodreads, Open Library, and Amazon; the avatar is on imgur. Card links point to Amazon.
 - The page reads and writes only one `localStorage` key, `theme` (`light`/`dark`).
 
