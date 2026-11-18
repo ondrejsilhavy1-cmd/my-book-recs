@@ -48,7 +48,7 @@
         .tile-stat{grid-column:9/13;grid-row:3}
 
         .tile-profile .inner{display:flex;flex-direction:column;gap:14px}
-        .tile-profile .inner img{width:76px;height:76px;border-radius:22px;object-fit:cover;border:2px solid var(--accent);box-shadow:0 0 0 5px var(--accent-soft)}
+        .tile-profile .inner img{width:76px;height:76px;border-radius:22px;object-fit:cover;border:2px solid var(--accent);box-shadow:0 0 0 5px var(--accent-soft);image-rendering:pixelated}
         h1{font-family:var(--disp);font-weight:700;font-size:clamp(2em,4.4vw,3.3em);line-height:1.02;letter-spacing:-.035em;margin-top:6px}
         h1 em{font-style:normal;color:var(--accent-ink)}
         .tagline{font-family:var(--disp);font-size:.8em;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
@@ -90,6 +90,8 @@
         .card-featured .info{display:flex;flex-direction:column;gap:4px;min-width:0}
         .reading-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--disp);font-size:.66em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);background:var(--accent-soft);padding:3px 10px;border-radius:99px;width:fit-content}
         .reading-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;animation:pulse 1.8s ease-in-out infinite}
+        .reading-badge.up-next{color:var(--muted);background:var(--surface);border:1px solid var(--border)}
+        .reading-badge.up-next::before{animation:none;background:var(--faint)}
         .card-featured strong{font-family:var(--disp);font-weight:700;font-size:1.12em;line-height:1.2;letter-spacing:-.01em;margin-top:3px}
         .card-featured em{font-style:normal;font-size:.8em;font-weight:500;color:var(--muted)}
         .card-featured .desc{font-size:.84em;color:var(--muted);line-height:1.55;margin-top:4px}
@@ -353,7 +355,7 @@
     <header class="tile tile-profile">
     <button class="theme-toggle" type="button" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
     <div class="inner">
-        <img src="https://i.imgur.com/7BkpZ17.jpg" alt="Ondrej">
+        <img src="images/avatar.jpg" alt="Ondrej" width="76" height="76">
         <h1>Books That <em>Shaped</em><br>My Thinking</h1>
         <p class="tagline">Curated reads that actually move the needle</p>
     </div>
@@ -390,29 +392,20 @@
         <div class="quote-dots" id="quoteDots"></div>
     </div>
 
-    <!-- ══ CURRENTLY READING ══ -->
+    <!-- ══ UP NEXT ══ -->
     <div class="tile tile-reading">
     <div class="section-header">
-        <h2>Currently Reading</h2>
-        <span class="count" data-count=".reading-grid .card-featured">2 books</span>
+        <h2>Up Next</h2>
+        <span class="count" data-count=".reading-grid .card-featured">1 book</span>
     </div>
     <div class="reading-grid">
-        <a href="https://www.amazon.com/Ruinstorm-Horus-Heresy-David-Annandale/dp/1784966630" target="_blank" class="card-featured">
-            <div class="cover"><img src="covers/heresy-11-ruinstorm.jpg" alt="Ruinstorm" onerror="this.parentNode.innerHTML='<div class=cover-fb>Ruinstorm</div>'"></div>
+        <a href="https://www.amazon.com/Thousand-Sons-Horus-Heresy/dp/1844168093" target="_blank" class="card-featured">
+            <div class="cover"><img src="covers/heresy-12-a-thousand-sons.jpg" alt="A Thousand Sons" onerror="this.parentNode.innerHTML='<div class=cover-fb>A Thousand Sons</div>'"></div>
             <div class="info">
-                <span class="reading-badge">Reading now</span>
-                <strong>Ruinstorm</strong>
-                <em>David Annandale — The Horus Heresy #46</em>
-                <div class="desc">Imperium Secundus has failed. Sanguinius, Guilliman and the Lion take their fleets into the Ruinstorm itself — a daemonic warpstorm that has cut the galaxy in half — to find their way back to Terra. Book 11 of 18 on my minimalist Heresy path.</div>
-            </div>
-        </a>
-        <a href="https://www.amazon.com/American-Kingpin-Criminal-Mastermind-Behind/dp/1591848148" target="_blank" class="card-featured">
-            <div class="cover"><img src="https://covers.openlibrary.org/b/isbn/9781591848141-L.jpg" alt="American Kingpin" onerror="this.parentNode.innerHTML='<div class=cover-fb style=width:96px;height:144px>American Kingpin</div>'"></div>
-            <div class="info">
-                <span class="reading-badge">Reading now</span>
-                <strong>American Kingpin</strong>
-                <em>Nick Bilton</em>
-                <div class="desc">The hunt for Ross Ulbricht and the rise and fall of Silk Road — the dark-web marketplace that ran on Bitcoin before most people knew what Bitcoin was. Reads like a thriller, doubles as early crypto history.</div>
+                <span class="reading-badge up-next">Up next</span>
+                <strong>A Thousand Sons</strong>
+                <em>Graham McNeill — The Horus Heresy #12</em>
+                <div class="desc">Book 12 of 18 on my minimalist Heresy path, next after Ruinstorm.</div>
             </div>
         </a>
     </div>
@@ -571,6 +564,10 @@
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/71EooR8LsRL._SL1500_.jpg" alt="Read Write Own" onerror="this.style.display='none'"></div>
             <div class="info"><strong>Read Write Own</strong><em>Chris Dixon</em><div class="desc">Dixon maps the internet's history through who controls the protocols — and the pattern is always the same: openness to attract users, then extraction once they're locked in. Blockchains change the ownership structure at the protocol level. Best articulation I've read for why web3 matters beyond the speculation.</div><div class="rating"><span class="rating-score">8/10 — great web3 advocacy</span></div></div>
         </a>
+        <a href="https://www.amazon.com/American-Kingpin-Criminal-Mastermind-Behind/dp/1591848148" target="_blank" class="card" data-tags="Crypto Biography Sovereignty">
+            <div class="cover-wrap"><img src="https://covers.openlibrary.org/b/isbn/9781591848141-L.jpg" alt="American Kingpin" onerror="coverFb(this,'American Kingpin')"></div>
+            <div class="info"><strong>American Kingpin</strong><em>Nick Bilton</em><div class="desc">An amazing true-crime story and a must-read for fans of freedom and crypto. The hunt for Ross Ulbricht and the rise and fall of Silk Road — the dark-web marketplace that ran on Bitcoin before most people knew what Bitcoin was.</div><div class="rating"><span class="rating-score">8/10</span></div></div>
+        </a>
         <a href="https://www.amazon.com/Technological-Republic-Power-Belief-Future/dp/0593798694" target="_blank" class="card" data-tags="Business Sovereignty">
             <div class="cover-wrap"><img src="https://m.media-amazon.com/images/I/81U7o8Z8ZFL._SL1500_.jpg" alt="The Technological Republic" onerror="this.style.display='none'"></div>
             <div class="info"><strong>The Technological Republic</strong><em>Alexander Karp</em><div class="desc">Karp makes an uncomfortable argument: liberal democracies that refuse to build weapons and surveillance infrastructure are choosing decline. Coming from the Palantir CEO it's not abstract — he's built it. Provocative, intentionally so, and more honest about the tradeoffs of power than most books in this space.</div><div class="rating"><span class="rating-score">7/10 — inspirational</span></div></div>
@@ -712,7 +709,7 @@
 </main>
 
 <footer>
-    Last updated: February 2026
+    Last updated: November 2026
 </footer>
 
 <script>
@@ -725,8 +722,9 @@
 //   status:   'read' | 'reading' | 'unread'
 //   optional: true draws the book as a dashed branch off the main track
 //   rating:   shown for read books, e.g. '9/10' or 'Read'; null otherwise
-// To mark a book finished: set status:'read' + a rating, and move 'reading'
-// to the next book. Nothing else needs updating.
+// To mark a book finished: set status:'read' + a rating. Set the next book
+// to 'reading' only once it has been started; otherwise leave it 'unread'
+// and the UI will show it as "Up next". Nothing else needs updating.
 const HERESY = [
   { arc: 'main', part: 'Part I — The Fall of Horus', title: 'Horus Rising', author: 'Dan Abnett', cover: 'covers/heresy-01-horus-rising.jpg', status: 'read', optional: false, rating: '9/10' },
   { arc: 'main', part: 'Part I — The Fall of Horus', title: 'False Gods', author: 'Graham McNeill', cover: 'covers/heresy-02-false-gods.jpg', status: 'read', optional: false, rating: '7/10' },
@@ -740,7 +738,7 @@ const HERESY = [
 
   { arc: 'main', part: 'Part III — Imperium Secundus', title: 'The Unremembered Empire', author: 'Dan Abnett', cover: 'covers/heresy-09-the-unremembered-empire.jpg', status: 'read', optional: false, rating: '8/10' },
   { arc: 'main', part: 'Part III — Imperium Secundus', title: 'Angels of Caliban', author: 'Gav Thorpe', cover: 'covers/heresy-10-angels-of-caliban.jpg', status: 'read', optional: false, rating: 'Read' },
-  { arc: 'main', part: 'Part III — Imperium Secundus', title: 'Ruinstorm', author: 'David Annandale', cover: 'covers/heresy-11-ruinstorm.jpg', status: 'reading', optional: false, rating: null },
+  { arc: 'main', part: 'Part III — Imperium Secundus', title: 'Ruinstorm', author: 'David Annandale', cover: 'covers/heresy-11-ruinstorm.jpg', status: 'read', optional: false, rating: '7/10' },
 
   { arc: 'main', part: 'Part IV — Magnus, Russ & Khan', title: 'A Thousand Sons', author: 'Graham McNeill', cover: 'covers/heresy-12-a-thousand-sons.jpg', status: 'unread', optional: false, rating: null },
   { arc: 'main', part: 'Part IV — Magnus, Russ & Khan', title: 'Scars', author: 'Chris Wraight', cover: 'covers/heresy-13-scars.jpg', status: 'unread', optional: false, rating: null },
@@ -916,9 +914,17 @@ function renderHeresy() {
   byId('hpFill').style.width = pct + '%';
   byId('hpBar').setAttribute('aria-valuemax', main.length);
   byId('hpBar').setAttribute('aria-valuenow', mainRead);
+  const next = !cur ? HERESY.find(b => b.status === 'unread') : null;
+  let nextPos = '';
+  if (next) {
+    const list = next.arc === 'siege' ? siege : main;
+    nextPos = (next.arc === 'siege' ? 'Siege ' : '') + '#' + (list.indexOf(next) + 1) + ' of ' + list.length;
+  }
+
   const sub = byId('hpSub');
   sub.textContent = '';
   if (cur) sub.append('Reading now: ', el('em', '', cur.title), ' (' + curPos + ') · ');
+  else if (next) sub.append('Up next: ', el('em', '', next.title), ' (' + nextPos + ') · ');
   sub.append('Siege of Terra: ' + siegeRead + ' of ' + siege.length);
 
   // "Heresy progress" tile in the bento
@@ -928,6 +934,7 @@ function renderHeresy() {
   const ss = byId('statSub');
   ss.textContent = '';
   if (cur) ss.append('Reading now: ', el('b', '', cur.title), ' (' + curPos + ')');
+  else if (next) ss.append('Up next: ', el('b', '', next.title), ' (' + nextPos + ')');
   else ss.append('Siege of Terra: ' + siegeRead + ' of ' + siege.length);
 }
 renderHeresy();

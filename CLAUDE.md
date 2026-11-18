@@ -14,7 +14,7 @@ The Horus Heresy tab is the one exception: it uses a scoped grimdark treatment i
 ## Stack
 - One static HTML file. CSS and vanilla JavaScript are inline. There is no framework, no build step, no package manager, and no dependencies.
 - Fonts load from Google Fonts (Inter, Space Grotesk, plus Cinzel for the Heresy tab).
-- Horus Heresy and Siege of Terra covers, plus Ruinstorm and Reframe Your Brain, are local files in `covers/` (JPEG, max 480px tall, under 150KB). Other covers are still hotlinked from Goodreads, Open Library, and Amazon; the avatar is on imgur. Card links point to Amazon.
+- Horus Heresy and Siege of Terra covers, plus Ruinstorm and Reframe Your Brain, are local files in `covers/` (JPEG, max 480px tall, under 150KB). Other covers are still hotlinked from Goodreads, Open Library, and Amazon. The avatar is the local pixel-art file `images/avatar.jpg` (400×400), rendered with `image-rendering: pixelated`. Card links point to Amazon.
 - The page reads and writes only one `localStorage` key, `theme` (`light`/`dark`).
 
 ## Structure
@@ -22,6 +22,7 @@ The Horus Heresy tab is the one exception: it uses a scoped grimdark treatment i
 README.md    # one-line description
 index.html   # the whole site
 covers/      # local cover images (heresy-NN-*.jpg, siege-NN-*.jpg, others by slug)
+images/      # local site images (avatar.jpg)
 ```
 Where things are in `index.html`:
 - `<head><style>`: design tokens in `:root` and `body.light`, then the component styles in page order (bento tiles, section headers, Currently Reading, stat tile, tabs, filter chips, book grid, Pipeline, Heresy header/legend, Heresy timeline, chrome), then the `900px` and `600px` media queries.
@@ -31,7 +32,7 @@ Where things are in `index.html`:
   - `header.tile-profile`: theme toggle, avatar, title, tagline, bio.
   - `.tile-links`: the four link buttons.
   - `.tile-quote`: the quote rotator.
-  - `.tile-reading`: the "Currently Reading" heading and `.reading-grid`.
+  - `.tile-reading`: "Currently Reading" when a book is in progress, or "Up Next" with the next Heresy book when nothing is being read. Cards live in `.reading-grid`.
   - `button#heresyStat.tile-stat`: Heresy progress, filled in by JS; clicking it calls `openHeresy()`, which switches to the Heresy tab.
 - Then the tab nav (`#tabNav`, buttons with `data-tab="panel-..."`) and the panels `#panel-timeless` (with `#filterBar` and `.recs-grid`), `#panel-pipeline`, and `#panel-heresy`.
 - `#panel-heresy` holds only static shell markup: the title block, the progress block (`#hpNum`, `#hpBar`, `#hpFill`, `#hpSub`), the legend (`.tl-legend`), and an empty `#heresyTimeline`.
@@ -45,7 +46,7 @@ Copy an existing `<a class="card" data-tags="...">` block (or `.card-mini` / `.c
 All of it comes from the `HERESY` array at the top of the main script. Each entry is one book:
 ```js
 { arc: 'main', part: 'Part III — Imperium Secundus', title: 'Ruinstorm', author: 'David Annandale',
-  cover: 'covers/heresy-11-ruinstorm.jpg', status: 'reading', optional: false, rating: null }
+  cover: 'covers/heresy-11-ruinstorm.jpg', status: 'read', optional: false, rating: '7/10' }
 ```
 - `arc`: `'main'` (counted in the main-arc total) or `'siege'` (Siege of Terra, drawn as the final full-width segment).
 - `part`: the segment label. Consecutive books with the same `part` form one segment, so array order is reading order.
@@ -53,16 +54,16 @@ All of it comes from the `HERESY` array at the top of the main script. Each entr
 - `optional: true` draws the book on a dashed branch off the main track.
 - `rating`: shown for read books (`'9/10'`, or `'Read'` when unrated).
 
-To mark a book finished, set `status: 'read'` and a `rating`, then set the next book to `status: 'reading'`. To add a book, add an entry and put its cover in `covers/`.
+To mark a book finished, set `status: 'read'` and a `rating`. Set the next book to `status: 'reading'` only once it has actually been started; otherwise leave it `'unread'` and `renderHeresy()` (and the bento tile) will show it as "Up next". To add a book, add an entry and put its cover in `covers/`.
 
 `renderHeresy()` computes the rest:
-- "Main arc X of Y read", the progress bar, and "Reading now: … (#N of Y) · Siege of Terra: X of Y".
+- "Main arc X of Y read", the progress bar, and "Reading now: … (#N of Y)" or, if nothing is in progress, "Up next: … (#N of Y)", then "· Siege of Terra: X of Y".
 - The per-segment read counts (e.g. `3/3`) and how far the track is filled (up to and halfway into the current book).
-- The numbers in the bento "Heresy progress" tile.
+- The numbers in the bento "Heresy progress" tile, including the same Reading now / Up next line.
 
 The timeline is horizontal above 900px (segments wrap onto rows) and vertical at 900px and below.
 
-The intro text of the Ruinstorm card in Currently Reading ("Book 11 of 18…") and the Heresy subtitle ("18 main-arc books… 8-book Siege of Terra") are plain prose and are not computed.
+The intro text of the "Up Next" / Currently Reading card ("Book 12 of 18…") and the Heresy subtitle ("18 main-arc books… 8-book Siege of Terra") are plain prose and are not computed.
 
 ## How to run locally
 Open the file directly (`xdg-open index.html`), or serve the folder:
